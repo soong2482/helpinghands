@@ -1,0 +1,171 @@
+body{
+    flex: 8;
+  }
+  #back{
+      width:100%;
+      height:100%;
+      background: url(/src/img/shortback.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  
+  #div1{
+      height: 10%;
+      flex : 0.5;
+      flex-direction : "row";
+      /*background-color : 'yellow';*/
+    }
+  
+  #div2{
+      flex : 0.5;
+      flex-direction : "row";
+      margin-top: -30px;
+      /*backgroundColor : 'blue'*/
+    }
+  
+  #button1{
+      color: #4e13a5;
+      position : 'relative';
+      left : -500px;
+      background-color: 'white';
+      width: 160px;
+      height: 40%;
+      border-radius: 35px;
+      border: none;
+      font-size: 20px;
+      font-weight: bolder;
+  
+    }
+  
+  #button2{
+    color: #4e13a5;
+    position : 'relative';
+    left : -100px;
+    background-color: 'white';
+    width: 160px;
+    height: 40%;
+    border-radius: 35px;
+    border: none;
+    font-size: 20px;
+    margin-left: 50px;
+    font-weight: bolder;
+    }
+    #div_realtime{
+      height: 0%;
+      flex : 0.2;
+      flex-direction : "row";
+      margin-top: -50px;
+    }
+  
+  #underline{
+      border-bottom-color: 'black';
+      border-bottom-width: 1;
+    }
+  
+  #menu{
+    width:100%;
+    height: 80%;
+  }
+  #button_menu{
+    width: 20%;
+    height: 30%;
+    background-color:transparent;
+    border: 0;
+    outline: 0;
+    position: relative;
+    top : -60px;
+    left: -100px;
+  }
+  body{
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; /*수직 정렬*/
+    align-items: center;
+    justify-content: center;
+  }
+  #text1{
+    color: white;
+    font-size :xx-large;
+    font-weight: bolder;
+    position: relative;
+    left: 20px;
+    
+  }
+  #text2{
+    color: white;
+    font-size :medium;
+    font-weight: 'bold';
+    opacity: 0.5;
+    position: relative;
+    left: 5px;
+  }
+  #button_realtime{
+    flex: 0.5;
+    position: relative;
+    left : 70px;
+    border: 0;
+    background-color:transparent;
+    text-decoration: underline;
+    text-decoration-color :blueviolet;
+    font-weight: bolder;
+    font-size: medium;
+  }
+  #button_month{
+    flex: 0.5;
+    position: relative;
+    left : 70px;
+    border: 0;
+    background-color:transparent;
+    text-decoration: underline;
+    text-decoration-color :blueviolet;
+    font-weight: bolder;
+    font-size: medium;
+  }
+  #grid{
+    margin-bottom: 10px;
+    flex: 0.8;
+    display: grid;
+    grid-template-columns: 200px 200px;
+  
+  }
+  #divcol{
+    padding: 1.4rem;
+    border: 2px solid #ccc;
+    background: #f4f4f4;
+    font-size: 1.4rem;
+    text-align: center;
+  }
+  #grid1{
+    margin-bottom: -30px;
+    display: grid;
+    grid-template-columns: 200px 200px;
+  }
+  #month_profile{
+    position: relative;
+    top: -90px;
+    left: 100px;
+    width: 100px;
+  }
+  #button_notice{
+    flex: 0.5;
+    position: relative;
+    left : 140px;
+    border: 0;
+    background-color:transparent;
+    text-decoration: underline;
+    text-decoration-color :blueviolet;
+    font-weight: bolder;
+    font-size: medium;
+  }
+  #grid2{
+    flex: 1;
+    display: grid;
+    grid-template-columns: 200px 200px;
+    margin-bottom: 30px;
+  }
+  body{
+    min-width: 480px;
+    min-height: 950px;
+    overflow: auto;
+  }
