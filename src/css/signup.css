@@ -1,0 +1,67 @@
+.background1{
+    display:flex;
+    min-height:100vh;
+    max-height:100vh;
+    min-width:70vh;
+    max-width:70vh;
+    flex-direction: column;
+    background-size: cover;
+    background-color: #7B6EB0;
+    border-radius: 15px;
+    align-items: center;
+    text-align: center;
+}
+#container5{
+    align-items: center;
+    text-align: center;
+    flex-grow:1;
+  }
+  #container6{
+    flex-grow:1;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: left;
+    padding:10%;
+    font-size:20px;
+    font-weight: bold;
+  }
+  #container7{
+    flex-grow:1;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: left;
+    padding:10%;
+    font-size:30px;
+  }
+  #container8{
+    flex-grow:1;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: left;
+    padding:10%;
+    font-size:20px;
+  }
+  #container9{
+    flex-grow:1;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: left;
+    padding:10%;
+    font-size:25px;
+  }
+  #idinput{
+    width:80%;
+    height:35px;
+    font-size:15px;
+    border-color: rgb(22, 33, 54); 
+    background: transparent;
+    border-radius: 13px;
+    display:flex;
+  }
+  #pwd{
+    display:flex;
+  }
+  #logo2{
+    width:50%;    
+  }
+  

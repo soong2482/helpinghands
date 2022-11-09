@@ -3,6 +3,7 @@ import background from '../img/shortback.png';
 import menu from '../img/menu.png'
 import plus from '../img/plus.png';
 import adv from '../img/adv.png';
+import "../css/Home.css"
 
 function Home() {
     return (
