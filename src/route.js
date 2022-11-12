@@ -14,6 +14,7 @@ export default function routes(){
               <Route path="/repair" element={<Pages.repair/>}/>
               <Route path="/SignIn" element={<Pages.SignIn/>}/>
               <Route path="/SignUp" element={<Pages.SignUp/>}/>
+              <Route path="/mypage" element={<Pages.mypage/>}/>
 
             </Routes>
           </Router>

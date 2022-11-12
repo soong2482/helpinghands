@@ -32,11 +32,11 @@ function SignUp(){
       }
     },[name,password]);
     return(   
-    <div class="background1">
-         <img id="logo2" alt="로고" src={logo}/>
-          <div id ="container6">
-            <div>아이디<div id="pwd">
-            <input id="idinput" type="text" placeholder="                     @email.com"></input>
+    <div id="signup_background1">
+         <img id="singnup_logo2" alt="로고" src={logo}/>
+          <div id ="singnup_container6">
+            <div>아이디<div id="singnup_pwd">
+            <input id="singnup_idinput" type="text" placeholder="                     @email.com"></input>
             <img src={logo3} style={{
                 width:"9%",
 
@@ -44,8 +44,8 @@ function SignUp(){
             </div>
             </div>
             <br></br>
-            <div>비밀번호<div id="pwd">
-            <input id="idinput" type="text" placeholder="   특수문자 포함 8자 이상"></input>
+            <div>비밀번호<div id="singnup_pwd">
+            <input id="singnup_idinput" type="password" placeholder="   특수문자 포함 8자 이상"></input>
             <img src={logo2} style={{
                 width:"10%",
             }}/>
@@ -53,22 +53,23 @@ function SignUp(){
             </div>
             <br></br>
             <div>비밀번호재확인<br></br>
-            <input id="idinput" type="text" placeholder="    한번 더 입력해주세요."></input></div>
+            <input id="singnup_idinput" type="password" placeholder="    한번 더 입력해주세요."></input></div>
             <br></br>
-            <div>휴대폰번호<div id="pwd">
-            <input id="idinput" type="text" placeholder="          010-0000-0000"></input>
+            <div>휴대폰번호<div id="singnup_pwd">
+            <input id="singnup_idinput" type="text" placeholder="          010-0000-0000"></input>
             <img src={logo4} style={{
                 width:"10%",
             }}/>
             </div>
             </div>
+            <div id ="singnup_container7">
+            <button id="singnup_sign" >회원가입</button>
+            </div>
           </div>
-          <div id ="container7">
-            
+
+          <div id ="singnup_container8">
           </div>
-          <div id ="container8">
-          </div>
-          <div id ="container9">
+          <div id ="singnup_container9">
           </div>
 
     </div>)

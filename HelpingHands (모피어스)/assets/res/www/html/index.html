@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+	<title>Hello! Mobile!</title>
+</head>
+
+<body>
+	
+	<input type="text" id="ipt-url" name="url" value="http://">
+	<button id="btn-move">Move</button>
+	
+</body>
+
+<script type="text/javascript" src="../js/mcore.min.js"></script>
+<script type="text/javascript">
+
+M.onReady(function(e) {
+	var key = '__remeberUrl';
+	var prevUrl = M.data.storage(key);
+	if(prevUrl) {
+		document.getElementById('ipt-url').value = prevUrl;
+	}
+	document.getElementById('btn-move').addEventListener('click', function () {
+		var targetUrl = document.getElementById('ipt-url').value;
+		M.data.storage(key, targetUrl);
+		M.page.html({
+			url: targetUrl,
+			actionType: 'CLEAR_TOP',
+		})
+	});
+});
+
+M.onHide(function(e){
+	
+});
+
+M.onRestore(function(e) {
+	
+});
+
+</script>
+
+</html>

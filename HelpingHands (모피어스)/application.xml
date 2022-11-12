@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<application>
+    	
+    <projectName>HelpingHands</projectName>
+    	
+    <applicationName>HelpingHands</applicationName>
+    	
+    <android>
+        		
+        <projectName>HelpingHands</projectName>
+        		
+        <applicationName>HelpingHands</applicationName>
+        		
+        <packageName>mcore.edu.helpinghands</packageName>
+        		
+        <compileSdk>android-31</compileSdk>
+        	
+    </android>
+    	
+    <ios>
+        <projectName>HelpingHands</projectName>
+        <applicationName>HelpingHands</applicationName>
+        <bundleIdentifier>mcore.edu.helpinghands</bundleIdentifier>
+    </ios>
+    	
+    <components/>
+    	
+    <libraries>
+        <library api="2.1" id="m.client.library.core" revision="8.14" type="core"/>
+        <library api="2.1" id="m.client.library.addon.db" revision="4.10" type="addon"/>
+        <library api="2.1" id="m.client.library.addon.file" revision="4.17" type="addon"/>
+        <library api="2.1" id="m.client.library.addon.media" revision="5.37" type="addon"/>
+        <library api="2.1" id="m.client.library.addon.net" revision="4.20" type="addon"/>
+        <library api="2.1" id="m.client.library.addon.netExt" revision="4.32" type="addon"/>
+        <library api="2.1" id="m.client.library.addon.popup" revision="4.31" type="addon"/>
+        <library api="2.1" id="m.client.library.addon.zip" revision="4.3" type="addon"/>
+        <library api="2.1" id="m.client.library.plugin.location" revision="0.8" type="plugin"/>
+    </libraries>
+    
+</application>

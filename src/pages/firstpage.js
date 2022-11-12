@@ -14,20 +14,20 @@ function Firstpage(){
     Navigate("/SignIn")
   }
     return(
-         <div class="background" style={{backgroundImage:`url(${image})`}}>
+         <div id="firstpage_background" style={{backgroundImage:`url(${image})`}}>
 
-           <div id="container2">
-                 <img id="logo" alt="로고" src={logo}/>
+           <div id="firstpage_container2">
+                 <img id="firstpage_logo" alt="로고" src={logo}/>
             </div>
-            <div id="container3">
+            <div id="firstpage_container3">
               도움의손길 
             </div>
-            <div id="container4">
-                <div id="login">
-                  <button id="login1" onClick={Move1}>로그인</button>
+            <div id="firstpage_container4">
+                <div id="firstpage_login">
+                  <button id="firstpage_login1" onClick={Move1}>로그인</button>
                 </div>
-                <div id="signup">
-                  <button id="signup1" onClick={Move2}>회원가입</button>
+                <div id="firstpage_signup">
+                  <button id="firstpage_signup1" onClick={Move2}>회원가입</button>
                 </div>
              </div>
             

@@ -6,6 +6,7 @@ import notice from "./notice";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import repair from "./repair";
+import mypage from "./Mypage";
 
 const path = {
      Home,
@@ -15,6 +16,7 @@ const path = {
      repair,
      SignIn,
      SignUp,
+     mypage,
 };
 
 export default path;

@@ -1,0 +1,70 @@
+#mypage_back{
+    margin: 0 auto;
+    width:100%;
+    background: url(/src/img/shortback.png);
+    background-repeat: no-repeat;
+    background-size:100% 90%;
+    flex: 10;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; /*수직 정렬*/
+    align-items: center;
+    justify-content: center;
+    min-width: 554px;
+    max-width: 554px;
+    min-height: 950px;
+    max-height: 950px;
+    height: 100vh;
+    overflow-x:hidden;
+    overflow-y:hidden;
+  }
+
+#mypage_profile_text{
+    position: relative;
+    top: 40px;
+    left: 40px;
+    flex: 1.5;
+    width: 100%;
+    font-weight: bold;
+    font-size:x-large;
+    color: white;
+    /*background-color: aqua;*/
+  }
+#mypage_profile{
+      flex: 3.5;
+      width: 100%;
+      float: left;
+     /* background-color:blue;*/
+}
+#mypage_profile_img{
+  position: relative;
+  left: 40px;
+  width: 20%;
+  float: left;
+}
+#mypage_name{
+  position: relative;
+  left: 170px;
+  font-weight: bold;
+  font-size:xxx-large;
+  color: white;
+}
+#mypage_agency{
+  position: relative;
+  font-size:medium;
+  opacity: 0.5;
+  color: white;
+  left: 170px;
+}
+#mypage_button1,#mypage_button2,#mypage_button3,#mypage_button4,#mypage_button5,#mypage_button6{
+  flex: 1;
+  width: 100%;
+  height: 10%;
+  border: 0;
+  background-color:transparent;
+  font-size:large;
+  /*background-color:rgb(17, 255, 0);*/
+}
+#mypage_div_adv{
+  flex: 2;
+}

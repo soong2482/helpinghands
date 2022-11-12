@@ -1,4 +1,4 @@
-.background1{
+#signup_background1{
     display:flex;
     min-height:100vh;
     max-height:100vh;
@@ -10,14 +10,15 @@
     border-radius: 15px;
     align-items: center;
     text-align: center;
+    margin: 0 auto;
 }
-#container5{
+#singnup_container5{
     align-items: center;
     text-align: center;
     flex-grow:1;
   }
-  #container6{
-    flex-grow:1;
+  #singnup_container6{
+    flex-grow:0.5;
     justify-content: flex-end;
     align-items: center;
     text-align: left;
@@ -25,31 +26,16 @@
     font-size:20px;
     font-weight: bold;
   }
-  #container7{
+  #singnup_container7{
     flex-grow:1;
     justify-content: flex-end;
     align-items: center;
-    text-align: left;
+    text-align: center;
     padding:10%;
     font-size:30px;
   }
-  #container8{
-    flex-grow:1;
-    justify-content: flex-end;
-    align-items: center;
-    text-align: left;
-    padding:10%;
-    font-size:20px;
-  }
-  #container9{
-    flex-grow:1;
-    justify-content: flex-end;
-    align-items: center;
-    text-align: left;
-    padding:10%;
-    font-size:25px;
-  }
-  #idinput{
+
+  #singnup_idinput{
     width:80%;
     height:35px;
     font-size:15px;
@@ -58,10 +44,24 @@
     border-radius: 13px;
     display:flex;
   }
-  #pwd{
+  #singnup_pwd{
     display:flex;
   }
-  #logo2{
+  #singnup_logo2{
     width:50%;    
+  }
+  #singnup_sign{
+    background-color:#7B6EB0;
+    border-radius:15%;
+    border-color: black;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:35px;
+      width:30vh;
+      height:10vh;
+    font-weight:bold;
+    text-decoration:none;
   }
   
