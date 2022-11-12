@@ -2,20 +2,29 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import { applyMiddleware, createStore } from "redux";
+import promiseMiddlerware from "redux-promise";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
-import reducer from "./store";
 import { composeWithDevTools } from "redux-devtools-extension";
+import reduxThunk from "redux-thunk";
+import reducer from "./_reducers";
 
-// store 생성(reducer,devtools 연결)
-const store = createStore(reducer, composeWithDevTools());
+const createStoreWidthMiddleware = applyMiddleware(
+    promiseMiddlerware,
+    reduxThunk
+  )(createStore);
 
 ReactDOM.render(
-//provier 컴포넌트로 store 에 접근
-    <Provider store={store}> 
         <React.StrictMode>
-            <App />
-        </React.StrictMode>
-    </Provider>,
+            <Provider
+            store={createStoreWidthMiddleware(
+                reducer,
+                //개발자 도구를 사용하기 위한 설정
+                window.__REDUX_DEVTOOLS_EXTENSION__ &&
+                window.__REDUX_DEVTOOLS_EXTENSION__()
+      )}>
+                    <App />
+            </Provider>
+        </React.StrictMode>,
     document.getElementById("root")
 );

@@ -1,42 +1,46 @@
 
 import React,{useState,useCallback} from "react";
-import axios, { AxiosError } from 'axios';
-import image from '../img/background.png'
 import logo from '../img/logo.png';
 import logo2 from '../img/33.png';
 import logo3 from '../img/11.png';
 import logo4 from '../img/55.png';
 import '../css/signup.css'
-function SignUp(){
+import { registerUser } from "../_actions/userAction";
+import { useDispatch } from "react-redux";
+function SignUp(props){
     const[name, setName] = useState('');
     const[password, setPassword]=useState('');
+    const dispatch = useDispatch();
     const OnChangeName = useCallback(e=> {
       setName(e.target.value);
       }, []);
     const OnChangePassword = useCallback(e => {
       setPassword(e.target.value);
       }, []);
-    const OnSubmit = useCallback(async () => {
+    const OnSubmit =(e) => {
+      e.preventDefault();
       console.log(name, password);
-      try{
-        const response = await axios.post('/user',{name,password},{});
-        console.log(response);
-      }catch(error){
-        const errorResponse = (error).response;
-        console.error(errorResponse);
-        if (errorResponse) {
-           alert('알림', errorResponse.data.message);
-        }
-      }finally{
-              
+      let body={
+        name: name,
+        password: password,
       }
-    },[name,password]);
+      dispatch(registerUser(body)).then((res)=>{
+        alert("가입이 정상적으로 완료되었습니다.");
+      });
+
+    };
     return(   
     <div id="signup_background1">
          <img id="singnup_logo2" alt="로고" src={logo}/>
           <div id ="singnup_container6">
             <div>아이디<div id="singnup_pwd">
-            <input id="singnup_idinput" type="text" placeholder="                     @email.com"></input>
+            <input id="singnup_idinput" 
+              value={name}
+              type="text" 
+              placeholder="                     @email.com"
+              onChange={OnChangeName}
+              >
+              </input>
             <img src={logo3} style={{
                 width:"9%",
 
@@ -45,7 +49,12 @@ function SignUp(){
             </div>
             <br></br>
             <div>비밀번호<div id="singnup_pwd">
-            <input id="singnup_idinput" type="password" placeholder="   특수문자 포함 8자 이상"></input>
+            <input id="singnup_idinput" 
+            type="password" 
+            placeholder="   특수문자 포함 8자 이상"
+            onChange={OnChangePassword}
+            value={password}
+            ></input>
             <img src={logo2} style={{
                 width:"10%",
             }}/>
@@ -63,7 +72,7 @@ function SignUp(){
             </div>
             </div>
             <div id ="singnup_container7">
-            <button id="singnup_sign" >회원가입</button>
+            <button id="singnup_sign" onClick={OnSubmit}>회원가입</button>
             </div>
           </div>
 
