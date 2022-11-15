@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 function SignUp(props){
     const[name, setName] = useState('');
     const[password, setPassword]=useState('');
+    const[email,setEmail]=useState('');
     const dispatch = useDispatch();
     const OnChangeName = useCallback(e=> {
       setName(e.target.value);
@@ -17,13 +18,16 @@ function SignUp(props){
     const OnChangePassword = useCallback(e => {
       setPassword(e.target.value);
       }, []);
+      const onChangeEmail = useCallback(e =>{
+        setEmail(e.target.value);
+      },[]);
     const OnSubmit =(e) => {
       e.preventDefault();
       console.log(name, password);
-
       let body={
         name: name,
         password: password,
+        email: email,
       }
       dispatch(registerUser(body))
       .then(response =>{
@@ -49,7 +53,6 @@ function SignUp(props){
               </input>
             <img src={logo3} style={{
                 width:"9%",
-
             }}/>
             </div>
             </div>
