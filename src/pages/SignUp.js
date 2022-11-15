@@ -20,15 +20,21 @@ function SignUp(props){
     const OnSubmit =(e) => {
       e.preventDefault();
       console.log(name, password);
+
       let body={
         name: name,
         password: password,
       }
-      dispatch(registerUser(body)).then((res)=>{
+      dispatch(registerUser(body))
+      .then(response =>{
+        if(response.payload.success){
         alert("가입이 정상적으로 완료되었습니다.");
-      });
-
-    };
+      }else{
+       
+        alert("Failed");
+      }
+    })
+  }
     return(   
     <div id="signup_background1">
          <img id="singnup_logo2" alt="로고" src={logo}/>

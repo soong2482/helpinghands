@@ -1,18 +1,20 @@
-const { User } = require("../models/User");
+const { User } = require('../models/User');
+const jwt = require("jsonwebtoken");
 
-let auth = (req, res, next) => {
-  let token = req.cookies.x_auth;
-
-  User.findByToken(token)
-    .then((user) => {
+const auth = (req, res, next) => {
+  const token = req.cookies.x_auth;
+  jwt.verify(token, "secretToken", (err, decoded) => {
+    if (err) throw err;
+    User.findOne({ _id: decoded, token: token }, (err, user) => {
+      if (err) return res.json({ success: false, err });
       if (!user) return res.json({ isAuth: false, error: true });
       req.token = token;
       req.user = user;
       next();
-    })
-    .catch((err) => {
-      throw err;
     });
+  });
 };
+    //유저가 있으면 인증 Okay
+    //유저가 없으면 인증 No!
 
-module.exports = { auth };
+    module.exports = { auth };
