@@ -7,11 +7,25 @@ import protect from '../img/protect.png';
 import participation from '../img/participation.png';
 import recruitment from '../img/recruitment.png';
 import logout from '../img/logout.png';
+import axios from 'axios';
 import rightarrow from '../img/rightarrow.png';
 import { useNavigate } from 'react-router-dom';
-
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 function Mypage() {
   const navigate = useNavigate();
+axios.get('/api').then(response=>{console.log(response)})
+  const logout =() => {
+        axios.get(`/api/users/logout`)
+        .then(response => {
+                console.log(response.data)
+            if (response.data.success) {
+                navigate("/");
+            } else {
+                alert('로그아웃 하는데 실패 했습니다.')
+            }
+        })
+  }
   return (
       <div id ="mypage_back">
           <div id="mypage_profile_text">프로필</div>
@@ -55,7 +69,17 @@ function Mypage() {
                   &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                   <img src={rightarrow} style={{ width: 20, height: 20 }} alt='화살표' />
           </button>
-          <button id="mypage_button6" onClick={() => {navigate("/")}}>
+
+
+
+
+
+
+
+
+
+
+          <button id="mypage_button6" onClick={logout}>
           &emsp;&emsp;<img src={logout} style={{ width: 20, height: 20 }} alt='로그 아웃' />
                   &emsp;&emsp;
                   로그아웃

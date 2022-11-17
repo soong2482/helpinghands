@@ -7,6 +7,7 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import repair from "./repair";
 import mypage from "./Mypage";
+import realtime from "./realtime";
 
 const path = {
      Home,
@@ -17,6 +18,7 @@ const path = {
      SignIn,
      SignUp,
      mypage,
+     realtime,
 };
 
 export default path;

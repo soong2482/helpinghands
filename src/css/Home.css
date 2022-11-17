@@ -1,170 +1,188 @@
 
 #Home_back{
-    margin: 0 auto;
-    width:100%;
-    height:100%;
-    background: url(/src/img/shortback.png);
-    background-repeat: no-repeat;
-    background-size:cover;
-    min-width: 554px;
-    max-width: 554px;
-    min-height: 950px;
-    overflow-x:hidden;
-    overflow-y:scroll;
-    flex: 8;
-    height: 100vh;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column; /*수직 정렬*/
-    align-items: center;
-    justify-content: center;
-  }
+  margin: 0 auto;
+  width:100%;
+  height:100%;
+  background: url(/src/img/shortback.png);
+  background-repeat: no-repeat;
+  background-size:cover;
+  min-width: 554px;
+  max-width: 554px;
+  min-height: 1050px;
+  max-height: 1050px;
+  overflow-x:hidden;
+  overflow-y:scroll;
+  flex: 8;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column; /*수직 정렬*/
+  align-items: center;
+  justify-content: center;
+}
 
 #Home_div1{
-    height: 10%;
-   
-    flex : 0.5;
-    flex-direction : "row";
-    /*background-color : 'yellow';*/
-  }
+  height: 10%;
+  flex : 1;
+  flex-direction : "row";
+  /*background-color : 'yellow';*/
+}
 
 #Home_div2{
-    flex : 0.5;
-    flex-direction : "row";
-    margin-top: -30px;
-    /*backgroundColor : 'blue'*/
-  }
+  flex : 1;
+  flex-direction : "row";
+  margin-top: -30px;
+  /*backgroundColor : 'blue'*/
+}
+#Home_div3{
+flex : 1.5;
+flex-direction : "row";
+/*backgroundColor : 'blue'*/
+}
+#Home_div4{
+flex : 1;
+flex-direction : "row";
+/*backgroundColor : 'blue'*/
+}
+#Home_div5{
+flex : 2.5;
+flex-direction : "row";
+/*backgroundColor : 'blue'*/
+}
 
 #Home_button1{
-    color: #4e13a5;
-    position : 'relative';
-    left : -500px;
-    background-color: 'white';
-    width: 160px;
-    height: 40%;
-    border-radius: 35px;
-    border: none;
-    font-size: 20px;
-    font-weight: bolder;
-
-  }
-
-#Home_button2{
   color: #4e13a5;
   position : 'relative';
-  left : -100px;
+  left : -500px;
   background-color: 'white';
   width: 160px;
   height: 40%;
   border-radius: 35px;
   border: none;
   font-size: 20px;
-  margin-left: 50px;
   font-weight: bolder;
-  }
-  #Home_div_realtime{
-    height: 0%;
-    flex : 0.2;
-    flex-direction : "row";
-    margin-top: -50px;
-  }
+
+}
+
+#Home_button2{
+color: #4e13a5;
+position : 'relative';
+left : -100px;
+background-color: 'white';
+width: 160px;
+height: 40%;
+border-radius: 35px;
+border: none;
+font-size: 20px;
+margin-left: 50px;
+font-weight: bolder;
+}
+#Home_div_realtime{
+  height: 0%;
+  flex-direction : "row";
+  margin-top: -50px;
+}
 
 #Home_underline{
-    border-bottom-color: 'black';
-    border-bottom-width: 1;
-  }
-
-#Home_menu{
-  width:100%;
-  height: 80%;
+  border-bottom-color: 'black';
+  border-bottom-width: 1;
 }
-#Home_button_menu{
-  width: 20%;
-  height: 30%;
-  background-color:transparent;
-  border: 0;
-  outline: 0;
-  position: relative;
-  top : -60px;
-  left: -100px;
+
+#Home_user{
+width:100%;
+height: 80%;
+}
+#Home_button_user{
+width: 25%;
+height: 30%;
+background-color: transparent;
+border: 0;
+outline: 0;
+position: relative;
+top : -60px;
+left: 280px;
 }
 #Home_text1{
-  color: white;
-  font-size :xx-large;
-  font-weight: bolder;
-  position: relative;
-  left: 20px;
- 
+color: white;
+font-size :xx-large;
+font-weight: bolder;
+position: relative;
+left: 20px;
+
 }
 #Home_text2{
-  color: white;
-  font-size :medium;
-  font-weight: 'bold';
-  opacity: 0.5;
-  position: relative;
-  left: 5px;
+color: white;
+font-size :medium;
+font-weight: 'bold';
+opacity: 0.5;
+position: relative;
+left: 5px;
 }
 #Home_button_realtime{
-  flex: 0.5;
-  position: relative;
-  left : 70px;
-  border: 0;
-  background-color:transparent;
-  text-decoration: underline;
-  text-decoration-color :blueviolet;
-  font-weight: bolder;
-  font-size: medium;
+position: relative;
+left : 150px;
+border: 0;
+background-color:transparent;
+text-decoration: underline;
+text-decoration-color :blueviolet;
+font-weight: bolder;
+font-size: x-large;
+color: rgb(113, 31, 143);
 }
 #Home_button_month{
-  flex: 0.5;
-  position: relative;
-  left : 70px;
-  border: 0;
-  background-color:transparent;
-  text-decoration: underline;
-  text-decoration-color :blueviolet;
-  font-weight: bolder;
-  font-size: medium;
+position: relative;
+left : 150px;
+border: 0;
+background-color:transparent;
+text-decoration: underline;
+text-decoration-color :blueviolet;
+font-weight: bolder;
+font-size: x-large;
+color: rgb(113, 31, 143);
 }
 #Home_grid{
-  margin-bottom: 10px;
-  flex: 0.8;
-  display: grid;
-  grid-template-columns: 200px 200px;
+position: relative;
+top: 50px;
+margin-bottom: 10px;
+display: grid;
+grid-template-columns: 200px 200px;
 
 }
 #Home_divcol{
-  padding: 1.4rem;
-  border: 2px solid #ccc;
-  background: #f4f4f4;
-  font-size: 1.4rem;
-  text-align: center;
+padding: 1.4rem;
+border: 2px solid #ccc;
+background: #f4f4f4;
+font-size: 1.4rem;
+text-align: center;
 }
 #Home_grid1{
-  margin-bottom: -30px;
-  display: grid;
-  grid-template-columns: 200px 200px;
+margin-bottom: -30px;
+display: grid;
+grid-template-columns: 200px 200px;
 }
 #Home_month_profile{
-  position: relative;
-  top: -90px;
-  left: 100px;
-  width: 100px;
+position: relative;
+top: -90px;
+left: 100px;
+width: 100px;
 }
 #Home_button_notice{
-  flex: 0.5;
-  position: relative;
-  left : 140px;
-  border: 0;
-  background-color:transparent;
-  text-decoration: underline;
-  text-decoration-color :blueviolet;
-  font-weight: bolder;
-  font-size: medium;
+position: relative;
+left : 140px;
+border: 0;
+background-color:transparent;
+text-decoration: underline;
+text-decoration-color :blueviolet;
+font-weight: bolder;
+font-size: x-large;
+margin-bottom: 20px;
+color: rgb(113, 31, 143);
+
 }
 #Home_grid2{
-  flex: 1;
-  display: grid;
-  grid-template-columns: 200px 200px;
-  margin-bottom: 30px;
+display: grid;
+grid-template-columns: 200px 200px;
+}
+#Home_div6{
+flex: 1;
 }

@@ -8,47 +8,87 @@ import '../css/signup.css'
 import { registerUser } from "../_actions/userAction";
 import { useDispatch } from "react-redux";
 function SignUp(props){
+  
     const[name, setName] = useState('');
-    const[password, setPassword]=useState('');
     const[email,setEmail]=useState('');
+    const[password, setPassword]=useState('');
+    const[repassword,setrePassword]=useState('');
+    const[phone,setPhone]=useState('');
     const dispatch = useDispatch();
+    const OnChangeEmail = useCallback(e=> {
+      setEmail(e.target.value);
+      }, []);
     const OnChangeName = useCallback(e=> {
       setName(e.target.value);
       }, []);
+    const OnChangePhome = useCallback(e=> {
+      setPhone(e.target.value);
+    },[]);
     const OnChangePassword = useCallback(e => {
       setPassword(e.target.value);
       }, []);
-      const onChangeEmail = useCallback(e =>{
-        setEmail(e.target.value);
+      const onChangerePassword= useCallback(e=>{
+        setrePassword(e.target.value);
       },[]);
     const OnSubmit =(e) => {
       e.preventDefault();
-      console.log(name, password);
+      console.log(name, password);//dev
       let body={
         name: name,
+        email:email,
         password: password,
-        email: email,
+        phone:phone,
       }
+      const emailRegex =
+      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+      const regPhoneNumber = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
+      if(!regPhoneNumber.test(phone)){
+        alert('휴대폰 번호를 다시 입력해주세요')
+      }
+      if (!emailRegex.test(email)) {
+        alert('이메일 형식이 아닙니다.')
+      }
+      if(password==repassword){
       dispatch(registerUser(body))
       .then(response =>{
         if(response.payload.success){
         alert("가입이 정상적으로 완료되었습니다.");
-      }else{
-       
-        alert("Failed");
       }
+      else{
+        
+        alert("아이디나 닉네임이 중복되었습니다.");
+      } 
     })
+  }
+  else{
+    alert("비밀번호가 일치하지 않습니다.");
+  }
+      
   }
     return(   
     <div id="signup_background1">
          <img id="singnup_logo2" alt="로고" src={logo}/>
           <div id ="singnup_container6">
-            <div>아이디<div id="singnup_pwd">
+          <div>이름<div id="singnup_pwd">
             <input id="singnup_idinput" 
               value={name}
               type="text" 
-              placeholder="                     @email.com"
+              placeholder="                닉네임을 입력해주세요."
               onChange={OnChangeName}
+              >
+              </input>
+            <img src={logo3} style={{
+                width:"9%",
+            }}/>
+            </div>
+            </div>
+            <br></br>
+            <div>아이디<div id="singnup_pwd">
+            <input id="singnup_idinput" 
+              value={email}
+              type="text" 
+              placeholder="                     @email.com"
+              onChange={OnChangeEmail}
               >
               </input>
             <img src={logo3} style={{
@@ -70,11 +110,27 @@ function SignUp(props){
             </div>
             </div>
             <br></br>
-            <div>비밀번호재확인<br></br>
-            <input id="singnup_idinput" type="password" placeholder="    한번 더 입력해주세요."></input></div>
+            <div>비밀번호 재확인<div id="singnup_pwd">
+            <input id="singnup_idinput" 
+            type="password" 
+            placeholder="   다시 한번 입력해주세요."
+            onChange={onChangerePassword}
+            value={repassword}
+            ></input>
+            <img src={logo2} style={{
+                width:"10%",
+            }}/>
+            </div>
+            </div>
             <br></br>
             <div>휴대폰번호<div id="singnup_pwd">
-            <input id="singnup_idinput" type="text" placeholder="          010-0000-0000"></input>
+            <input id="singnup_idinput" 
+            type="text" 
+            placeholder="          010-0000-0000"
+            onChange={OnChangePhome}
+            value={phone}
+            >
+            </input>
             <img src={logo4} style={{
                 width:"10%",
             }}/>
