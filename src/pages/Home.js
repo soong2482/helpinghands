@@ -4,9 +4,26 @@ import plus from '../img/plus.png';
 import adv from '../img/adv.png';
 import profile from '../img/profil.png';
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
+import React,{useState,useCallback, Component} from "react";
+import { useEffect } from "react";
 function App() {
   const navigate = useNavigate();
+  const [List, setList] = useState(null);
+  const [noticeList,setnoticeList] = useState(null);
+  let result=[];
+ useEffect(()=>{
+    axios.get(`/api/repair/Home`)
+    .then(response => {
+        console.log(JSON.stringify(response.data,null,2));
+        setList(response.data);
+    })
+    axios.get(`/api/notice/Home`)
+    .then(response => {
+        console.log(JSON.stringify(response.data,null,2));
+        setnoticeList(response.data);
+    })
+ },[]);
   return (
       <div id ="Home_back">
           <div id="Home_div1">
@@ -35,10 +52,13 @@ function App() {
             </div>
           
              <div id="Home_grid">
-              <div id="Home_divcol">item1</div>
-              <div id="Home_divcol">item2</div>
-              <div id="Home_divcol">item3</div>
-              <div id="Home_divcol">item4</div>
+                {List && List.data.map((item)=>
+                    <div id="Home_divcol" key={item._id}>
+                     {item.name}
+                     {item.address}
+                        
+                    </div>
+                )};
              </div>
           </div>
           <div id="Home_div4">
@@ -60,12 +80,13 @@ function App() {
                   <img src={plus} style={{ width: 15, height: 15 }} alt='플러스' />
           </button>
           <div id="Home_grid2">
-              <div id="Home_divcol">item1</div>
-              <div id="Home_divcol">item2</div>
-              <div id="Home_divcol">item3</div>
-              <div id="Home_divcol">item4</div>
-              <div id="Home_divcol">item5</div>
-              <div id="Home_divcol">item6</div>
+               {noticeList && noticeList.data.map((item)=>
+                    <div id="Home_divcol" key={item._id}>
+                     {item.title}
+                        
+                    </div>
+                )};
+           
           </div>
           </div>
           <div id="Home_div6">

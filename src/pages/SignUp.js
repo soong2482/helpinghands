@@ -1,5 +1,6 @@
 
 import React,{useState,useCallback} from "react";
+import { useNavigate } from "react-router-dom";
 import logo from '../img/logo.png';
 import logo2 from '../img/33.png';
 import logo3 from '../img/11.png';
@@ -8,7 +9,7 @@ import '../css/signup.css'
 import { registerUser } from "../_actions/userAction";
 import { useDispatch } from "react-redux";
 function SignUp(props){
-  
+    const Navigate = useNavigate();
     const[name, setName] = useState('');
     const[email,setEmail]=useState('');
     const[password, setPassword]=useState('');
@@ -53,6 +54,8 @@ function SignUp(props){
       .then(response =>{
         if(response.payload.success){
         alert("가입이 정상적으로 완료되었습니다.");
+        Navigate("/SignIn");
+        
       }
       else{
         

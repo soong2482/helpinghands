@@ -12,7 +12,16 @@ var _require = require('./middleware/auth'),
     auth = _require.auth;
 
 var _require2 = require("./models/User"),
-    User = _require2.User; //application/x-www-form-urlencoded 
+    User = _require2.User;
+
+var _require3 = require("./models/Help"),
+    Help = _require3.Help;
+
+var _require4 = require("./models/Notice"),
+    Notice = _require4.Notice;
+
+var _require5 = require("./models/Repair"),
+    Repair = _require5.Repair; //application/x-www-form-urlencoded 
 
 
 app.use(bodyParser.urlencoded({
@@ -36,9 +45,183 @@ mongoose.connect(dbAddress, {
 app.get('/api/hello', function (req, res) {
   return res.send('Hello World!~~ ');
 });
+app.get('/api/help/delete', function (req, res) {
+  Help.findOneAndUpdate({
+    email: req.email,
+    Date: req.Date
+  }, {
+    success: "end"
+  }, function (err, help) {
+    if (err) return res.json({
+      success: false,
+      err: err
+    });
+    return res.status(200).json({
+      success: true
+    });
+  });
+});
+app.get('/api/help/list', function _callee(req, res) {
+  var list;
+  return regeneratorRuntime.async(function _callee$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          _context.next = 2;
+          return regeneratorRuntime.awrap(Help.find().sort({
+            Date: -1
+          }));
+
+        case 2:
+          list = _context.sent;
+          return _context.abrupt("return", res.status(200).json({
+            data: list
+          }));
+
+        case 4:
+        case "end":
+          return _context.stop();
+      }
+    }
+  });
+});
+app.post('/api/help/application', function (req, res) {
+  var help = new Help(req.body);
+  help.save(function (err, helpInfo) {
+    if (err) return res.json({
+      success: false,
+      err: err
+    });
+    return res.status(200).json({
+      success: true
+    });
+  });
+});
+app.post('/api/notice/application', function (req, res) {
+  var notice = new Notice(req.body);
+  var now = new Date();
+  console.log(now);
+  notice.save(function (err, noticeInfo) {
+    if (err) return res.json({
+      success: false,
+      err: err
+    });
+    return res.status(200).json({
+      success: true
+    });
+  });
+});
+app.get('/api/notice/Home', function _callee2(req, res) {
+  var list;
+  return regeneratorRuntime.async(function _callee2$(_context2) {
+    while (1) {
+      switch (_context2.prev = _context2.next) {
+        case 0:
+          _context2.next = 2;
+          return regeneratorRuntime.awrap(Notice.find().limit(6).sort({
+            Date: -1
+          }));
+
+        case 2:
+          list = _context2.sent;
+          return _context2.abrupt("return", res.status(200).json({
+            data: list
+          }));
+
+        case 4:
+        case "end":
+          return _context2.stop();
+      }
+    }
+  });
+});
+app.get('/api/notice/list', function _callee3(req, res) {
+  var list;
+  return regeneratorRuntime.async(function _callee3$(_context3) {
+    while (1) {
+      switch (_context3.prev = _context3.next) {
+        case 0:
+          _context3.next = 2;
+          return regeneratorRuntime.awrap(Notice.find().sort({
+            Date: -1
+          }));
+
+        case 2:
+          list = _context3.sent;
+          return _context3.abrupt("return", res.status(200).json({
+            data: list
+          }));
+
+        case 4:
+        case "end":
+          return _context3.stop();
+      }
+    }
+  });
+});
+app.post('/api/repair/application', function (req, res) {
+  var repair = new Repair(req.body);
+  var now = new Date();
+  console.log(now);
+  repair.save(function (err, repairInfo) {
+    if (err) return res.json({
+      success: false,
+      err: err
+    });
+    return res.status(200).json({
+      success: true
+    });
+  });
+});
+app.get('/api/repair/Home', function _callee4(req, res) {
+  var list;
+  return regeneratorRuntime.async(function _callee4$(_context4) {
+    while (1) {
+      switch (_context4.prev = _context4.next) {
+        case 0:
+          _context4.next = 2;
+          return regeneratorRuntime.awrap(Repair.find().limit(4).sort({
+            Date: -1
+          }));
+
+        case 2:
+          list = _context4.sent;
+          return _context4.abrupt("return", res.status(200).json({
+            data: list
+          }));
+
+        case 4:
+        case "end":
+          return _context4.stop();
+      }
+    }
+  });
+});
+app.get('/api/repair/list', function _callee5(req, res) {
+  var list;
+  return regeneratorRuntime.async(function _callee5$(_context5) {
+    while (1) {
+      switch (_context5.prev = _context5.next) {
+        case 0:
+          _context5.next = 2;
+          return regeneratorRuntime.awrap(Repair.find().sort({
+            Date: -1
+          }));
+
+        case 2:
+          list = _context5.sent;
+          return _context5.abrupt("return", res.status(200).json({
+            data: list
+          }));
+
+        case 4:
+        case "end":
+          return _context5.stop();
+      }
+    }
+  });
+});
 app.post('/api/users/register', function (req, res) {
-  //회원 가입 할떄 필요한 정보들을  client에서 가져오면 
-  //그것들을  데이터 베이스에 넣어준다. 
   var user = new User(req.body);
   user.save(function (err, userInfo) {
     if (err) return res.json({

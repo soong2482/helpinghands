@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { auth } = require('./middleware/auth');
 const { User } = require("./models/User");
+const { Help } = require("./models/Help");
+const { Notice } = require("./models/Notice");
+const { Repair } = require("./models/Repair");
 
 //application/x-www-form-urlencoded 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,10 +24,76 @@ mongoose.connect(dbAddress, {
 
 app.get('/api/hello', (req, res) => res.send('Hello World!~~ '))
 
-app.post('/api/users/register', (req, res) => {
 
-  //회원 가입 할떄 필요한 정보들을  client에서 가져오면 
-  //그것들을  데이터 베이스에 넣어준다. 
+app.get('/api/help/delete', (req,res)=>{
+  Help.findOneAndUpdate({email: req.email,Date:req.Date},{success:"end"},(err,help)=>{
+    if(err) return res.json({success:false,err})
+    return res.status(200).json({
+      success:true
+    })
+    })
+  })
+
+
+
+  app.get('/api/help/list', async(req,res)=>{
+    let list= await Help.find().sort({Date:-1});
+      return res.status(200).json({data:list});
+    });
+  app.post('/api/help/application', (req,res)=>{
+    const help = new Help(req.body)
+     
+    help.save((err,helpInfo)=>{
+      if(err) return res.json({success:false,err})
+      return res.status(200).json({
+        success:true
+      })
+      })
+    })
+    app.post('/api/notice/application', (req,res)=>{
+      const notice = new Notice(req.body)
+      var now = new Date();	
+      console.log(now);
+      notice.save((err,noticeInfo)=>{
+        if(err) return res.json({success:false,err})
+        return res.status(200).json({
+          success:true
+        })
+        })
+      })
+      app.get('/api/notice/Home', async(req,res)=>{
+        let list= await Notice.find().limit(6).sort({Date:-1});
+          return res.status(200).json({data:list});
+         });
+      app.get('/api/notice/list', async(req,res)=>{
+        let list= await Notice.find().sort({Date:-1});
+          return res.status(200).json({data:list});
+        });
+
+
+
+        app.post('/api/repair/application', (req,res)=>{
+          const repair = new Repair(req.body)
+          var now = new Date();	
+          console.log(now);
+          repair.save((err,repairInfo)=>{
+            if(err) return res.json({success:false,err})
+            return res.status(200).json({
+              success:true
+            })
+            })
+          })
+          app.get('/api/repair/Home', async(req,res)=>{
+            let list= await Repair.find().limit(4).sort({Date:-1});
+              return res.status(200).json({data:list});
+             });
+          app.get('/api/repair/list', async(req,res)=>{
+            let list= await Repair.find().sort({Date:-1});
+              return res.status(200).json({data:list});
+            });        
+    
+
+app.post('/api/users/register', (req, res) => {
   const user = new User(req.body)
 
   user.save((err, userInfo) => {
@@ -34,7 +103,6 @@ app.post('/api/users/register', (req, res) => {
     })
   })
 })
-
 app.post('/api/users/login', (req, res) => {
 
   // console.log('ping')
