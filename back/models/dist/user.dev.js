@@ -39,6 +39,12 @@ var userSchema = mongoose.Schema({
   },
   tokenExp: {
     type: Number
+  },
+  countV: {
+    type: Number
+  },
+  profileImg: {
+    type: String
   }
 });
 userSchema.pre('save', function (next) {

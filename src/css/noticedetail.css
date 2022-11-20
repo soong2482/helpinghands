@@ -1,0 +1,72 @@
+#noticedetail_back{
+    margin: 0 auto;
+    width:100%;
+    background: url(/src/img/backback.PNG);
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    flex: 10;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; /*수직 정렬*/
+    align-items: center;
+    justify-content: center;
+    min-width: 554px;
+    max-width: 554px;
+    min-height: 1050px;
+    max-height: 1050px;
+    height: 100vh;
+    overflow-x:hidden;
+    overflow-y:hidden;
+    }
+   
+    #noticedetail_div1{
+      flex : 1;
+    }
+    #noticedetail_div2{
+      flex: 1;
+      background-color: white;
+      width: 85%;
+      opacity: 70%;
+      border-bottom: 1px solid black ;
+    }
+    #noticedetail_div3{
+      background-color: white;
+      width: 85%;
+      border-bottom: 1px solid black ;
+      opacity: 70%;
+    }
+    #noticedetail_div4{
+      flex : 7;
+      background-color: white;
+      width: 85%;
+      opacity: 70%;
+    }
+    #noticedetail_title{
+      font-weight: bold;
+      font-size: x-large;
+    }
+    #noticedetail_back_button{
+      background-color: transparent;
+      border: 0;
+      right: 20%;
+      position: relative;
+      top: 30px;
+      filter: invert(0)
+  }
+  #noticedetail_profile{
+    position: relative;
+    top: 20px;
+    left: 20px;
+    width: 70px;
+    height: 70px;
+  }
+  #noticedetail_name{
+    position: relative;
+    top: -50px;
+    left: 100px;
+  }
+  #noticedetail_date{
+    position: relative;
+    top: -50px;
+    left: 100px;
+  }

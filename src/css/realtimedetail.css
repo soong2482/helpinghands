@@ -1,0 +1,72 @@
+#realtimedetail_back{
+    margin: 0 auto;
+    width:100%;
+    background: url(/src/img/backback.PNG);
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    flex: 10;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; /*수직 정렬*/
+    align-items: center;
+    justify-content: center;
+    min-width: 554px;
+    max-width: 554px;
+    min-height: 1050px;
+    max-height: 1050px;
+    height: 100vh;
+    overflow-x:hidden;
+    overflow-y:hidden;
+    }
+   
+    #realtimedetail_div1{
+      flex : 1;
+    }
+    #realtimedetail_div2{
+      flex: 1;
+      background-color: white;
+      width: 85%;
+      opacity: 70%;
+      border-bottom: 1px solid black ;
+    }
+    #realtimedetail_div3{
+      background-color: white;
+      width: 85%;
+      border-bottom: 1px solid black ;
+      opacity: 70%;
+    }
+    #realtimedetail_div4{
+      flex : 7;
+      background-color: white;
+      width: 85%;
+      opacity: 70%;
+    }
+    #realtimedetail_title{
+      font-weight: bold;
+      font-size: x-large;
+    }
+    #realtimedetail_back_button{
+      background-color: transparent;
+      border: 0;
+      right: 10%;
+      position: relative;
+      top: 30px;
+      filter: invert(0)
+  }
+  #realtimedetail_profile{
+    position: relative;
+    top: 20px;
+    left: 20px;
+    width: 70px;
+    height: 70px;
+  }
+  #realtimedetail_name{
+    position: relative;
+    top: -50px;
+    left: 100px;
+  }
+  #realtimedetail_date{
+    position: relative;
+    top: -50px;
+    left: 100px;
+  }

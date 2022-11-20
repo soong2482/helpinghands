@@ -1,0 +1,88 @@
+#repair_back{
+    margin: 0 auto;
+    width:100%;
+    background: url(/src/img/backback.PNG);
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    flex: 10;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; /*수직 정렬*/
+    align-items: center;
+    justify-content: center;
+    min-width: 554px;
+    max-width: 554px;
+    min-height: 1050px;
+    max-height: 1050px;
+    height: 100vh;
+    overflow-x:hidden;
+    overflow-y:hidden;
+    }
+   
+    #repair_div1{
+      width: 100%;
+      flex: 1;
+    }
+    #repair_div2{
+      flex: 4;
+      width: 500px;  
+    }
+    #repair_div3{
+      flex:1;
+    }
+    #repair_div4{
+      flex:4;
+      text-overflow: clip;
+    }
+    #repair_back_button{
+      background-color: transparent;
+      border: 0;
+      position: relative;
+      right: 110%;
+      top: 30px;
+      filter: invert(0)
+    }
+    #repair_text{
+      position: relative;
+      top: -10px;
+      color: black;
+      font-size :xx-large;
+      font-weight: bolder;
+    }
+    #Home_button_month{
+      position: relative;
+      left : 150px;
+      border: 0;
+      background-color:transparent;
+      text-decoration: underline;
+      text-decoration-color :blueviolet;
+      font-weight: bolder;
+      font-size: larger;
+    }
+    #repair_title{
+      width:500px ;
+      height: 30%;
+      opacity: 0.5;
+      font-size: large;
+      margin-top: 30px;
+    }
+    
+    #repair_button{
+      margin-left:-80px;
+      width: 80px;
+      height: 80px;
+      background-color: transparent;
+      border: 0px;
+      position: relative;
+      top: -20px;
+      
+    }
+    #story{
+      opacity: 0.5;
+        padding: 10px;
+        max-width: 100%;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-shadow: 1px 1px 1px #999;
+        font-size: large;
+    }

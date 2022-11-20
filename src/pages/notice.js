@@ -3,10 +3,19 @@ import "../css/notice.css"
 import React from "react";
 import leftarrow from '../img/leftarrow.png';
 import { useState } from "react";
-
+import axios from 'axios';
+import { useEffect } from "react";
 function Notice(){
-    const [name, setName] = useState("");
+  const [name,setName] =useState(null);
+  const [noticeList,setnoticeList] = useState(null);
     const navigate = useNavigate();
+    useEffect(()=>{
+      axios.get(`/api/notice/list`)
+      .then(response => {
+          console.log(JSON.stringify(response.data,null,2));
+          setnoticeList(response.data);
+      })
+   },[]);
     return(
         <div id="notice_back">
           <div id="notice_div1">
@@ -23,26 +32,15 @@ function Notice(){
        </div>
        <div id="notice_div3">
         <div id="notice_grid">
-               <div id="notice_divcol">item1</div>
-               <div id="notice_divcol">item2</div>
-               <div id="notice_divcol">item3</div>
-               <div id="notice_divcol">item4</div>
-               <div id="notice_divcol">item5</div>
-               <div id="notice_divcol">item6</div>
-               <div id="notice_divcol">item7</div>
-               <div id="notice_divcol">item8</div>
-               <div id="notice_divcol">item9</div>
-               <div id="notice_divcol">item10</div>
-               <div id="notice_divcol">item11</div>
-               <div id="notice_divcol">item12</div>
-               <div id="notice_divcol">item13</div>
-               <div id="notice_divcol">item14</div>
-               <div id="notice_divcol">item15</div>
-               <div id="notice_divcol">item16</div>
-               <div id="notice_divcol">item17</div>
-          </div>
-       </div>
-      </div>
+        {noticeList && noticeList.data.map((item)=>
+               <div id="notice_divcol" key={item._id}>
+                  <div> {item.title} {item.text}</div>  
+             
+    </div>
+      )}
+    </div>
+    </div>
+    </div>
     )
 }
 export default Notice;

@@ -8,6 +8,10 @@ import SignUp from "./SignUp";
 import repair from "./repair";
 import mypage from "./Mypage";
 import realtime from "./realtime";
+import KakaoMap from "../components/KakaoMap";
+import realtimedetail from "./realtimedetail";
+import noticedetail from "./noticedetail";
+
 
 const path = {
      Home,
@@ -19,6 +23,9 @@ const path = {
      SignUp,
      mypage,
      realtime,
+     KakaoMap,
+     realtimedetail,
+     noticedetail,
 };
 
 export default path;

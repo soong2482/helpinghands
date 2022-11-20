@@ -53,12 +53,17 @@ function App() {
           
              <div id="Home_grid">
                 {List && List.data.map((item)=>
-                    <div id="Home_divcol" key={item._id}>
-                     {item.name}
-                     {item.address}
-                        
+                     <div id="Home_divcol" key={item._id}>
+                        <img id="Home_real_profile" src={profile} alt='프로필'/>
+                        <button id="Home_real_button">
+                            <img src={plus} style={{ width: 10, height: 10 }} alt='플러스' onClick={() => {navigate("/realtimedetail")}} />
+                        </button>
+                            <div id="Home_real_date">{item.data}</div>
+                            <div id="Home_real_text">제목: {item.title}
+                            <p> 위치:{item.address}</p>
+                            </div> 
                     </div>
-                )};
+                )}
              </div>
           </div>
           <div id="Home_div4">
@@ -79,13 +84,20 @@ function App() {
                   &nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;
                   <img src={plus} style={{ width: 15, height: 15 }} alt='플러스' />
           </button>
-          <div id="Home_grid2">
+          <div id="Home_grid2" >
                {noticeList && noticeList.data.map((item)=>
-                    <div id="Home_divcol" key={item._id}>
-                     {item.title}
-                        
-                    </div>
-                )};
+              
+                      <button id="Home_notice_button" onClick={() => {navigate("/noticedetail")}}>
+                          <div id="Home_divcol2">
+                          <div id="Home_notice_text">
+                             {item.title}
+                             {item.text}
+                         </div>
+                     </div>
+                    </button>
+               
+                    
+                )}
            
           </div>
           </div>
