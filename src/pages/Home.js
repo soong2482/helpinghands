@@ -5,8 +5,9 @@ import adv from '../img/adv.png';
 import profile from '../img/profil.png';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import React,{useState,useCallback, Component} from "react";
 import { useEffect } from "react";
+import React,{useState,useCallback, Component} from "react";
+
 function App() {
   const navigate = useNavigate();
   const [List, setList] = useState(null);
@@ -23,6 +24,14 @@ function App() {
         console.log(JSON.stringify(response.data,null,2));
         setnoticeList(response.data);
     })
+ },[]);
+ const [session,setSession]= useState(null);
+ useEffect(()=>{
+   axios.get(`/api/users/Session`)
+   .then(response => {
+    console.log(JSON.stringify(response.data.user));
+       setSession(response.data.user);
+   })
  },[]);
   return (
       <div id ="Home_back">
@@ -72,7 +81,7 @@ function App() {
                   &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
           </button>
               <div id="Home_grid1">
-                <div id="Home_month_name"><h1>박세빈 </h1> </div><p></p>
+                <div id="Home_month_name"><h1>이승철</h1></div><p></p>
                 <div id="Home_month_time">한달의 봉사 시간 : 65시간</div><p></p>
                 <div id="Home_month_agency">소속 : 안동 행복 봉사 단체</div>
                 <img id="Home_month_profile" src={profile} alt='프로필' />

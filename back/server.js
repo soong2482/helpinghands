@@ -7,7 +7,8 @@ const { User } = require("./models/User");
 const { Help } = require("./models/Help");
 const { Notice } = require("./models/Notice");
 const { Repair } = require("./models/Repair");
-
+const UserController = require('./controller/userController');
+const multer = require('multer');
 //application/x-www-form-urlencoded 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -16,7 +17,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 const dbAddress= "mongodb+srv://pesik:1234@cluster0.dxkx6kp.mongodb.net/?retryWrites=true&w=majority";
 
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 mongoose.connect(dbAddress, {
   useNewUrlParser: true, useUnifiedTopology: true
 }).then(() => console.log('MongoDB Connected...'))
@@ -69,20 +70,6 @@ app.get('/api/help/delete', (req,res)=>{
         let list= await Notice.find().sort({Date:-1});
           return res.status(200).json({data:list});
         });
-
-
-
-        app.post('/api/repair/application', (req,res)=>{
-          const repair = new Repair(req.body)
-          var now = new Date();	
-          console.log(now);
-          repair.save((err,repairInfo)=>{
-            if(err) return res.json({success:false,err})
-            return res.status(200).json({
-              success:true
-            })
-            })
-          })
           app.get('/api/repair/Home', async(req,res)=>{
             let list= await Repair.find().limit(4).sort({Date:-1});
               return res.status(200).json({data:list});
@@ -94,7 +81,30 @@ app.get('/api/help/delete', (req,res)=>{
     
 
 app.post('/api/users/register', (req, res) => {
-  const user = new User(req.body)
+  const user = new User({
+    nickname:{
+      data:""
+    },
+    name:{
+      data:req.body.name
+    },
+    phone:{
+      data:req.body.phone
+    },
+    email:{
+      data:req.body.email
+    },
+    password:{
+      data:req.body.password
+    },
+    role:{
+       data:0
+    },
+    countV:{
+      data:0
+    }
+  }
+    )
 
   user.save((err, userInfo) => {
     if (err) return res.json({ success: false, err })
@@ -155,7 +165,15 @@ app.get('/api/users/auth', auth, (req, res) => {
     image: req.user.image
   })
 })
-
+app.get('/api/users/Session',auth,(req,res)=>{
+  User.findOne({_id:req.user._id},(err,user)=>{
+    if (err) return res.json({success:false,err});
+    return res.status(200).json({
+      user:req.user.name
+     })
+  })
+  
+})
 app.get('/api/users/logout', auth, (req, res) => {
   // console.log('req.user', req.user)
   User.findOneAndUpdate({ _id: req.user._id },
@@ -169,9 +187,20 @@ app.get('/api/users/logout', auth, (req, res) => {
 })
 
 
+const Storage = multer.diskStorage({
+  destination:'uploads',
+  filename:(req,file,cb)=>{
+    file.originalname = Buffer.from(file.originalname, 'latin1').toString('utf8')
+    let newFilename= new Date().valueOf()+file.originalname
+    cb(null, newFilename);
+  },
+});
+const upload =multer({
+  storage:Storage
+});
+app.post('/api/repair/application',upload.array('file',2),UserController.uploadImages);
 
 
 
 const port = 9000
-
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

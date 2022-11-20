@@ -15,21 +15,13 @@ var repairSchema = mongoose.Schema({
     type: String,
     maxlength: 50
   },
-  image: {
-    type: String,
-    maxlength: 100
+  Img: {
+    ContentType: String,
+    data: Buffer
   },
-  image2: {
-    type: String,
-    maxlength: 100
-  },
-  image3: {
-    type: String,
-    maxlength: 100
-  },
-  image4: {
-    type: String,
-    maxlength: 100
+  Img2: {
+    ContentType: String,
+    data: Buffer
   },
   address: {
     type: String,

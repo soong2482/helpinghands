@@ -36,6 +36,12 @@ function _default() {
       });
       break;
 
+    case _types.UPLOAD_REPAIR:
+      return _objectSpread({}, state, {
+        upload: action.payload
+      });
+      break;
+
     default:
       return state;
   }

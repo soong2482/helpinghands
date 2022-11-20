@@ -21,7 +21,11 @@ var _require4 = require("./models/Notice"),
     Notice = _require4.Notice;
 
 var _require5 = require("./models/Repair"),
-    Repair = _require5.Repair; //application/x-www-form-urlencoded 
+    Repair = _require5.Repair;
+
+var UserController = require('./controller/userController');
+
+var multer = require('multer'); //application/x-www-form-urlencoded 
 
 
 app.use(bodyParser.urlencoded({
@@ -159,20 +163,6 @@ app.get('/api/notice/list', function _callee3(req, res) {
     }
   });
 });
-app.post('/api/repair/application', function (req, res) {
-  var repair = new Repair(req.body);
-  var now = new Date();
-  console.log(now);
-  repair.save(function (err, repairInfo) {
-    if (err) return res.json({
-      success: false,
-      err: err
-    });
-    return res.status(200).json({
-      success: true
-    });
-  });
-});
 app.get('/api/repair/Home', function _callee4(req, res) {
   var list;
   return regeneratorRuntime.async(function _callee4$(_context4) {
@@ -222,7 +212,29 @@ app.get('/api/repair/list', function _callee5(req, res) {
   });
 });
 app.post('/api/users/register', function (req, res) {
-  var user = new User(req.body);
+  var user = new User({
+    nickname: {
+      data: ""
+    },
+    name: {
+      data: req.body.name
+    },
+    phone: {
+      data: req.body.phone
+    },
+    email: {
+      data: req.body.email
+    },
+    password: {
+      data: req.body.password
+    },
+    role: {
+      data: 0
+    },
+    countV: {
+      data: 0
+    }
+  });
   user.save(function (err, userInfo) {
     if (err) return res.json({
       success: false,
@@ -282,6 +294,19 @@ app.get('/api/users/auth', auth, function (req, res) {
     image: req.user.image
   });
 });
+app.get('/api/users/Session', auth, function (req, res) {
+  User.findOne({
+    _id: req.user._id
+  }, function (err, user) {
+    if (err) return res.json({
+      success: false,
+      err: err
+    });
+    return res.status(200).json({
+      user: req.user.name
+    });
+  });
+});
 app.get('/api/users/logout', auth, function (req, res) {
   // console.log('req.user', req.user)
   User.findOneAndUpdate({
@@ -298,6 +323,18 @@ app.get('/api/users/logout', auth, function (req, res) {
     });
   });
 });
+var Storage = multer.diskStorage({
+  destination: 'uploads',
+  filename: function filename(req, file, cb) {
+    file.originalname = Buffer.from(file.originalname, 'latin1').toString('utf8');
+    var newFilename = new Date().valueOf() + file.originalname;
+    cb(null, newFilename);
+  }
+});
+var upload = multer({
+  storage: Storage
+});
+app.post('/api/repair/application', upload.array('file', 2), UserController.uploadImages);
 var port = 9000;
 app.listen(port, function () {
   return console.log("Example app listening on port ".concat(port, "!"));

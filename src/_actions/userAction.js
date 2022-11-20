@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOGIN_USER, REGISTER_USER, AUTH_USER} from './types';
+import { LOGIN_USER, REGISTER_USER, AUTH_USER,UPLOAD_REPAIR} from './types';
 export function loginUser(dataToSubmit) {
 
     const request = axios.post('/api/users/login', dataToSubmit)
@@ -22,7 +22,16 @@ export function registerUser(dataToSubmit) {
     }
 }
 
+export function repairUpload(dataToSubmit) {
 
+    const request = axios.post('/api/repair/application', dataToSubmit)
+        .then(response => response.data)
+
+    return {
+        type: UPLOAD_REPAIR,
+        payload: request
+    }
+}
 export function auth() {
 
     const request = axios.get('/api/users/auth')

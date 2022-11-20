@@ -12,6 +12,7 @@ import rightarrow from '../img/rightarrow.png';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { useState } from "react";
 function Mypage() {
   const navigate = useNavigate();
 axios.get('/api').then(response=>{console.log(response)})
@@ -26,12 +27,23 @@ axios.get('/api').then(response=>{console.log(response)})
             }
         })
   }
+  const [session,setSession]= useState(null);
+  const [id,setId]=useState(null);
+  useEffect(()=>{
+    axios.get(`/api/users/Session`)
+    .then(response => {
+     console.log(JSON.stringify(response.data.user));
+     console.log(JSON.stringify(response.data.id));
+        setSession(response.data.user);
+        setId(response.data.id);
+    })
+  },[]);
   return (
       <div id ="mypage_back">
           <div id="mypage_profile_text">프로필</div>
           <div id="mypage_profile">
             <img id="mypage_profile_img" src={profile} alt='프로필' />
-            <div id="mypage_name">박세빈</div>
+            <div id="mypage_name">{session}</div>
             <div id="mypage_agency">안동 행복 봉사 단체</div>
           </div>
           <button id="mypage_button1" onClick={() => {navigate("/")}} >

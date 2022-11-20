@@ -3,9 +3,19 @@ import "../css/noticedetail.css"
 import { useNavigate } from "react-router-dom";
 import leftarrow from '../img/leftarrow.png';
 import profile from '../img/profil.png';
-
+import { useState } from "react";
+import axios from 'axios';
+import { useEffect } from "react";
 function Noticedetail(){
     const navigate = useNavigate();
+    const [session,setSession]= useState(null);
+    useEffect(()=>{
+      axios.get(`/api/users/Session`)
+      .then(response => {
+       console.log(JSON.stringify(response.data.user));
+          setSession(response.data.user);
+      })
+    },[]);
     return(
         <div id="noticedetail_back">
                 <div id="noticedetail_div1">

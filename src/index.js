@@ -18,9 +18,6 @@ ReactDOM.render(
             <Provider
             store={createStoreWidthMiddleware(
                 reducer,
-                //개발자 도구를 사용하기 위한 설정
-                window.__REDUX_DEVTOOLS_EXTENSION__ &&
-                window.__REDUX_DEVTOOLS_EXTENSION__()
       )}>
                     <App />
             </Provider>

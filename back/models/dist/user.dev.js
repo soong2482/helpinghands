@@ -33,7 +33,6 @@ var userSchema = mongoose.Schema({
     type: Number,
     "default": 0
   },
-  image: String,
   token: {
     type: String
   },
@@ -42,9 +41,6 @@ var userSchema = mongoose.Schema({
   },
   countV: {
     type: Number
-  },
-  profileImg: {
-    type: String
   }
 });
 userSchema.pre('save', function (next) {

@@ -3,10 +3,20 @@ import "../css/realtime.css"
 import React from "react";
 import leftarrow from '../img/leftarrow.png';
 import { useState } from "react";
-
+import axios from 'axios';
+import { useEffect } from "react";
 function Realtime(){
     const [name, setName] = useState("");
     const navigate = useNavigate();
+    const [session,setSession]= useState(null);
+    useEffect(()=>{
+      axios.get(`/api/users/Session`)
+      .then(response => {
+       console.log(JSON.stringify(response.data.user));
+          setSession(response.data.user);
+      })
+    },[]);
+    
     return(
         <div id="realtime_back">
           <div id="realtime_div1">

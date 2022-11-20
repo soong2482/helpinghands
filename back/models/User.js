@@ -29,7 +29,6 @@ const userSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    image: String,
     token: {
         type: String
     },
@@ -39,9 +38,6 @@ const userSchema = mongoose.Schema({
     countV:{
         type:Number
     },
-    profileImg: {
-        type: String
-    }
 })
 
 
@@ -103,7 +99,6 @@ userSchema.statics.findByToken = function(token, cb) {
         })
     })
 }
-
 
 
 const User = mongoose.model('User', userSchema)

@@ -5,6 +5,7 @@ import leftarrow from '../img/leftarrow.png';
 import { useState } from "react";
 import axios from 'axios';
 import { useEffect } from "react";
+
 function Notice(){
   const [name,setName] =useState(null);
   const [noticeList,setnoticeList] = useState(null);
@@ -15,6 +16,14 @@ function Notice(){
           console.log(JSON.stringify(response.data,null,2));
           setnoticeList(response.data);
       })
+   },[]);
+   const [session,setSession]= useState(null);
+   useEffect(()=>{
+     axios.get(`/api/users/Session`)
+     .then(response => {
+      console.log(JSON.stringify(response.data.user));
+         setSession(response.data.user);
+     })
    },[]);
     return(
         <div id="notice_back">

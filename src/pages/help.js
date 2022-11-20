@@ -1,13 +1,22 @@
-import React from "react";
+
 import "../css/help.css"
 import leftarrow from '../img/leftarrow.png';
 import { useNavigate } from 'react-router-dom';
 import KakaoMap from '../components/KakaoMap';
 import globe from '../img/globe.png';
 import search from '../img/search.png';
-
+import axios from 'axios';
+import { useEffect } from "react";
+import React,{useState} from "react";
 function Help(){
     const navigate = useNavigate();
+    const [session,setSession]= useState();
+    useEffect(()=>{
+      axios.get(`/api/users/Session`)
+      .then(response => {
+          setSession(response.data);
+      })
+    })
     return(
         <div id="help_back">
 
