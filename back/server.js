@@ -8,7 +8,6 @@ const { User } = require("./models/User");
 const { Help } = require("./models/Help");
 const { Notice } = require("./models/Notice");
 const { Repair } = require("./models/Repair");
-const UserController = require('./controller/userController');
 const multer = require('multer');
 //application/x-www-form-urlencoded 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,7 +18,6 @@ app.use(cookieParser());
 const dbAddress= "mongodb+srv://pesik:1234@cluster0.dxkx6kp.mongodb.net/?retryWrites=true&w=majority";
 
 const mongoose = require('mongoose');
-const { useState } = require('react');
 mongoose.connect(dbAddress, {
   useNewUrlParser: true, useUnifiedTopology: true
 }).then(() => console.log('MongoDB Connected...'))
@@ -205,7 +203,39 @@ const Storage = multer.diskStorage({
 const upload =multer({
   storage:Storage
 });
-app.post('/api/repair/upload',upload.array('file',2),UserController.uploadImages);
+app.post('/api/repair/upload',upload.array('file',2),(req,res)=>{
+  const image = req.files;
+  const path = image.map(img => img.path);
+  if(image=== undefined){
+    return res.json({success:false,err})
+    }
+    else{
+      const repair = new Repair({
+        Img1:{
+          data:req.Img1,
+        },
+        title:{
+          data:req.title,
+        },
+        text:{
+          data:req.text,
+        },
+        address:{
+          data:req.address,
+        },
+        path:{
+          data:path[0],
+        },
+        path1:{
+          data:path[1],
+        }
+      })
+      repair.save((err,repairInfo)=>{
+        if(err) { return console.log(err),res.json({success:false,err})}
+        return res.status(200).send({success:true})
+      })
+} 
+});
 
 const port = 9000
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

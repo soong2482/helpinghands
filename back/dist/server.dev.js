@@ -23,8 +23,6 @@ var _require4 = require("./models/Notice"),
 var _require5 = require("./models/Repair"),
     Repair = _require5.Repair;
 
-var UserController = require('./controller/userController');
-
 var multer = require('multer'); //application/x-www-form-urlencoded 
 
 
@@ -37,9 +35,6 @@ app.use(cookieParser());
 var dbAddress = "mongodb+srv://pesik:1234@cluster0.dxkx6kp.mongodb.net/?retryWrites=true&w=majority";
 
 var mongoose = require('mongoose');
-
-var _require6 = require('react'),
-    useState = _require6.useState;
 
 mongoose.connect(dbAddress, {
   useNewUrlParser: true,
@@ -342,7 +337,52 @@ var Storage = multer.diskStorage({
 var upload = multer({
   storage: Storage
 });
-app.post('/api/repair/upload', upload.array('file', 2), UserController.uploadImages);
+app.post('/api/repair/upload', upload.array('file', 2), function (req, res) {
+  var image = req.files;
+  var path = image.map(function (img) {
+    return img.path;
+  });
+
+  if (image === undefined) {
+    return res.json({
+      success: false,
+      err: err
+    });
+  } else {
+    var repair = new Repair({
+      Img1: {
+        data: req.Img1
+      },
+      title: {
+        data: req.title
+      },
+      text: {
+        data: req.text
+      },
+      address: {
+        data: req.address
+      },
+      path: {
+        data: path[0]
+      },
+      path1: {
+        data: path[1]
+      }
+    });
+    repair.save(function (err, repairInfo) {
+      if (err) {
+        return console.log(err), res.json({
+          success: false,
+          err: err
+        });
+      }
+
+      return res.status(200).send({
+        success: true
+      });
+    });
+  }
+});
 var port = 9000;
 app.listen(port, function () {
   return console.log("Example app listening on port ".concat(port, "!"));

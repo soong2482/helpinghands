@@ -19,6 +19,11 @@ export default function routes(){
               <Route path="/KakaoMap" element={<Pages.KakaoMap/>}/>
               <Route path="/realtimedetail" element={<Pages.realtimedetail/>}/>
               <Route path="/noticedetail" element={<Pages.noticedetail/>}/>
+              <Route path="/location" element={<Pages.location/>}/>
+              <Route path="/privacy" element={<Pages.privacy/>}/>
+              <Route path="/namechange" element={<Pages.namechange/>}/>
+              <Route path="/agencychange" element={<Pages.agencychange/>}/>
+              <Route path="/profilechange" element={<Pages.profilechange/>}/>
             </Routes>
           </Router>
       </React.StrictMode>

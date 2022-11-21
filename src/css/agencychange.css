@@ -1,0 +1,77 @@
+#agencychange_back{
+    margin: 0 auto;
+    width:100%;
+    background: url(/src/img/shortback.png);
+    background-repeat: no-repeat;
+    background-size:100% 90%;
+    flex: 8;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; /*수직 정렬*/
+    align-items: center;
+    justify-content: center;
+    min-width: 554px;
+    max-width: 554px;
+    min-height: 1050px;
+    max-height: 1050px;
+    height: 100vh;
+    overflow-x:hidden;
+    overflow-y:hidden;
+  }
+#agencychange_back_button{
+  background-color: transparent;
+  border: 0;
+  position: relative;
+  right: 35%;
+  top: 40px;
+  filter: invert(100);
+}
+
+#agencychange_profile_text{
+    position: relative;
+    left: 180px;
+    flex: 1;
+    width: 100%;
+    font-weight: bold;
+    font-size:xx-large;
+    color: white;
+    /*background-color: aqua;*/
+  }
+
+#agencychange_name{
+  position: relative;
+  left: 170px;
+  font-weight: bold;
+  font-size:xxx-large;
+  color: white;
+}
+#agencychange_div1{
+  position: relative;
+  top: -100px;
+  flex: 4;
+  background-color: white;
+  width: 90%;
+  text-align: center;
+}
+#agencychange_input{
+  width: 200px;
+  height: 30px;
+}
+#agencychange_button{
+  width: 200px;
+  height: 50px;
+  border: 0;
+  color: white;
+
+  border-radius:unset;
+  background-color: rgb(152, 78, 222);
+  transition-duration: 0.4s;
+}
+#agencychange_button:hover{
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 30px;
+}
+#agencychange_div_adv{
+  flex: 1;
+}

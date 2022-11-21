@@ -24,15 +24,7 @@ var seconds = now.getSeconds();
       const [image1, setImage1] = useState({
         image_file: "",
         preview_URL: '../img/default_image.png'
-      });  
-      const [session,setSession]= useState(null);
-      useEffect(()=>{
-        axios.get(`/api/users/Session`)
-        .then(response => {
-         console.log(JSON.stringify(response.data.user));
-            setSession(response.data.user);
-        })
-      },[]);
+      }); 
       let inputRef;
       let inputRef1;
       const saveImage = (e) => {
@@ -69,7 +61,7 @@ var seconds = now.getSeconds();
           console.log(formData);
           formData.append('file', image.image_file);
           formData.append('file', image1.image_file);
-          formData.append('Img1'. session);
+          formData.append('Img1', id);
           formData.append('title', title);
           formData.append('address', address);
           formData.append('text',text);
@@ -93,7 +85,16 @@ var seconds = now.getSeconds();
     }
   }, [])
 
-
+  const [session,setSession]= useState("");
+  const [id,setid] = useState("");
+  useEffect(()=>{
+    axios.get(`/api/users/Session`)
+    .then(response => {
+     console.log(JSON.stringify(response.data.user));
+        setSession(response.data.user);
+        setid(response.data.id);
+    })
+  },[]);
     const [title, setTitle] = useState("");
     const [address, setAddress] = useState("");
     const [text,setText] = useState("");
