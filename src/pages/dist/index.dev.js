@@ -29,6 +29,14 @@ var _realtimedetail = _interopRequireDefault(require("./realtimedetail"));
 
 var _noticedetail = _interopRequireDefault(require("./noticedetail"));
 
+var _privacy = _interopRequireDefault(require("./privacy"));
+
+var _namechange = _interopRequireDefault(require("./namechange"));
+
+var _agencychange = _interopRequireDefault(require("./agencychange"));
+
+var _profilechange = _interopRequireDefault(require("./profilechange"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var path = {
@@ -43,7 +51,11 @@ var path = {
   realtime: _realtime["default"],
   KakaoMap: _KakaoMap["default"],
   realtimedetail: _realtimedetail["default"],
-  noticedetail: _noticedetail["default"]
+  noticedetail: _noticedetail["default"],
+  privacy: _privacy["default"],
+  namechange: _namechange["default"],
+  agencychange: _agencychange["default"],
+  profilechange: _profilechange["default"]
 };
 var _default = path;
 exports["default"] = _default;

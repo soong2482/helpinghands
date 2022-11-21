@@ -1,3 +1,4 @@
+
 import Home from "./Home";
 import firstpage from "./firstpage";
 import help from "./help";
@@ -10,7 +11,10 @@ import realtime from "./realtime";
 import KakaoMap from "../components/KakaoMap";
 import realtimedetail from "./realtimedetail";
 import noticedetail from "./noticedetail";
-
+import privacy from "./privacy";
+import namechange from "./namechange";
+import agencychange from "./agencychange";
+import profilechange from "./profilechange";
 
 const path = {
      Home,
@@ -25,6 +29,10 @@ const path = {
      KakaoMap,
      realtimedetail,
      noticedetail,
+     privacy,
+     namechange,
+     agencychange,
+     profilechange,
 };
 
 export default path;
