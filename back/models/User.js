@@ -9,6 +9,10 @@ const userSchema = mongoose.Schema({
         type: String,
         maxlength: 50
     },
+    nickname:{
+        type:String,
+        maxlength:50
+    },
     phone:{
       type: String,
       maxlength:50,

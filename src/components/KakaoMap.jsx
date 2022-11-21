@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Map, MapMarker } from "react-kakao-maps-sdk";
+import { Map, MapMarker, MapTypeId } from "react-kakao-maps-sdk";
 
 const KakaoMap = () => {
 
@@ -45,6 +45,7 @@ const KakaoMap = () => {
     }
     console.log([state]);
   }, [])
+  const [position, setPosition] = useState();
   return (
     <>
       <Map // 지도를 표시할 Container
@@ -55,7 +56,12 @@ const KakaoMap = () => {
           height: "830px",
         }}
         level={3} // 지도의 확대 레벨
+        onClick={(_t, mouseEvent) => setPosition({
+          lat: mouseEvent.latLng.getLat(),
+          lng: mouseEvent.latLng.getLng(),
+        })}
       >
+        {position && <MapMarker position={position} />}
         {!state.isLoading && (
           <MapMarker position={state.center}>
             <div style={{ padding: "5px", color: "#000" }}>
@@ -64,7 +70,7 @@ const KakaoMap = () => {
           </MapMarker>
         )}
       </Map>
-
+      {position && console.log('위도:' + position.lat + "  경도:" + position.lng)}
     </>
   )
 }

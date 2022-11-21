@@ -1,231 +1,248 @@
 
 #Home_back{
-    margin: 0 auto;
-    width:100%;
-    height:100%;
-    background: url(/src/img/shortback.png);
-    background-repeat: no-repeat;
-    background-size:cover;
-    min-width: 554px;
-    max-width: 554px;
-    min-height: 1050px;
-    max-height: 1050px;
-    overflow-x:hidden;
-    overflow-y:scroll;
-    flex: 8;
-    height: 100vh;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column; /*수직 정렬*/
-    align-items: center;
-    justify-content: center;
-  }
+  margin: 0 auto;
+  width:100%;
+  height:100%;
+  background: url(/src/img/shortback.png);
+  background-repeat: no-repeat;
+  background-size:cover;
+  min-width: 554px;
+  max-width: 554px;
+  min-height: 1050px;
+  max-height: 1050px;
+  overflow-x:hidden;
+  overflow-y:hidden;
+  flex: 8;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column; /*수직 정렬*/
+  align-items: center;
+  justify-content: center;
+}
 
 #Home_div1{
-    height: 10%;
-    flex : 1;
-    flex-direction : "row";
-    /*background-color : 'yellow';*/
-  }
-
-#Home_div2{
-    flex : 1;
-    flex-direction : "row";
-    margin-top: -30px;
-    /*backgroundColor : 'blue'*/
-}
-#Home_div3{
-  flex : 1.2;
-  flex-direction : "row";
-  /*backgroundColor : 'blue'*/
-}
-#Home_div4{
+  height: 10%;
   flex : 1;
   flex-direction : "row";
+  /*background-color : 'yellow';*/
+}
+
+#Home_div2{
+  flex : 1;
+  flex-direction : "row";
+  margin-top: -30px;
   /*backgroundColor : 'blue'*/
 }
+#Home_div3{
+flex : 1.2;
+flex-direction : "row";
+/*backgroundColor : 'blue'*/
+}
+#Home_div4{
+flex : 1;
+flex-direction : "row";
+/*backgroundColor : 'blue'*/
+}
 #Home_div5{
-  flex : 2;
-  flex-direction : "row";
-  /*backgroundColor : 'blue'*/
+flex : 2;
+flex-direction : "row";
+/*backgroundColor : 'blue'*/
 }
 
 #Home_button1{
-    color: #4e13a5;
-    position : 'relative';
-    left : -500px;
-    background-color: 'white';
-    width: 180px;
-    height: 30%;
-    border-radius: 35px;
-    border: none;
-    font-size: 20px;
-    font-weight: bolder;
-
-  }
-
-#Home_button2{
   color: #4e13a5;
   position : 'relative';
-  left : -100px;
+  left : -500px;
   background-color: 'white';
   width: 180px;
   height: 30%;
   border-radius: 35px;
   border: none;
   font-size: 20px;
-  margin-left: 50px;
   font-weight: bolder;
-  }
+
+}
+
+#Home_button2{
+color: #4e13a5;
+position : 'relative';
+left : -100px;
+background-color: 'white';
+width: 180px;
+height: 30%;
+border-radius: 35px;
+border: none;
+font-size: 20px;
+margin-left: 50px;
+font-weight: bolder;
+}
 #Home_div_realtime{
-    height: 0%;
-    flex-direction : "row";
-    margin-top: -50px;
-  }
+  height: 0%;
+  flex-direction : "row";
+  margin-top: -50px;
+}
 
 #Home_underline{
-    border-bottom-color: 'black';
-    border-bottom-width: 1;
-  }
+  border-bottom-color: 'black';
+  border-bottom-width: 1;
+}
 
 #Home_user{
-  width:100%;
-  height: 80%;
+width:100%;
+height: 80%;
 }
 #Home_button_user{
-  width: 25%;
-  height: 30%;
-  background-color: transparent;
-  border: 0;
-  outline: 0;
-  position: relative;
-  top : -60px;
-  left: 280px;
+width: 25%;
+height: 30%;
+background-color: transparent;
+border: 0;
+outline: 0;
+position: relative;
+top : -60px;
+left: 280px;
 }
 #Home_text1{
-  color: white;
-  font-size :xx-large;
-  font-weight: bolder;
-  position: relative;
-  left: 20px;
-  
+color: white;
+font-size :xx-large;
+font-weight: bolder;
+position: relative;
+left: 20px;
+
 }
 #Home_text2{
-  color: white;
-  font-size :medium;
-  font-weight: 'bold';
-  opacity: 0.5;
-  position: relative;
-  left: 5px;
+color: white;
+font-size :medium;
+font-weight: 'bold';
+opacity: 0.5;
+position: relative;
+left: 5px;
 }
 #Home_button_realtime{
-  position: relative;
-  left : 150px;
-  border: 0;
-  background-color:transparent;
-  text-decoration: underline;
-  text-decoration-color :blueviolet;
-  font-weight: bolder;
-  font-size: large;
-  color: #413c72;
+position: relative;
+left : 150px;
+border: 0;
+background-color:transparent;
+text-decoration: underline;
+text-decoration-color :blueviolet;
+font-weight: bolder;
+font-size: large;
+color: #413c72;
 }
 #Home_button_month{
-  position: relative;
-  left : 150px;
-  border: 0;
-  background-color:transparent;
-  text-decoration: underline;
-  text-decoration-color :blueviolet;
-  font-weight: bolder;
-  font-size: large;
-  color: #413c72;
+position: relative;
+left : 150px;
+border: 0;
+background-color:transparent;
+text-decoration: underline;
+text-decoration-color :blueviolet;
+font-weight: bolder;
+font-size: large;
+color: #413c72;
 }
 #Home_grid{
-  position: relative;
-  top: 50px;
-  margin-bottom: 10px;
-  display: grid;
-  grid-template-columns: 200px 200px;
-  grid-template-rows: 70px 70px;
+position: relative;
+top: 50px;
+margin-bottom: 10px;
+display: grid;
+grid-template-columns: 200px 200px;
+grid-template-rows: 70px 70px;
 
 }
 #Home_divcol{
-  padding: 1.4rem;
-  border: 2px solid #ccc;
-  background: #f4f4f4;
-  font-size:small;
-  font-weight: bold;
+padding: 1.4rem;
+border: 2px solid #ccc;
+background: #f4f4f4;
+font-size:small;
+font-weight: bold;
 }
 #Home_grid1{
-  margin-bottom: -30px;
-  display: grid;
-  grid-template-columns: 200px 200px;
+margin-bottom: -30px;
+display: grid;
+grid-template-columns: 200px 200px;
 }
 #Home_real_profile{
-  width: 35px;
-  position: relative;
-  top: -5px;
-  left: -15px
+width: 35px;
+position: relative;
+top: -5px;
+left: -15px
 }
 #Home_real_date{
-  position: relative;
-  top: -60px;
-  left: -10px;
-  font-size:xx-small;
-  color: rgb(113, 31, 143);
+position: relative;
+top: -60px;
+left: -10px;
+font-size:xx-small;
+color: rgb(113, 31, 143);
 }
 #Home_real_button{
-  position: relative;
-  top: -42px;
-  left: 110px;
-  border: 0;
-  background: #f4f4f4;
+position: relative;
+top: -42px;
+left: 110px;
+border: 0;
+background: #f4f4f4;
 }
 #Home_real_text{
   position: relative;
-  top : -55px;
-  left : 30px;
+  top : -45px;
+  left : 25px;
   font-stretch:narrower;
-  line-height: 5px;
+  width: 120px;
+  height: auto;
+  font-size:xx-small;
+  word-break: break-word;
+  padding-left: 27px; 
+  text-indent: -27px;
 }
 #Home_month_profile{
-  position: relative;
-  top: -90px;
-  left: 100px;
-  width: 100px;
+position: relative;
+top: -90px;
+left: 100px;
+width: 100px;
 }
 #Home_button_notice{
+position: relative;
+left : 140px;
+border: 0;
+background-color:transparent;
+text-decoration: underline;
+text-decoration-color :blueviolet;
+font-weight: bolder;
+font-size: large;
+margin-bottom: 20px;
+color: #413c72;
+}
+#Home_real_position{
+  padding-left: 27px; 
+  text-indent: -27px;
+  line-height: 10px;
   position: relative;
-  left : 140px;
-  border: 0;
-  background-color:transparent;
-  text-decoration: underline;
-  text-decoration-color :blueviolet;
-  font-weight: bolder;
-  font-size: large;
-  margin-bottom: 20px;
-  color: #413c72;
-  
+  top : -58px;
+  left : 25px;
+  font-stretch:narrower;
+  width: 120px;
+  height: auto;
+  font-size:xx-small;
 }
 #Home_grid2{
-  display: grid;
-  grid-template-columns: 200px 200px;
+display: grid;
+grid-template-columns: 200px 200px;
+position: relative;
+
 }
 #Home_divcol2{
-  padding: 1.4rem;
+padding: 1.4rem;
 }
 #Home_notice_button{
-  background: #b1a7d2;
-  opacity: 80%;
-  border: 0;
-  border-right: 1px solid white;
+background: #b1a7d2;
+opacity: 80%;
+border: 0;
+border-right: 1px solid white;
 }
 #Home_notice_text{
-  position: relative;
-  left: -50px;
-  font-size:x-small;
-  font-weight: bold;
+position: relative;
+font-size:x-small;
+font-weight: bold;
 }
 #Home_div6{
-  flex: 1;
+flex: 1;
 }

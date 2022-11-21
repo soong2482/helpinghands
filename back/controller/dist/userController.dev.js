@@ -44,9 +44,12 @@ var user = {
             path = image.map(function (img) {
               return img.path;
             });
+            path[0] = path.substring(8);
+            path[1] = path.substring(8);
+            console.log(path[0], path[1]);
 
             if (!(image === undefined)) {
-              _context2.next = 6;
+              _context2.next = 9;
               break;
             }
 
@@ -55,7 +58,7 @@ var user = {
               err: err
             }));
 
-          case 6:
+          case 9:
             repair = new Repair({
               Img1: {
                 data: req.Img1.value,
@@ -66,18 +69,19 @@ var user = {
                 type: String
               },
               text: {
-                data: req.text.value,
-                type: String
+                data: req.text.value
               },
               address: {
                 data: req.address.value,
                 type: String
               },
               path: {
-                data: path[0]
+                data: req.file[0].originalname = Buffer.from(file.originalname, 'latin1').toString('utf8'),
+                type: String
               },
               path1: {
-                data: path[1]
+                data: req.file[1].originalname = Buffer.from(file.originalname, 'latin1').toString('utf8'),
+                type: String
               }
             });
             repair.save(function (err, repairInfo) {
@@ -90,7 +94,7 @@ var user = {
               });
             });
 
-          case 8:
+          case 11:
           case "end":
             return _context2.stop();
         }

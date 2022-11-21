@@ -40,7 +40,11 @@ var repairSchema = mongoose.Schema({
   },
   path: {
     type: String,
-    maxlength: 30
+    maxlength: 100
+  },
+  path1: {
+    type: String,
+    maxlength: 100
   }
 });
 var Repair = mongoose.model('Repair', repairSchema);

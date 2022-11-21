@@ -91,6 +91,7 @@ var seconds = now.getSeconds();
     axios.get(`/api/users/Session`)
     .then(response => {
      console.log(JSON.stringify(response.data.user));
+     console.log(JSON.stringify(response.data.id));
         setSession(response.data.user);
         setid(response.data.id);
     })

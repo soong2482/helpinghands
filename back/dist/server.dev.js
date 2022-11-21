@@ -28,7 +28,8 @@ var multer = require('multer'); //application/x-www-form-urlencoded
 
 app.use(bodyParser.urlencoded({
   extended: true
-})); //application/json 
+}));
+app.use(express["static"]('uploads')); //application/json 
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -210,31 +211,9 @@ app.get('/api/repair/list', function _callee5(req, res) {
   });
 });
 app.post('/api/users/register', function (req, res) {
-  var user = new User({
-    nickname: {
-      data: ""
-    },
-    name: {
-      data: req.body.name
-    },
-    phone: {
-      data: req.body.phone
-    },
-    email: {
-      data: req.body.email
-    },
-    password: {
-      data: req.body.password
-    },
-    role: {
-      data: 0
-    },
-    countV: {
-      data: 0
-    }
-  });
+  var user = new User(req.body);
   user.save(function (err, userInfo) {
-    if (err) return res.json({
+    if (err) return console.log(err), res.json({
       success: false,
       err: err
     });
@@ -301,7 +280,8 @@ app.get('/api/users/Session', auth, function (req, res) {
       err: err
     });
     return res.status(200).json({
-      user: req.user.name
+      user: req.user.name,
+      id: req.user._id
     });
   });
 });
@@ -350,24 +330,12 @@ app.post('/api/repair/upload', upload.array('file', 2), function (req, res) {
     });
   } else {
     var repair = new Repair({
-      Img1: {
-        data: req.Img1
-      },
-      title: {
-        data: req.title
-      },
-      text: {
-        data: req.text
-      },
-      address: {
-        data: req.address
-      },
-      path: {
-        data: path[0]
-      },
-      path1: {
-        data: path[1]
-      }
+      Img1: req.body.Img1,
+      title: req.body.title,
+      text: req.body.text,
+      address: req.body.address,
+      path: path[0].substr(8),
+      path1: path[1].substr(8)
     });
     repair.save(function (err, repairInfo) {
       if (err) {

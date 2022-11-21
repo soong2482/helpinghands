@@ -1,22 +1,22 @@
-
+import React from "react";
 import "../css/help.css"
 import leftarrow from '../img/leftarrow.png';
 import { useNavigate } from 'react-router-dom';
 import KakaoMap from '../components/KakaoMap';
 import globe from '../img/globe.png';
 import search from '../img/search.png';
-import axios from 'axios';
-import { useEffect } from "react";
-import React,{useState} from "react";
+import { useState } from 'react'
+
 function Help(){
     const navigate = useNavigate();
-    const [session,setSession]= useState();
-    useEffect(()=>{
-      axios.get(`/api/users/Session`)
-      .then(response => {
-          setSession(response.data);
-      })
-    })
+    const [account, setAccount] = useState({});
+    const onChangeAccount = (e) => {
+        setAccount({
+          ...account,
+          [e.target.name]: e.target.value,
+        });
+        console.log(e.target.value);};
+
     return(
         <div id="help_back">
 
@@ -33,16 +33,15 @@ function Help(){
 
             <div id="help_div3">
             <form action="." method="post">
-                <img id="help_globe" src={globe} style={{width: 30, height: 20 }} alt='지구본' />
-            <input id="help_search-txt" type="text" placeholder="                   주소를 입력해주세요."></input>
-            <button id="help_search-btn" type="submit">
-                <img src={search} style={{width: 30, height: 20 }} alt='검색' />
-            </button>
-            </form>
+                  <div id="help_div3_1">
+                      <img id="help_globe" src={globe} style={{width: 30, height: 20 }} alt='지구본' />
+                       <input id="help_search-txt" type="text" placeholder="주소를 입력해주세요."onChange={onChangeAccount}></input>
+                       <button id="help_search-btn" type="submit">
+                         <img src={search} style={{width: 30, height: 20 }} alt='검색' />
+                    </button>
+                  </div>
+                </form>
             </div>
-            
-            
-            
         </div>
     )
 }

@@ -11,7 +11,7 @@ const { Repair } = require("./models/Repair");
 const multer = require('multer');
 //application/x-www-form-urlencoded 
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(express.static('uploads'));
 //application/json 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -81,33 +81,9 @@ app.get('/api/help/delete', (req,res)=>{
           
 
 app.post('/api/users/register', (req, res) => {
-  const user = new User({
-    nickname:{
-      data:""
-    },
-    name:{
-      data:req.body.name
-    },
-    phone:{
-      data:req.body.phone
-    },
-    email:{
-      data:req.body.email
-    },
-    password:{
-      data:req.body.password
-    },
-    role:{
-       data:0
-    },
-    countV:{
-      data:0
-    }
-  }
-    )
-
+  const user = new User(req.body);
   user.save((err, userInfo) => {
-    if (err) return res.json({ success: false, err })
+    if (err) return console.log(err),res.json({ success: false, err })
     return res.status(200).json({
       success: true
     })
@@ -169,7 +145,8 @@ app.get('/api/users/Session',auth,(req,res)=>{
   User.findOne({_id:req.user._id},(err,user)=>{
     if (err) return res.json({success:false,err});
     return res.status(200).json({
-      user:req.user.name
+      user:req.user.name,
+      id:req.user._id
      })
   })
   
@@ -211,24 +188,12 @@ app.post('/api/repair/upload',upload.array('file',2),(req,res)=>{
     }
     else{
       const repair = new Repair({
-        Img1:{
-          data:req.Img1,
-        },
-        title:{
-          data:req.title,
-        },
-        text:{
-          data:req.text,
-        },
-        address:{
-          data:req.address,
-        },
-        path:{
-          data:path[0],
-        },
-        path1:{
-          data:path[1],
-        }
+        Img1:req.body.Img1,
+        title:req.body.title,
+        text:req.body.text,
+        address:req.body.address,
+        path:path[0].substr(8),
+        path1:path[1].substr(8),
       })
       repair.save((err,repairInfo)=>{
         if(err) { return console.log(err),res.json({success:false,err})}

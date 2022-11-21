@@ -39,6 +39,9 @@ function SignUp(props){
         email:email,
         password: password,
         phone:phone,
+        countV:0,
+        role:0,
+        nickname:name,
       }
       const emailRegex =
       /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;

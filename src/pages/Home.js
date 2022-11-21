@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from "react";
 import React,{useState,useCallback, Component} from "react";
-
 function App() {
   const navigate = useNavigate();
   const [List, setList] = useState(null);
@@ -55,22 +54,23 @@ function App() {
             <div id ="Home_div_realtime">
               <button id="Home_button_realtime" style={{ marginLeft: -150, marginTop: -80 }} onClick={() => {navigate("/realtime")}}>
                   실시간 지원 현황  
-                  &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                  &nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                   <img src={plus} style={{ width: 15, height: 15 }} alt='플러스' />
               </button>
             </div>
           
-             <div id="Home_grid">
+            <div id="Home_grid">
                 {List && List.data.map((item)=>
                      <div id="Home_divcol" key={item._id}>
-                        <img id="Home_real_profile" src={profile} alt='프로필'/>
+                        <img id="Home_real_profile" src={"http://localhost:9000/"+item.path}  alt='프로필'/>
                         <button id="Home_real_button">
                             <img src={plus} style={{ width: 10, height: 10 }} alt='플러스' onClick={() => {navigate("/realtimedetail")}} />
                         </button>
                             <div id="Home_real_date">{item.data}</div>
-                            <div id="Home_real_text">제목: {item.title}
-                            <p> 위치:{item.address}</p>
-                            </div> 
+                            <div id="Home_real_text">제목: {item.title}  </div>
+                            <p> </p>
+                            <div id="Home_real_position">위치: {item.address}</div>
+ 
                     </div>
                 )}
              </div>
@@ -78,7 +78,7 @@ function App() {
           <div id="Home_div4">
           <button id="Home_button_month" style={{ marginLeft: -160, marginTop: -80 }}>
                   이달의 봉사자 
-                  &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                  &nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
           </button>
               <div id="Home_grid1">
                 <div id="Home_month_name"><h1>이승철</h1></div><p></p>
@@ -90,7 +90,7 @@ function App() {
           <div id="Home_div5">
           <button id="Home_button_notice" style={{ marginLeft: -150, marginTop: -80 }} onClick={() => {navigate("/notice")}}>
                   공지 사항
-                  &nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;
+                  &nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;
                   <img src={plus} style={{ width: 15, height: 15 }} alt='플러스' />
           </button>
           <div id="Home_grid2" >
