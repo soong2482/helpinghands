@@ -1,3 +1,4 @@
+
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser');
@@ -18,6 +19,7 @@ app.use(cookieParser());
 const dbAddress= "mongodb+srv://pesik:1234@cluster0.dxkx6kp.mongodb.net/?retryWrites=true&w=majority";
 
 const mongoose = require('mongoose');
+const { useState } = require('react');
 mongoose.connect(dbAddress, {
   useNewUrlParser: true, useUnifiedTopology: true
 }).then(() => console.log('MongoDB Connected...'))
@@ -77,8 +79,8 @@ app.get('/api/help/delete', (req,res)=>{
           app.get('/api/repair/list', async(req,res)=>{
             let list= await Repair.find().sort({Date:-1});
               return res.status(200).json({data:list});
-            });        
-    
+            });      
+          
 
 app.post('/api/users/register', (req, res) => {
   const user = new User({
@@ -187,20 +189,23 @@ app.get('/api/users/logout', auth, (req, res) => {
 })
 
 
+let newFilename ="";
+let File="";
+let path="";
 const Storage = multer.diskStorage({
   destination:'uploads',
   filename:(req,file,cb)=>{
     file.originalname = Buffer.from(file.originalname, 'latin1').toString('utf8')
-    let newFilename= new Date().valueOf()+file.originalname
+    File=newFilename;
+    newFilename += file.originalname
     cb(null, newFilename);
+    newFilename=File;
   },
 });
 const upload =multer({
   storage:Storage
 });
-app.post('/api/repair/application',upload.array('file',2),UserController.uploadImages);
-
-
+app.post('/api/repair/upload',upload.array('file',2),UserController.uploadImages);
 
 const port = 9000
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

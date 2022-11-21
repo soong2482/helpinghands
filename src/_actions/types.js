@@ -4,3 +4,4 @@ export const AUTH_USER = "auth_user";
 export const LOGOUT_USER = "logout_user";
 export const UPLOAD_USER = "upload_user";
 export const UPLOAD_REPAIR = "upload_repair";
+export const APPLICATION_REPAIR = "application_repair";

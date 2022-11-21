@@ -12,13 +12,9 @@ const repairSchema = mongoose.Schema({
         type:String,
         maxlength:50,
     },
-    Img: {
-        ContentType: String,
-        data: Buffer
-    },
-    Img2: {
-        ContentType: String,
-        data: Buffer
+    Img1: {
+        type: String,
+        maxlength:50,
     },
     address:{
         type:String,
@@ -37,8 +33,11 @@ const repairSchema = mongoose.Schema({
         maxlength:50
     },
     success:{
+        type:Number,
+    },
+    path:{
         type:String,
-        maxlength:10
+        maxlength:30
     }
 
 })

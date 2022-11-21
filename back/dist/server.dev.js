@@ -38,6 +38,9 @@ var dbAddress = "mongodb+srv://pesik:1234@cluster0.dxkx6kp.mongodb.net/?retryWri
 
 var mongoose = require('mongoose');
 
+var _require6 = require('react'),
+    useState = _require6.useState;
+
 mongoose.connect(dbAddress, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -323,18 +326,23 @@ app.get('/api/users/logout', auth, function (req, res) {
     });
   });
 });
+var newFilename = "";
+var File = "";
+var path = "";
 var Storage = multer.diskStorage({
   destination: 'uploads',
   filename: function filename(req, file, cb) {
     file.originalname = Buffer.from(file.originalname, 'latin1').toString('utf8');
-    var newFilename = new Date().valueOf() + file.originalname;
+    File = newFilename;
+    newFilename += file.originalname;
     cb(null, newFilename);
+    newFilename = File;
   }
 });
 var upload = multer({
   storage: Storage
 });
-app.post('/api/repair/application', upload.array('file', 2), UserController.uploadImages);
+app.post('/api/repair/upload', upload.array('file', 2), UserController.uploadImages);
 var port = 9000;
 app.listen(port, function () {
   return console.log("Example app listening on port ".concat(port, "!"));

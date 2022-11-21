@@ -1,12 +1,12 @@
 
 import "../css/repair.css"
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import leftarrow from '../img/leftarrow.png';
 import React,{useState,useCallback,useEffect} from "react";
 import axios from 'axios';
 import { useDispatch } from "react-redux";
 import {repairUpload} from "../_actions/userAction";
-
+import {repairApplication} from "../_actions/userAction";
 function Repair(){
   var now = new Date();
 var year = now.getFullYear();
@@ -16,7 +16,7 @@ var hours = now.getHours();
 var minutes = now.getMinutes();
 var seconds = now.getSeconds();
   const dispatch = useDispatch();
- 
+  const navigate = useNavigate();
     const [image, setImage] = useState({
         image_file: "",
         preview_URL:  '../img/default_image.png'
@@ -65,25 +65,26 @@ var seconds = now.getSeconds();
       }
       const sendImageToServer = (e) => {
         e.preventDefault();  
-          const formData = new FormData()
+          const formData = new FormData();
+          console.log(formData);
           formData.append('file', image.image_file);
           formData.append('file', image1.image_file);
-          formData.append('file1',session);
-          formData.append('title',title);
-          formData.append('address',address);
+          formData.append('Img1'. session);
+          formData.append('title', title);
+          formData.append('address', address);
           formData.append('text',text);
           console.log(formData)
-          dispatch(repairUpload(formData))
-          .then(response=>{
-            if(response.payload.success){
-              alert("신청이 완료되었습니다.");
-              Navigate("/Home");
-            }
-            else{
-              alert("실패");
-            }
-          })
-      }    
+                  dispatch(repairUpload(formData))
+                  .then(response=>{
+                    if(response.payload.success){
+                  alert("신청이 완료되었습니다.");
+                  navigate("/Home");
+                }
+                else{
+                  alert("실패");
+                }
+              })
+          }
   useEffect(()=> {
     // 컴포넌트가 언마운트되면 createObjectURL()을 통해 생성한 기존 URL을 폐기
     return () => {
@@ -96,7 +97,6 @@ var seconds = now.getSeconds();
     const [title, setTitle] = useState("");
     const [address, setAddress] = useState("");
     const [text,setText] = useState("");
-    const navigate = useNavigate();
     const onChangeTitle = useCallback(e => {
         setTitle(e.target.value);
         }, []);

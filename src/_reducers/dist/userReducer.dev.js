@@ -42,6 +42,12 @@ function _default() {
       });
       break;
 
+    case _types.APPLICATION_REPAIR:
+      return _objectSpread({}, state, {
+        application: action.payload
+      });
+      break;
+
     default:
       return state;
   }

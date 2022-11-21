@@ -46,7 +46,7 @@ var user = {
             });
 
             if (!(image === undefined)) {
-              _context2.next = 4;
+              _context2.next = 6;
               break;
             }
 
@@ -55,13 +55,10 @@ var user = {
               err: err
             }));
 
-          case 4:
+          case 6:
             repair = new Repair({
-              Image1: {
-                data: req.body.file1
-              },
-              Image2: {
-                data: req.body.file2
+              Img1: {
+                data: req.body.Img1
               },
               title: {
                 data: req.body.title
@@ -71,6 +68,9 @@ var user = {
               },
               address: {
                 data: req.body.address
+              },
+              path: {
+                data: path
               }
             });
             repair.save(function (err, repairInfo) {
@@ -83,7 +83,7 @@ var user = {
               });
             });
 
-          case 6:
+          case 8:
           case "end":
             return _context2.stop();
         }

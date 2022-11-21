@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.loginUser = loginUser;
 exports.registerUser = registerUser;
 exports.repairUpload = repairUpload;
+exports.repairApplication = repairApplication;
 exports.auth = auth;
 
 var _axios = _interopRequireDefault(require("axios"));
@@ -37,12 +38,23 @@ function registerUser(dataToSubmit) {
 }
 
 function repairUpload(dataToSubmit) {
-  var request = _axios["default"].post('/api/repair/application', dataToSubmit).then(function (response) {
+  var request = _axios["default"].post('/api/repair/upload', dataToSubmit).then(function (response) {
     return response.data;
   });
 
   return {
     type: _types.UPLOAD_REPAIR,
+    payload: request
+  };
+}
+
+function repairApplication(dataToSubmit) {
+  var request = _axios["default"].post('/api/repair/application', dataToSubmit).then(function (response) {
+    return response.data;
+  });
+
+  return {
+    type: _types.APPLICATION_REPAIR,
     payload: request
   };
 }

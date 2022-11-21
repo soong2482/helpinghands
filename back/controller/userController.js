@@ -1,4 +1,3 @@
-
 const { Repair } = require("../models/Repair");
 const user ={
     uploadProfile: async(req,res)=>{
@@ -14,12 +13,10 @@ const user ={
         if(image=== undefined){
           return res.json({success:false,err})
           }
+          else{
           const repair = new Repair({
-            Image1:{
-              data:req.body.file1,
-            },
-            Image2:{
-              data:req.body.file2,
+            Img1:{
+              data:req.body.Img1,
             },
             title:{
               data:req.body.title,
@@ -30,6 +27,9 @@ const user ={
             address:{
               data:req.body.address,
             },
+            path:{
+              data:path,
+            }
           })
           repair.save((err,repairInfo)=>{
             if(err) return res.json({success:false,err})
@@ -38,5 +38,6 @@ const user ={
             })
           })
     }
+   }
   }
   module.exports =user;
