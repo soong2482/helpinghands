@@ -75,8 +75,11 @@ app.get('/api/help/delete', (req,res)=>{
           app.get('/api/repair/list', async(req,res)=>{
             let list= await Repair.find().sort({Date:-1});
               return res.status(200).json({data:list});
-            });      
-          
+            });     
+            app.get('/api/repair/count',async(req,res)=>{
+            let list = await Count.findOne();
+            return res.status(200).json({data:list});
+            })
 app.post('/api/help/require', (req, res) => {
      let address =req.body.address;
      Repair.findOneAndUpdate({ address: address },
@@ -93,7 +96,7 @@ app.post('/api/users/register', (req, res) => {
   user.save((err, userInfo) => {
     if (err) return console.log(err),res.json({ success: false, err })
     return res.status(200).json({
-      success: true
+      Success: true
     })
   })
 })

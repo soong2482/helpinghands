@@ -210,6 +210,28 @@ app.get('/api/repair/list', function _callee5(req, res) {
     }
   });
 });
+app.get('/api/repair/count', function _callee6(req, res) {
+  var list;
+  return regeneratorRuntime.async(function _callee6$(_context6) {
+    while (1) {
+      switch (_context6.prev = _context6.next) {
+        case 0:
+          _context6.next = 2;
+          return regeneratorRuntime.awrap(Count.findOne());
+
+        case 2:
+          list = _context6.sent;
+          return _context6.abrupt("return", res.status(200).json({
+            data: list
+          }));
+
+        case 4:
+        case "end":
+          return _context6.stop();
+      }
+    }
+  });
+});
 app.post('/api/help/require', function (req, res) {
   var address = req.body.address;
   Repair.findOneAndUpdate({
@@ -236,7 +258,7 @@ app.post('/api/users/register', function (req, res) {
       err: err
     });
     return res.status(200).json({
-      success: true
+      Success: true
     });
   });
 });
