@@ -29,6 +29,9 @@ function Realtimedetail(){
                     <div id="realtimedetail_name">박세빈</div>
                     <div id="realtimedetail_date">2022-11-19 18:38</div>
                 </div>
+                <div id="realtimedetail_img">
+                    <img src={profile} style={{ width:"250%"  }}/>
+                </div>
                 <div id="realtimedetail_div3">
                     <div id="realtimedetail_title">제목입니다.</div>
                 </div>

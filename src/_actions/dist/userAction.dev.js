@@ -9,6 +9,7 @@ exports.repairUpload = repairUpload;
 exports.repairApplication = repairApplication;
 exports.auth = auth;
 exports.required = required;
+exports.requiredList = requiredList;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -78,6 +79,17 @@ function required(dataToSubmit) {
 
   return {
     type: _types.REQUIRE_HELP,
+    payload: request
+  };
+}
+
+function requiredList(dataToSubmit) {
+  var request = _axios["default"].post('/api/help/list', dataToSubmit).then(function (response) {
+    return response.data;
+  });
+
+  return {
+    type: _types.REQUIRE_LIST,
     payload: request
   };
 }

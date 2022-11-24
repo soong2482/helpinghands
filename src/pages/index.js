@@ -14,7 +14,7 @@ import privacy from "./privacy";
 import namechange from "./namechange";
 import agencychange from "./agencychange";
 import profilechange from "./profilechange";
-
+import require from "./require";
 const path = {
      Home,
      help,
@@ -31,6 +31,7 @@ const path = {
      namechange,
      agencychange,
      profilechange,
+     require,
 };
 
 export default path;

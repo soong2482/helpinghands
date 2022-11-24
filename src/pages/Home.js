@@ -25,11 +25,13 @@ function App() {
     })
  },[]);
  const [session,setSession]= useState(null);
+ const [id,setId]=useState(null);
  useEffect(()=>{
    axios.get(`/api/users/Session`)
    .then(response => {
-    console.log(JSON.stringify(response.data.user));
+    console.log(JSON.stringify(response.data.user));   
        setSession(response.data.user);
+       setId(response.data.id);
    })
  },[]);
   return (
@@ -70,7 +72,8 @@ function App() {
                             <div id="Home_real_text">제목: {item.title}  </div>
                             <p> </p>
                             <div id="Home_real_position">위치: {item.address}</div>
- 
+                            <div>인원:4/{item.people}</div>
+                            
                     </div>
                 )}
              </div>

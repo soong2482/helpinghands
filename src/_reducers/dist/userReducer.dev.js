@@ -54,6 +54,12 @@ function _default() {
       });
       break;
 
+    case _types.REQUIRE_LIST:
+      return _objectSpread({}, state, {
+        required: action.payload
+      });
+      break;
+
     default:
       return state;
   }

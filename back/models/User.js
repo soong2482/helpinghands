@@ -25,13 +25,12 @@ const userSchema = mongoose.Schema({
         type: String,
         minlength: 5
     },
-    lastname: {
-        type: String,
-        maxlength: 50
+    path: {
+        type:String,
+        maxlength:100
     },
     role: {
         type: Number,
-        default: 0
     },
     token: {
         type: String

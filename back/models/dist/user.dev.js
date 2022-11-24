@@ -29,13 +29,12 @@ var userSchema = mongoose.Schema({
     type: String,
     minlength: 5
   },
-  lastname: {
+  path: {
     type: String,
-    maxlength: 50
+    maxlength: 100
   },
   role: {
-    type: Number,
-    "default": 0
+    type: Number
   },
   token: {
     type: String

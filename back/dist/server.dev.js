@@ -64,30 +64,6 @@ app.get('/api/help/delete', function (req, res) {
     });
   });
 });
-app.get('/api/help/list', function _callee(req, res) {
-  var list;
-  return regeneratorRuntime.async(function _callee$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-          _context.next = 2;
-          return regeneratorRuntime.awrap(Help.find().sort({
-            Date: -1
-          }));
-
-        case 2:
-          list = _context.sent;
-          return _context.abrupt("return", res.status(200).json({
-            data: list
-          }));
-
-        case 4:
-        case "end":
-          return _context.stop();
-      }
-    }
-  });
-});
 app.post('/api/help/application', function (req, res) {
   var help = new Help(req.body);
   help.save(function (err, helpInfo) {
@@ -114,14 +90,38 @@ app.post('/api/notice/application', function (req, res) {
     });
   });
 });
-app.get('/api/notice/Home', function _callee2(req, res) {
+app.get('/api/notice/Home', function _callee(req, res) {
+  var list;
+  return regeneratorRuntime.async(function _callee$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          _context.next = 2;
+          return regeneratorRuntime.awrap(Notice.find().limit(6).sort({
+            Date: -1
+          }));
+
+        case 2:
+          list = _context.sent;
+          return _context.abrupt("return", res.status(200).json({
+            data: list
+          }));
+
+        case 4:
+        case "end":
+          return _context.stop();
+      }
+    }
+  });
+});
+app.get('/api/notice/list', function _callee2(req, res) {
   var list;
   return regeneratorRuntime.async(function _callee2$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
           _context2.next = 2;
-          return regeneratorRuntime.awrap(Notice.find().limit(6).sort({
+          return regeneratorRuntime.awrap(Notice.find().sort({
             Date: -1
           }));
 
@@ -138,14 +138,14 @@ app.get('/api/notice/Home', function _callee2(req, res) {
     }
   });
 });
-app.get('/api/notice/list', function _callee3(req, res) {
+app.get('/api/repair/Home', function _callee3(req, res) {
   var list;
   return regeneratorRuntime.async(function _callee3$(_context3) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
           _context3.next = 2;
-          return regeneratorRuntime.awrap(Notice.find().sort({
+          return regeneratorRuntime.awrap(Repair.find().limit(4).sort({
             Date: -1
           }));
 
@@ -162,14 +162,14 @@ app.get('/api/notice/list', function _callee3(req, res) {
     }
   });
 });
-app.get('/api/repair/Home', function _callee4(req, res) {
+app.get('/api/repair/list', function _callee4(req, res) {
   var list;
   return regeneratorRuntime.async(function _callee4$(_context4) {
     while (1) {
       switch (_context4.prev = _context4.next) {
         case 0:
           _context4.next = 2;
-          return regeneratorRuntime.awrap(Repair.find().limit(4).sort({
+          return regeneratorRuntime.awrap(Repair.find().sort({
             Date: -1
           }));
 
@@ -186,16 +186,14 @@ app.get('/api/repair/Home', function _callee4(req, res) {
     }
   });
 });
-app.get('/api/repair/list', function _callee5(req, res) {
+app.get('/api/repair/count', function _callee5(req, res) {
   var list;
   return regeneratorRuntime.async(function _callee5$(_context5) {
     while (1) {
       switch (_context5.prev = _context5.next) {
         case 0:
           _context5.next = 2;
-          return regeneratorRuntime.awrap(Repair.find().sort({
-            Date: -1
-          }));
+          return regeneratorRuntime.awrap(Count.findOne());
 
         case 2:
           list = _context5.sent;
@@ -210,30 +208,24 @@ app.get('/api/repair/list', function _callee5(req, res) {
     }
   });
 });
-app.get('/api/repair/count', function _callee6(req, res) {
-  var list;
-  return regeneratorRuntime.async(function _callee6$(_context6) {
-    while (1) {
-      switch (_context6.prev = _context6.next) {
-        case 0:
-          _context6.next = 2;
-          return regeneratorRuntime.awrap(Count.findOne());
-
-        case 2:
-          list = _context6.sent;
-          return _context6.abrupt("return", res.status(200).json({
-            data: list
-          }));
-
-        case 4:
-        case "end":
-          return _context6.stop();
-      }
-    }
-  });
-});
 app.post('/api/help/require', function (req, res) {
   var address = req.body.address;
+  var user = req.body.user;
+  User.findOne({
+    _id: user
+  }, function (err, user) {
+    var userr = new Help({
+      address: address,
+      id: req.body.user,
+      name: user.name,
+      phone: user.phone,
+      email: user.email,
+      countV: user.countV,
+      path: user.path,
+      success: "false"
+    });
+    userr.save();
+  });
   Repair.findOneAndUpdate({
     address: address
   }, {
@@ -250,15 +242,43 @@ app.post('/api/help/require', function (req, res) {
     });
   });
 });
+app.get('/api/help/list', auth, function (req, res) {
+  Help.find({
+    id: req.user._id
+  }, function (err, user) {
+    if (err) return res.json({
+      success: false,
+      err: err
+    });
+    return res.status(200).json({
+      data: req.user
+    });
+  });
+});
+app.get('/api/users/Session', auth, function (req, res) {
+  User.findOne({
+    _id: req.user._id
+  }, function (err, user) {
+    if (err) return res.json({
+      success: false,
+      err: err
+    });
+    return res.status(200).json({
+      user: req.user.name,
+      id: req.user._id
+    });
+  });
+});
 app.post('/api/users/register', function (req, res) {
   var user = new User(req.body);
+  console.log(user);
   user.save(function (err, userInfo) {
     if (err) return console.log(err), res.json({
       success: false,
       err: err
     });
     return res.status(200).json({
-      Success: true
+      success: true
     });
   });
 });

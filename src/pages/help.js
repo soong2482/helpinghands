@@ -10,6 +10,13 @@ function Help(){
     const [List,setList] =useState();
     const [kakaoMap, setKakaoMap] = useState(null);
     const [Faddress,setFaddress]= useState();
+    const [session,setSession]= useState(null);
+ useEffect(()=>{
+   axios.get(`/api/users/Session`)
+   .then(response => {
+       setSession(response.data.id);
+   })
+ },[]);
     useEffect(()=>{
         axios.get(`/api/repair/list`)
         .then(response => {
@@ -49,7 +56,6 @@ function Help(){
               };
              
             const map = new kakao.maps.Map(container, options);
-               alert(marker.id);
                setFaddress(item.address);
               setKakaoMap(map);
             });
@@ -63,7 +69,8 @@ function Help(){
    const onSubmit=(e)=>{
     e.preventDefault();
     let body={
-      address:Faddress
+      address:Faddress,
+      user:session
     }
     dispatch(required(body))
     .then(response =>{

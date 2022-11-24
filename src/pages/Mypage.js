@@ -72,7 +72,7 @@ axios.get('/api').then(response=>{console.log(response)})
                     &nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                     <img src={rightarrow} style={{ width: 20, height: 20 }} alt='화살표' />
             </button>
-            <button id="mypage_button4" onClick={() => {navigate("/")}}>
+            <button id="mypage_button4" onClick={() => {navigate("/require")}}>
             &emsp;&emsp;<img src={participation} style={{ width: 20, height: 20 }} alt='봉사 참여' />
                     &emsp;&emsp;
                     봉사 참여 확인

@@ -35,6 +35,8 @@ var _agencychange = _interopRequireDefault(require("./agencychange"));
 
 var _profilechange = _interopRequireDefault(require("./profilechange"));
 
+var _require2 = _interopRequireDefault(require("./require"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var path = {
@@ -52,7 +54,8 @@ var path = {
   privacy: _privacy["default"],
   namechange: _namechange["default"],
   agencychange: _agencychange["default"],
-  profilechange: _profilechange["default"]
+  profilechange: _profilechange["default"],
+  require: _require2["default"]
 };
 var _default = path;
 exports["default"] = _default;

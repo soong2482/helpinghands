@@ -33,7 +33,6 @@ function SignUp(props){
       },[]);
     const OnSubmit =(e) => {
       e.preventDefault();
-      console.log(name, password);//dev
       let body={
         name: name,
         email:email,
@@ -42,6 +41,7 @@ function SignUp(props){
         countV:0,
         role:0,
         nickname:name,
+        path:"",
       }
       const emailRegex =
       /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
@@ -58,10 +58,8 @@ function SignUp(props){
         if(response.payload.success){
         alert("가입이 정상적으로 완료되었습니다.");
         Navigate("/SignIn");
-        
       }
       else{
-        
         alert("아이디나 닉네임이 중복되었습니다.");
       } 
     })

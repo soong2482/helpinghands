@@ -1,0 +1,79 @@
+#require_back{
+    margin: 0 auto;
+    width:100%;
+    background: url(/src/img/shortback.png);
+    background-repeat: no-repeat;
+    background-size:100% 90%;
+    flex: 10;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; /*수직 정렬*/
+    align-items: center;
+    justify-content: center;
+    min-width: 554px;
+    max-width: 554px;
+    min-height: 950px;
+    max-height: 950px;
+    height: 100vh;
+    overflow-x:hidden;
+    overflow-y:hidden;
+  }
+
+
+  #require_back_button{
+    background-color: transparent;
+    border: 0;
+    position: relative;
+    right: 35%;
+    top: 40px;
+    filter: invert(100);
+  }
+
+  #require_profile_text{
+    position: relative;
+    left: 180px;
+    flex: 1.5;
+    width: 100%;
+    font-weight: bold;
+    font-size:xx-large;
+    color: white;
+    /*background-color: aqua;*/
+  }
+  #require_profile{
+      flex: 3;
+      width: 100%;
+      float: left;
+     /* background-color:blue;*/
+  }
+  #require_profile_img{
+  position: relative;
+  left: 40px;
+  width: 30%;
+  float: left;
+  }
+  #require_name{
+  position: relative;
+  left: 170px;
+  font-weight: bold;
+  font-size:xxx-large;
+  color: white;
+  }
+  #require_agency{
+  position: relative;
+  font-size:medium;
+  opacity: 0.5;
+  left: 170px;
+  }
+  #require_div_adv{
+    flex: 2;
+    }
+  
+  #require_text1,#require_text2,#require_text3,#require_text4,#require_text5,#require_text6,#require_text7{
+    flex: 1;
+    width: 100%;
+    height: 10%;
+    border: 0;
+    background-color:transparent;
+    font-size:large;
+    /*background-color:rgb(17, 255, 0);*/
+    }

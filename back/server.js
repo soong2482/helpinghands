@@ -32,16 +32,8 @@ app.get('/api/help/delete', (req,res)=>{
     })
     })
   })
-
-
-
-  app.get('/api/help/list', async(req,res)=>{
-    let list= await Help.find().sort({Date:-1});
-      return res.status(200).json({data:list});
-    });
   app.post('/api/help/application', (req,res)=>{
     const help = new Help(req.body)
-     
     help.save((err,helpInfo)=>{
       if(err) return res.json({success:false,err})
       return res.status(200).json({
@@ -80,8 +72,23 @@ app.get('/api/help/delete', (req,res)=>{
             let list = await Count.findOne();
             return res.status(200).json({data:list});
             })
+
 app.post('/api/help/require', (req, res) => {
-     let address =req.body.address;
+     const address =req.body.address;
+     const user = req.body.user;
+     User.findOne({_id:user},(err,user)=>{
+      const userr = new Help({
+          address:address,
+          id:req.body.user,
+          name:user.name,
+          phone:user.phone,
+          email:user.email,
+          countV:user.countV,
+          path:user.path,
+          success:"false",
+      })
+      userr.save();
+    })
      Repair.findOneAndUpdate({ address: address },
       { $inc:{people:-1}}
       , (err, user) => {
@@ -91,12 +98,31 @@ app.post('/api/help/require', (req, res) => {
     })
   })
 })
+app.get('/api/help/list',auth,(req,res)=>{
+   Help.find({id:req.user._id},(err,user)=>{
+    if (err) return res.json({success:false,err});
+      return res.status(200).json({
+        data:req.user
+       })
+   })
+  })
+app.get('/api/users/Session',auth,(req,res)=>{
+    User.findOne({_id:req.user._id},(err,user)=>{
+      if (err) return res.json({success:false,err});
+      return res.status(200).json({
+        user:req.user.name,
+        id:req.user._id
+       })
+    })
+    
+  })
 app.post('/api/users/register', (req, res) => {
   const user = new User(req.body);
+  console.log(user);
   user.save((err, userInfo) => {
     if (err) return console.log(err),res.json({ success: false, err })
     return res.status(200).json({
-      Success: true
+      success: true
     })
   })
 })
