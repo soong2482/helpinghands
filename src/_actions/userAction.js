@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOGIN_USER, REGISTER_USER, AUTH_USER,UPLOAD_REPAIR,APPLICATION_REPAIR} from './types';
+import { LOGIN_USER, REGISTER_USER, AUTH_USER,UPLOAD_REPAIR,APPLICATION_REPAIR,REQUIRE_HELP} from './types';
 export function loginUser(dataToSubmit) {
 
     const request = axios.post('/api/users/login', dataToSubmit)
@@ -52,5 +52,13 @@ export function auth() {
         type: AUTH_USER,
         payload: request
     }
+}
+export function require(dataToSubmit){
+    const request = axios.post('/api/help/require', dataToSubmit)
+    .then(response => response.data)
+return {
+    type: REQUIRE_HELP,
+    payload: request
+}
 }
 

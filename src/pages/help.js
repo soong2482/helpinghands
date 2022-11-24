@@ -1,48 +1,93 @@
-import React from "react";
-import "../css/help.css"
-import leftarrow from '../img/leftarrow.png';
-import { useNavigate } from 'react-router-dom';
-import KakaoMap from '../components/KakaoMap';
-import globe from '../img/globe.png';
-import search from '../img/search.png';
-import { useState } from 'react'
+/*global kakao*/ 
+import React, { useEffect,useState } from 'react'
+import  styles from "../css/help.css"
+import axios from "axios";
+import { require } from "../_actions/userAction";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-function Help(){
-    const navigate = useNavigate();
-    const [account, setAccount] = useState({});
-    const onChangeAccount = (e) => {
-        setAccount({
-          ...account,
-          [e.target.name]: e.target.value,
-        });
-        console.log(e.target.value);};
+function Help(props){ 
+  const dispatch = useDispatch();
+  const Navigate = useNavigate();
+    const [List,setList] =useState();
+    const [kakaoMap, setKakaoMap] = useState(null);
+    useEffect(()=>{
+        axios.get(`/api/repair/list`)
+        .then(response => {
+         setList(response.data);
+          initMap();
+        })
+    }, []);
+    const [session,setSession] = useState();
+ const initMap=() => {
+    let container = document.getElementById("map");
+    let options = {
+      center: new kakao.maps.LatLng(36.4109466, 128.1590828),//상주
+      level: 12,
+      isPanto:true,
+    };
+    const map = new kakao.maps.Map(container, options);
+    map.setDraggable(false);
+    setKakaoMap(map);
+  };
 
-    return(
-        <div id="help_back">
 
-            <div id="help_div1">
-                <button id="help_back_button" onClick={() => {navigate("/Home")}} >
-                    <img src={leftarrow} style={{ width: 30, height: 20 }} alt='화살표' />
-                </button>
-                <div id="help_text">봉사 신청</div>
-            </div>
-
-            <div id="help_div2">
-                <KakaoMap/>
-            </div>
-
-            <div id="help_div3">
-            <form action="." method="post">
-                  <div id="help_div3_1">
-                      <img id="help_globe" src={globe} style={{width: 30, height: 20 }} alt='지구본' />
-                       <input id="help_search-txt" type="text" placeholder="주소를 입력해주세요."onChange={onChangeAccount}></input>
-                       <button id="help_search-btn" type="submit">
-                         <img src={search} style={{width: 30, height: 20 }} alt='검색' />
-                    </button>
-                  </div>
-                </form>
-            </div>
-        </div>
-    )
+  
+  const geocoder = new kakao.maps.services.Geocoder();
+  {List && List.data.map((item)=>
+      geocoder.addressSearch(`${item.address}`,function(result){
+               var x = result[0].x;
+               var y = result[0].y;
+               var latlng = new kakao.maps.LatLng(y,x);
+               let marker = new kakao.maps.Marker({
+                position: latlng,
+                image: null,
+                clickable: true,
+              });
+            kakao.maps.event.addListener(marker, 'click', function(mouseEvent) {
+              let container = document.getElementById("map");
+              let options = {
+                center: new kakao.maps.LatLng(y,x),
+                level: 5,
+                isPanto:true,
+              };
+              var iwContent ='<div>Hello World</div>',
+               iwPosition = new kakao.maps.LatLng(y,x),
+               iwRemoveable = true;
+              var infowindow = new kakao.maps.InfoWindow({
+                    map:map,
+                    position: iwPosition,
+                    content: iwContent,
+                    removable: iwRemoveable
+              })
+             
+            const map = new kakao.maps.Map(container, options);
+               alert(marker.id);
+              setKakaoMap(map);
+            });
+              
+              marker.id=item.id_count;
+              marker.setMap(kakaoMap);
+              
+      })
+   )}
+   const require=(item) =>{
+    let address=item
+    dispatch(require(address))
+    .then(response =>{
+      if(response.payload.success){
+      alert("신청이 정상적으로 완료되었습니다.");
+      Navigate("/Home");
+  }
+  })
 }
-export default Help;
+
+  return( 
+  <div id="help_container"> 
+    <button onClick={initMap}>전체화면으로</button>
+  <div id="map" style={{ width: "50vw", height: "70vh" }}></div>
+    
+</div>
+  )
+}
+export default Help

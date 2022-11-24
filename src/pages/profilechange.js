@@ -2,9 +2,22 @@ import "../css/profilechange.css"
 import adv from '../img/adv.png';
 import { useNavigate } from 'react-router-dom';
 import leftarrow from '../img/leftarrow.png';
-
+import axios from 'axios';
+import { useEffect } from "react";
+import { useState } from "react";
 
 function Profilechange() {
+  const [session,setSession]= useState(null);
+  const [id,setId]=useState(null);
+  useEffect(()=>{
+    axios.get(`/api/users/Session`)
+    .then(response => {
+     console.log(JSON.stringify(response.data.user));
+     console.log(JSON.stringify(response.data.id));
+        setSession(response.data.user);
+        setId(response.data.id);
+    })
+  },[]);
   const navigate = useNavigate();
   return (
       <div id ="profilechange_back">

@@ -7,7 +7,34 @@ import axios from 'axios';
 import { useDispatch } from "react-redux";
 import {repairUpload} from "../_actions/userAction";
 import {repairApplication} from "../_actions/userAction";
+import PopupDom from './PopupDom';
+import PopupPostCode from './PopupPostCode';
 function Repair(){
+  const [isPopupOpen, setIsPopupOpen] = useState(false)
+ 
+	// 팝업창 열기
+    const openPostCode = () => {
+        setIsPopupOpen(true)
+    }
+ 
+	// 팝업창 닫기
+    const closePostCode = () => {
+        setIsPopupOpen(false)
+    }
+    const [enroll_company, setEnroll_company] = useState({
+      address:'',
+    });
+    const handleInput = (e) => {
+      setEnroll_company({
+          ...enroll_company,
+            [e.target.name]:e.target.value,
+        })
+    }
+    const handleComplete = (data) => {
+      
+  }
+  
+    
   var now = new Date();
 var year = now.getFullYear();
 var month = now.getMonth();
@@ -63,7 +90,7 @@ var seconds = now.getSeconds();
           formData.append('file', image1.image_file);
           formData.append('Img1', id);
           formData.append('title', title);
-          formData.append('address', address);
+          formData.append('address', enroll_company.address);
           formData.append('text',text);
           console.log(formData)
                   dispatch(repairUpload(formData))
@@ -157,9 +184,17 @@ var seconds = now.getSeconds();
             
             <div id = "repair_div4">
             <input type="text" id="repair_address" placeholder="주소를 입력하시오." 
-            value={address} 
-            onChange={onChangeAddress}>
+            value={enroll_company.address} 
+            onChange={handleInput}>
               </input>
+              <button type='button' onClick={openPostCode}>우편번호 검색</button>
+            </div>
+            <div id='popupDom'>
+                {isPopupOpen && (
+                    <PopupDom>
+                        <PopupPostCode  company={enroll_company} setcompany={setEnroll_company} onClose={closePostCode} />
+                    </PopupDom>
+                )}
             </div>
             </div>
             <div id = "repair_div5">

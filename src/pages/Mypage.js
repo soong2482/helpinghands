@@ -6,18 +6,19 @@ import alram from '../img/alram.png';
 import protect from '../img/protect.png';
 import participation from '../img/participation.png';
 import recruitment from '../img/recruitment.png';
-import logoutbtn from '../img/logout.png';
+import logoutbtn2 from '../img/logout.png';
 import axios from 'axios';
+import { useEffect } from "react";
+import { useState } from "react";
 import rightarrow from '../img/rightarrow.png';
 import leftarrow from '../img/leftarrow.png';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { useState } from "react";
+
 function Mypage() {
   const navigate = useNavigate();
 axios.get('/api').then(response=>{console.log(response)})
-  const logout =() => {
+  const logoutbtn =() => {
         axios.get(`/api/users/logout`)
         .then(response => {
                 console.log(response.data)
@@ -86,7 +87,7 @@ axios.get('/api').then(response=>{console.log(response)})
                     <img src={rightarrow} style={{ width: 20, height: 20 }} alt='화살표' />
             </button>
             <button id="mypage_button6" onClick={() => {navigate("/")}}>
-            &emsp;&emsp;<img src={logoutbtn} style={{ width: 20, height: 20 }} alt='로그 아웃' />
+            &emsp;&emsp;<img src={logoutbtn2} style={{ width: 20, height: 20 }} alt='로그 아웃' />
                     &emsp;&emsp;
                     로그아웃
                     &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;

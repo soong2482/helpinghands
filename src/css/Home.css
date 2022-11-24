@@ -161,12 +161,13 @@ margin-bottom: -30px;
 display: grid;
 grid-template-columns: 200px 200px;
 }
-#Home_real_profile{
-width: 35px;
-position: relative;
-top: -5px;
-left: -15px
-}
+#Home_real_photo{
+  width: 35px;
+  height: 35px;;
+  position: relative;
+  top: -5px;
+  left: -15px
+  }
 #Home_real_date{
 position: relative;
 top: -60px;

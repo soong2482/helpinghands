@@ -23,8 +23,6 @@ var _Mypage = _interopRequireDefault(require("./Mypage"));
 
 var _realtime = _interopRequireDefault(require("./realtime"));
 
-var _KakaoMap = _interopRequireDefault(require("../components/KakaoMap"));
-
 var _realtimedetail = _interopRequireDefault(require("./realtimedetail"));
 
 var _noticedetail = _interopRequireDefault(require("./noticedetail"));
@@ -49,7 +47,6 @@ var path = {
   SignUp: _SignUp["default"],
   mypage: _Mypage["default"],
   realtime: _realtime["default"],
-  KakaoMap: _KakaoMap["default"],
   realtimedetail: _realtimedetail["default"],
   noticedetail: _noticedetail["default"],
   privacy: _privacy["default"],

@@ -1,70 +1,14 @@
-#help_back{
-    margin: 0 auto;
+#map{
+    width:50%;
+    float:left;
+    box-sizing: border-box;
+}
+#popup{
+    width:50%;
+    float:right;
+    box-sizing: border-box;
+}
+#help_container{
     width:100%;
-    background: url(/src/img/shortback.png);
-    background-repeat: no-repeat;
-    background-size:100% 100%;
-    flex: 10;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column; /*수직 정렬*/
-    align-items: center;
-    justify-content: center;
-    min-width: 554px;
-    max-width: 554px;
-    min-height: 1050px;
-    max-height: 1050px;
-    height: 100vh;
-    overflow-x:hidden;
-    overflow-y:hidden;
-}
-#help_back_button{
-    background-color: transparent;
-    border: 0;
-    position: relative;
-    right: 110%;
-    top: 40px;
-    filter: invert(100)
-}
-#help_text{
-  color: white;
-  font-size :xx-large;
-  font-weight: bolder;
-}
-#help_div1{
-   
-    flex: 1;
-  }
-#help_div2{
-    flex: 8;
-}
-#help_div3{
-    flex:1;
-}
-#help_search-txt{
-    height: 30px;
-    width: 480px;
-    margin-bottom: 20px;
-    position: relative;
-    white-space: normal;
-    text-align:center;
-}
-#help_search-btn{
-    position: relative;
-    border: 0px;
-    left: 460px;
-    top: -50px;
-    background-color: transparent;
-}
-#help_globe{
-    position: relative;
-    border: 0px;
-    left: 40px;
-    top: 5px;
-    background-color: transparent;
-    z-index: 1;
-}
-#help_location_button{
-    width: 100px;
-    height: 50px;
+    height:300px;
 }

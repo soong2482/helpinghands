@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.APPLICATION_REPAIR = exports.UPLOAD_REPAIR = exports.UPLOAD_USER = exports.LOGOUT_USER = exports.AUTH_USER = exports.REGISTER_USER = exports.LOGIN_USER = void 0;
+exports.REQUIRE_HELP = exports.APPLICATION_REPAIR = exports.UPLOAD_REPAIR = exports.UPLOAD_USER = exports.LOGOUT_USER = exports.AUTH_USER = exports.REGISTER_USER = exports.LOGIN_USER = void 0;
 var LOGIN_USER = "login_user";
 exports.LOGIN_USER = LOGIN_USER;
 var REGISTER_USER = "register_user";
@@ -18,3 +18,5 @@ var UPLOAD_REPAIR = "upload_repair";
 exports.UPLOAD_REPAIR = UPLOAD_REPAIR;
 var APPLICATION_REPAIR = "application_repair";
 exports.APPLICATION_REPAIR = APPLICATION_REPAIR;
+var REQUIRE_HELP = "require_help";
+exports.REQUIRE_HELP = REQUIRE_HELP;

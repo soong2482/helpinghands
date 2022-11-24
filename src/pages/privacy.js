@@ -7,10 +7,23 @@ import rightarrow from '../img/rightarrow.png';
 import change_name from '../img/change_name.png';
 import change_agency from '../img/change_agency.png';
 import change_profile from '../img/change_profile.png';
-
+import axios from 'axios';
+import { useEffect } from "react";
+import { useState } from "react";
 
 function Privacy() {
   const navigate = useNavigate();
+  const [session,setSession]= useState(null);
+  const [id,setId]=useState(null);
+  useEffect(()=>{
+    axios.get(`/api/users/Session`)
+    .then(response => {
+     console.log(JSON.stringify(response.data.user));
+     console.log(JSON.stringify(response.data.id));
+        setSession(response.data.user);
+        setId(response.data.id);
+    })
+  },[]);
   return (
       <div id ="privacy_back">
           <button id="privacy_back_button" onClick={() => {navigate("/mypage")}} >
@@ -19,7 +32,7 @@ function Privacy() {
           <div id="privacy_profile_text">개인 정보</div>
           <div id="privacy_profile">
             <img id="privacy_profile_img" src={profile} alt='프로필' />
-            <div id="privacy_name">박세빈</div>
+            <div id="privacy_name">{session}</div>
             <div id="privacy_agency">안동 행복 봉사 단체</div>
           </div>
           <button id="privacy_button1" onClick={() => {navigate("/namechange")}} >

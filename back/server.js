@@ -8,6 +8,7 @@ const { User } = require("./models/User");
 const { Help } = require("./models/Help");
 const { Notice } = require("./models/Notice");
 const { Repair } = require("./models/Repair");
+const { Count } =require("./models/count");
 const multer = require('multer');
 //application/x-www-form-urlencoded 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,14 +17,11 @@ app.use(express.static('uploads'));
 app.use(bodyParser.json());
 app.use(cookieParser());
 const dbAddress= "mongodb+srv://pesik:1234@cluster0.dxkx6kp.mongodb.net/?retryWrites=true&w=majority";
-
 const mongoose = require('mongoose');
 mongoose.connect(dbAddress, {
   useNewUrlParser: true, useUnifiedTopology: true
 }).then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err))
-
-app.get('/api/hello', (req, res) => res.send('Hello World!~~ '))
 
 
 app.get('/api/help/delete', (req,res)=>{
@@ -79,7 +77,17 @@ app.get('/api/help/delete', (req,res)=>{
               return res.status(200).json({data:list});
             });      
           
-
+app.post('/api/help/require', (req, res) => {
+     let address =req.body.address;
+     Repair.findOneAndUpdate({ address: address },
+      { $inc:{people:-1}}
+      , (err, user) => {
+    if (err) return console.log(err),res.json({ success: false, err })
+    return res.status(200).json({
+      success: true
+    })
+  })
+})
 app.post('/api/users/register', (req, res) => {
   const user = new User(req.body);
   user.save((err, userInfo) => {
@@ -125,7 +133,6 @@ app.post('/api/users/login', (req, res) => {
   })
 })
 
-
 // role 1 어드민    role 2 특정 부서 어드민 
 // role 0 -> 일반유저   role 0이 아니면  관리자 
 app.get('/api/users/auth', auth, (req, res) => {
@@ -163,7 +170,6 @@ app.get('/api/users/logout', auth, (req, res) => {
     })
 })
 
-
 let newFilename ="";
 let File="";
 let path="";
@@ -182,23 +188,32 @@ const upload =multer({
 });
 app.post('/api/repair/upload',upload.array('file',2),(req,res)=>{
   const image = req.files;
+  var now = new Date();
   const path = image.map(img => img.path);
   if(image=== undefined){
     return res.json({success:false,err})
     }
     else{
+    Count.findOneAndUpdate({name:'개수'},{$inc:{totalPosts:1}},function(err,result){
+      var totalPosts = result.totalPosts;
+ 
       const repair = new Repair({
         Img1:req.body.Img1,
         title:req.body.title,
         text:req.body.text,
         address:req.body.address,
+        Date:now,
         path:path[0].substr(8),
         path1:path[1].substr(8),
+        people:4,
+        id_count:totalPosts+1,
       })
+      
       repair.save((err,repairInfo)=>{
         if(err) { return console.log(err),res.json({success:false,err})}
         return res.status(200).send({success:true})
       })
+    })
 } 
 });
 

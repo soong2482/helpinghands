@@ -62,7 +62,7 @@ function App() {
             <div id="Home_grid">
                 {List && List.data.map((item)=>
                      <div id="Home_divcol" key={item._id}>
-                        <img id="Home_real_profile" src={"http://localhost:9000/"+item.path}  alt='프로필'/>
+                       <img id="Home_real_photo" src={"http://localhost:9000/"+item.path}  alt='복구 신청 사진'/>
                         <button id="Home_real_button">
                             <img src={plus} style={{ width: 10, height: 10 }} alt='플러스' onClick={() => {navigate("/realtimedetail")}} />
                         </button>
@@ -100,6 +100,7 @@ function App() {
                           <div id="Home_divcol2">
                           <div id="Home_notice_text">
                              {item.title}
+                             <br></br>
                              {item.text}
                          </div>
                      </div>

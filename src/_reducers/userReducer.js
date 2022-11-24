@@ -1,4 +1,4 @@
-import { LOGIN_USER, REGISTER_USER, AUTH_USER, UPLOAD_REPAIR,APPLICATION_REPAIR} from '../_actions/types';
+import { LOGIN_USER, REGISTER_USER, AUTH_USER, UPLOAD_REPAIR,APPLICATION_REPAIR,REQUIRE_HELP} from '../_actions/types';
 
 export default function (state = {}, action) {
     switch (action.type) {
@@ -16,6 +16,9 @@ export default function (state = {}, action) {
             break;
         case APPLICATION_REPAIR:
             return{...state ,application:action.payload}
+            break;
+        case REQUIRE_HELP:
+            return{...state ,require:action.payload}
             break;
         default:
             return state;

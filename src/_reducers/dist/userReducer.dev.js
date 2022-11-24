@@ -48,6 +48,12 @@ function _default() {
       });
       break;
 
+    case _types.REQUIRE_HELP:
+      return _objectSpread({}, state, {
+        require: action.payload
+      });
+      break;
+
     default:
       return state;
   }

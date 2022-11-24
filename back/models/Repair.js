@@ -42,6 +42,12 @@ const repairSchema = mongoose.Schema({
     path1:{
         type:String,
         maxlength:100
+    },
+    people:{
+        type:Number,
+    },
+    id_count:{
+        type:Number,
     }
 
 })

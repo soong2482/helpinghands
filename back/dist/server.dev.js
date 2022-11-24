@@ -23,6 +23,9 @@ var _require4 = require("./models/Notice"),
 var _require5 = require("./models/Repair"),
     Repair = _require5.Repair;
 
+var _require6 = require("./models/count"),
+    Count = _require6.Count;
+
 var multer = require('multer'); //application/x-www-form-urlencoded 
 
 
@@ -44,9 +47,6 @@ mongoose.connect(dbAddress, {
   return console.log('MongoDB Connected...');
 })["catch"](function (err) {
   return console.log(err);
-});
-app.get('/api/hello', function (req, res) {
-  return res.send('Hello World!~~ ');
 });
 app.get('/api/help/delete', function (req, res) {
   Help.findOneAndUpdate({
@@ -210,6 +210,24 @@ app.get('/api/repair/list', function _callee5(req, res) {
     }
   });
 });
+app.post('/api/help/require', function (req, res) {
+  var address = req.body.address;
+  Repair.findOneAndUpdate({
+    address: address
+  }, {
+    $inc: {
+      people: -1
+    }
+  }, function (err, user) {
+    if (err) return console.log(err), res.json({
+      success: false,
+      err: err
+    });
+    return res.status(200).json({
+      success: true
+    });
+  });
+});
 app.post('/api/users/register', function (req, res) {
   var user = new User(req.body);
   user.save(function (err, userInfo) {
@@ -319,6 +337,7 @@ var upload = multer({
 });
 app.post('/api/repair/upload', upload.array('file', 2), function (req, res) {
   var image = req.files;
+  var now = new Date();
   var path = image.map(function (img) {
     return img.path;
   });
@@ -329,24 +348,36 @@ app.post('/api/repair/upload', upload.array('file', 2), function (req, res) {
       err: err
     });
   } else {
-    var repair = new Repair({
-      Img1: req.body.Img1,
-      title: req.body.title,
-      text: req.body.text,
-      address: req.body.address,
-      path: path[0].substr(8),
-      path1: path[1].substr(8)
-    });
-    repair.save(function (err, repairInfo) {
-      if (err) {
-        return console.log(err), res.json({
-          success: false,
-          err: err
-        });
+    Count.findOneAndUpdate({
+      name: '개수'
+    }, {
+      $inc: {
+        totalPosts: 1
       }
+    }, function (err, result) {
+      var totalPosts = result.totalPosts;
+      var repair = new Repair({
+        Img1: req.body.Img1,
+        title: req.body.title,
+        text: req.body.text,
+        address: req.body.address,
+        Date: now,
+        path: path[0].substr(8),
+        path1: path[1].substr(8),
+        people: 4,
+        id_count: totalPosts + 1
+      });
+      repair.save(function (err, repairInfo) {
+        if (err) {
+          return console.log(err), res.json({
+            success: false,
+            err: err
+          });
+        }
 
-      return res.status(200).send({
-        success: true
+        return res.status(200).send({
+          success: true
+        });
       });
     });
   }
