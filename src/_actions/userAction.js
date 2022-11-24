@@ -53,12 +53,11 @@ export function auth() {
         payload: request
     }
 }
-export function require(dataToSubmit){
+export function required(dataToSubmit){
     const request = axios.post('/api/help/require', dataToSubmit)
-    .then(response => response.data)
-return {
-    type: REQUIRE_HELP,
-    payload: request
+         .then(response => response.data)
+    return {
+        type: REQUIRE_HELP,
+        payload: request
+    }
 }
-}
-

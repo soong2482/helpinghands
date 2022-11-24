@@ -2,15 +2,14 @@
 import React, { useEffect,useState } from 'react'
 import  styles from "../css/help.css"
 import axios from "axios";
-import { require } from "../_actions/userAction";
+import { required } from "../_actions/userAction";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useResolvedPath } from "react-router-dom";
+function Help(){ 
 
-function Help(props){ 
-  const dispatch = useDispatch();
-  const Navigate = useNavigate();
     const [List,setList] =useState();
     const [kakaoMap, setKakaoMap] = useState(null);
+    const [Faddress,setFaddress]= useState();
     useEffect(()=>{
         axios.get(`/api/repair/list`)
         .then(response => {
@@ -18,7 +17,6 @@ function Help(props){
           initMap();
         })
     }, []);
-    const [session,setSession] = useState();
  const initMap=() => {
     let container = document.getElementById("map");
     let options = {
@@ -31,8 +29,6 @@ function Help(props){
     setKakaoMap(map);
   };
 
-
-  
   const geocoder = new kakao.maps.services.Geocoder();
   {List && List.data.map((item)=>
       geocoder.addressSearch(`${item.address}`,function(result){
@@ -51,41 +47,42 @@ function Help(props){
                 level: 5,
                 isPanto:true,
               };
-              var iwContent ='<div>Hello World</div>',
-               iwPosition = new kakao.maps.LatLng(y,x),
-               iwRemoveable = true;
-              var infowindow = new kakao.maps.InfoWindow({
-                    map:map,
-                    position: iwPosition,
-                    content: iwContent,
-                    removable: iwRemoveable
-              })
              
             const map = new kakao.maps.Map(container, options);
                alert(marker.id);
+               setFaddress(item.address);
               setKakaoMap(map);
             });
-              
               marker.id=item.id_count;
               marker.setMap(kakaoMap);
-              
+      
       })
    )}
-   const require=(item) =>{
-    let address=item
-    dispatch(require(address))
+   const dispatch = useDispatch();
+   const Navigate = useNavigate();
+   const onSubmit=(e)=>{
+    e.preventDefault();
+    let body={
+      address:Faddress
+    }
+    dispatch(required(body))
     .then(response =>{
       if(response.payload.success){
       alert("신청이 정상적으로 완료되었습니다.");
       Navigate("/Home");
   }
+  else{
+    alert("실패");
+  }
   })
 }
+
 
   return( 
   <div id="help_container"> 
     <button onClick={initMap}>전체화면으로</button>
-  <div id="map" style={{ width: "50vw", height: "70vh" }}></div>
+    <button onClick={onSubmit}>신청</button>
+  <div id="map" style={{ width: "100vw", height: "90vh" }}></div>
     
 </div>
   )

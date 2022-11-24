@@ -18,7 +18,7 @@ export default function (state = {}, action) {
             return{...state ,application:action.payload}
             break;
         case REQUIRE_HELP:
-            return{...state ,require:action.payload}
+            return{...state ,required:action.payload}
             break;
         default:
             return state;

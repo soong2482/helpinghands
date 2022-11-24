@@ -8,7 +8,7 @@ exports.registerUser = registerUser;
 exports.repairUpload = repairUpload;
 exports.repairApplication = repairApplication;
 exports.auth = auth;
-exports.require = _require;
+exports.required = required;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -71,7 +71,7 @@ function auth() {
   };
 }
 
-function _require(dataToSubmit) {
+function required(dataToSubmit) {
   var request = _axios["default"].post('/api/help/require', dataToSubmit).then(function (response) {
     return response.data;
   });

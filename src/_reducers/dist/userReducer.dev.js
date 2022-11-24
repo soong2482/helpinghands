@@ -50,7 +50,7 @@ function _default() {
 
     case _types.REQUIRE_HELP:
       return _objectSpread({}, state, {
-        require: action.payload
+        required: action.payload
       });
       break;
 
