@@ -1,22 +1,23 @@
 #realtime_back{
-    margin: 0 auto;
-    width:100%;
-    background: url(/src/img/shortback.png);
-    background-repeat: no-repeat;
-    background-size:100% 150%;
-    flex: 10;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column; /*수직 정렬*/
-    align-items: center;
-    justify-content: center;
-    min-width: 554px;
-    max-width: 554px;
-    min-height: 1050px;
-    max-height: 1050px;
-    height: 100vh;
-    overflow-x:hidden;
-    overflow-y:hidden;
+  margin: 0 auto;
+  width:100%;
+  height:100%;
+  background: url(/src/img/shortback.png);
+  background-repeat: no-repeat;
+  background-size:contain;
+  min-width: 393px;
+  max-width: 554px;
+  min-height: 1050px;
+  max-height: 1050px;
+  overflow-x:hidden;
+  overflow-y:hidden;
+  flex: 8;
+  height: 100vh;
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: column; /*수직 정렬*/
+  align-items: center;
+  justify-content: center;
   }
   #realtime_div1{
     flex: 1;
@@ -32,28 +33,33 @@
     border: 0;
     filter: invert(100%);
     position: relative;
-    right: 50%;
+    left: -30%;
     top: 33%;
   }
   #realtime_text{
+    position: relative;
+    left: 0%;
     color: white;
     font-size :xx-large;
     font-weight: bolder;
   }
   #realtime_search{
-    width:500px ;
+    position: relative;
+    left: -2%;
+    width:100% ;
     height: 50%;
     opacity: 0.5;
     font-size: x-large;
   }
   #realtime_grid{
+    position: relative;
+    left: -150%;
     display: grid;
-    grid-template-columns: 500px;
+    grid-template-columns: 400%;
   }
   #realtime_divcol{
     padding: 0.5rem;
-    border: 0px solid #ccc;
-
+    border-bottom: 1px solid black;
     background: #fff;
     font-size: 1.4rem;
     text-align: center;

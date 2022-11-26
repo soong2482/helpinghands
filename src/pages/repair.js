@@ -9,6 +9,7 @@ import {repairUpload} from "../_actions/userAction";
 import {repairApplication} from "../_actions/userAction";
 import PopupDom from './PopupDom';
 import PopupPostCode from './PopupPostCode';
+import {M} from "../native/index"
 function Repair(){
   const [isPopupOpen, setIsPopupOpen] = useState(false)
  
@@ -30,10 +31,7 @@ function Repair(){
             [e.target.name]:e.target.value,
         })
     }
-    const handleComplete = (data) => {
-      
-  }
-  
+
     
   var now = new Date();
 var year = now.getFullYear();
@@ -54,6 +52,10 @@ var seconds = now.getSeconds();
       }); 
       let inputRef;
       let inputRef1;
+      const saveImage3 =(e)=>{
+        e.preventDefault();
+        
+      }
       const saveImage = (e) => {
         e.preventDefault();
         if(e.target.files[0]){
@@ -132,9 +134,7 @@ var seconds = now.getSeconds();
     const onChangeText = useCallback(e => {
         setText(e.target.value);
         }, []);
-    const onChangeAddress = useCallback(e => {
-        setAddress(e.target.value);
-        }, []);            
+        
     return(
         <div id="repair_back">
             <div id = "package">
@@ -188,7 +188,10 @@ var seconds = now.getSeconds();
             onChange={handleInput}>
               </input>
               <button type='button' onClick={openPostCode}>우편번호 검색</button>
+              <br></br>
+              <br></br>
             </div>
+           
             <div id='popupDom'>
                 {isPopupOpen && (
                     <PopupDom>

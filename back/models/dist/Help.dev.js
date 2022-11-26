@@ -11,7 +11,11 @@ var helpSchema = mongoose.Schema({
     type: String,
     maxlength: 50
   },
-  id: {
+  helpid: {
+    type: String,
+    maxlength: 50
+  },
+  repairid: {
     type: String,
     maxlength: 50
   },

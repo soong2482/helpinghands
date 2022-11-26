@@ -7,3 +7,6 @@ export const UPLOAD_REPAIR = "upload_repair";
 export const APPLICATION_REPAIR = "application_repair";
 export const REQUIRE_HELP= "require_help";
 export const REQUIRE_LIST="require_list";
+export const DATA_REQUIRE="data_require";
+export const USERDATA_REQUIRE="userdata_require";
+export const SUCCESS_DATA="success_data";

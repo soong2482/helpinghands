@@ -52,6 +52,7 @@ app.get('/api/help/delete', (req,res)=>{
         })
         })
       })
+
       app.get('/api/notice/Home', async(req,res)=>{
         let list= await Notice.find().limit(6).sort({Date:-1});
           return res.status(200).json({data:list});
@@ -72,20 +73,59 @@ app.get('/api/help/delete', (req,res)=>{
             let list = await Count.findOne();
             return res.status(200).json({data:list});
             })
-
-app.post('/api/help/require', (req, res) => {
+            app.post('/api/help/list',async(req,res)=>{
+              const id = req.body.id;
+            let list =await Help.find({helpid:id});
+            return res.status(200).json({
+              data:list,
+              success:true});
+             })
+             app.post('/api/repair/dataList',async(req,res)=>{
+              const address = req.body.address;
+              let list =await Repair.find({address:address});
+              return res.status(200).json({
+                data:list,
+                success:true});
+             })
+             app.post('/api/help/userdatarequire',async(req,res)=>{
+              const session = req.body.id;
+              const list = await Help.find({repairid:session});
+              const arr = new Array();
+              var length = list.length;
+              for(var i=0; i<length; i++){
+              const user= await User.findOne({_id:list[i].helpid});
+                arr.push(user);
+              }
+              return res.status(200).json({
+                data:arr,
+                success:true,
+              });
+            })
+            app.post('/api/help/success',async(req,res)=>{
+              const helpid= req.body.id;
+              Help.findOneAndUpdate({helpid:helpid},{success:"완료"},(err,user)=>{
+                return res.status(200).send({
+                  success:true
+                })
+              })
+            })
+app.post('/api/help/require', async(req, res) => {
      const address =req.body.address;
      const user = req.body.user;
+     const session = req.body.session;
+     const dataa =await Repair.findOne({address:address});
+     const datee = dataa.Date;
      User.findOne({_id:user},(err,user)=>{
       const userr = new Help({
           address:address,
-          id:req.body.user,
+          repairid:req.body.user,
+          helpid:session,
           name:user.name,
           phone:user.phone,
           email:user.email,
-          countV:user.countV,
-          path:user.path,
-          success:"false",
+          path:dataa.path,
+          Date:datee,
+          success:"미완료",
       })
       userr.save();
     })
@@ -98,14 +138,7 @@ app.post('/api/help/require', (req, res) => {
     })
   })
 })
-app.get('/api/help/list',auth,(req,res)=>{
-   Help.find({id:req.user._id},(err,user)=>{
-    if (err) return res.json({success:false,err});
-      return res.status(200).json({
-        data:req.user
-       })
-   })
-  })
+
 app.get('/api/users/Session',auth,(req,res)=>{
     User.findOne({_id:req.user._id},(err,user)=>{
       if (err) return res.json({success:false,err});

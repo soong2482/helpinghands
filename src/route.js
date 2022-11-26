@@ -25,6 +25,7 @@ export default function routes(){
               <Route path="/agencychange" element={<Pages.agencychange/>}/>
               <Route path="/profilechange" element={<Pages.profilechange/>}/>
               <Route path="/require" element={<Pages.require/>}/>
+              <Route path="/helping" element={<Pages.helping/>}/>
             </Routes>
           </Router>
       </React.StrictMode>

@@ -208,51 +208,187 @@ app.get('/api/repair/count', function _callee5(req, res) {
     }
   });
 });
-app.post('/api/help/require', function (req, res) {
-  var address = req.body.address;
-  var user = req.body.user;
-  User.findOne({
-    _id: user
-  }, function (err, user) {
-    var userr = new Help({
-      address: address,
-      id: req.body.user,
-      name: user.name,
-      phone: user.phone,
-      email: user.email,
-      countV: user.countV,
-      path: user.path,
-      success: "false"
-    });
-    userr.save();
-  });
-  Repair.findOneAndUpdate({
-    address: address
-  }, {
-    $inc: {
-      people: -1
+app.post('/api/help/list', function _callee6(req, res) {
+  var id, list;
+  return regeneratorRuntime.async(function _callee6$(_context6) {
+    while (1) {
+      switch (_context6.prev = _context6.next) {
+        case 0:
+          id = req.body.id;
+          _context6.next = 3;
+          return regeneratorRuntime.awrap(Help.find({
+            helpid: id
+          }));
+
+        case 3:
+          list = _context6.sent;
+          return _context6.abrupt("return", res.status(200).json({
+            data: list,
+            success: true
+          }));
+
+        case 5:
+        case "end":
+          return _context6.stop();
+      }
     }
-  }, function (err, user) {
-    if (err) return console.log(err), res.json({
-      success: false,
-      err: err
-    });
-    return res.status(200).json({
-      success: true
-    });
   });
 });
-app.get('/api/help/list', auth, function (req, res) {
-  Help.find({
-    id: req.user._id
-  }, function (err, user) {
-    if (err) return res.json({
-      success: false,
-      err: err
-    });
-    return res.status(200).json({
-      data: req.user
-    });
+app.post('/api/repair/dataList', function _callee7(req, res) {
+  var address, list;
+  return regeneratorRuntime.async(function _callee7$(_context7) {
+    while (1) {
+      switch (_context7.prev = _context7.next) {
+        case 0:
+          address = req.body.address;
+          _context7.next = 3;
+          return regeneratorRuntime.awrap(Repair.find({
+            address: address
+          }));
+
+        case 3:
+          list = _context7.sent;
+          return _context7.abrupt("return", res.status(200).json({
+            data: list,
+            success: true
+          }));
+
+        case 5:
+        case "end":
+          return _context7.stop();
+      }
+    }
+  });
+});
+app.post('/api/help/userdatarequire', function _callee8(req, res) {
+  var session, list, arr, length, i, user;
+  return regeneratorRuntime.async(function _callee8$(_context8) {
+    while (1) {
+      switch (_context8.prev = _context8.next) {
+        case 0:
+          session = req.body.id;
+          _context8.next = 3;
+          return regeneratorRuntime.awrap(Help.find({
+            repairid: session
+          }));
+
+        case 3:
+          list = _context8.sent;
+          arr = new Array();
+          length = list.length;
+          i = 0;
+
+        case 7:
+          if (!(i < length)) {
+            _context8.next = 15;
+            break;
+          }
+
+          _context8.next = 10;
+          return regeneratorRuntime.awrap(User.findOne({
+            _id: list[i].helpid
+          }));
+
+        case 10:
+          user = _context8.sent;
+          arr.push(user);
+
+        case 12:
+          i++;
+          _context8.next = 7;
+          break;
+
+        case 15:
+          return _context8.abrupt("return", res.status(200).json({
+            data: arr,
+            success: true
+          }));
+
+        case 16:
+        case "end":
+          return _context8.stop();
+      }
+    }
+  });
+});
+app.post('/api/help/success', function _callee9(req, res) {
+  var helpid;
+  return regeneratorRuntime.async(function _callee9$(_context9) {
+    while (1) {
+      switch (_context9.prev = _context9.next) {
+        case 0:
+          helpid = req.body.id;
+          Help.findOneAndUpdate({
+            helpid: helpid
+          }, {
+            success: "완료"
+          }, function (err, user) {
+            return res.status(200).send({
+              success: true
+            });
+          });
+
+        case 2:
+        case "end":
+          return _context9.stop();
+      }
+    }
+  });
+});
+app.post('/api/help/require', function _callee10(req, res) {
+  var address, user, session, dataa, datee;
+  return regeneratorRuntime.async(function _callee10$(_context10) {
+    while (1) {
+      switch (_context10.prev = _context10.next) {
+        case 0:
+          address = req.body.address;
+          user = req.body.user;
+          session = req.body.session;
+          _context10.next = 5;
+          return regeneratorRuntime.awrap(Repair.findOne({
+            address: address
+          }));
+
+        case 5:
+          dataa = _context10.sent;
+          datee = dataa.Date;
+          User.findOne({
+            _id: user
+          }, function (err, user) {
+            var userr = new Help({
+              address: address,
+              repairid: req.body.user,
+              helpid: session,
+              name: user.name,
+              phone: user.phone,
+              email: user.email,
+              path: dataa.path,
+              Date: datee,
+              success: "미완료"
+            });
+            userr.save();
+          });
+          Repair.findOneAndUpdate({
+            address: address
+          }, {
+            $inc: {
+              people: -1
+            }
+          }, function (err, user) {
+            if (err) return console.log(err), res.json({
+              success: false,
+              err: err
+            });
+            return res.status(200).json({
+              success: true
+            });
+          });
+
+        case 9:
+        case "end":
+          return _context10.stop();
+      }
+    }
   });
 });
 app.get('/api/users/Session', auth, function (req, res) {

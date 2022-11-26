@@ -1,13 +1,22 @@
 
+@media (min-width: 300px) {  
 #firstpage_background{
-    display:flex;
-    min-height:100vh;
-    max-height:100vh;
-    min-width:70vh;
-    max-width:70vh;
-    flex-direction: column;
-    background-size: cover;
-    margin: 0 auto;
+  margin: 0 auto;
+  width:100%;
+  height:100%;
+  background-repeat: no-repeat;
+  background-size:cover;
+  max-width: 554px;
+  min-height: 572px;
+  overflow-x:hidden;
+  overflow-y:hidden;
+  flex: 8;
+  height: 100vh;
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: column; /*수직 정렬*/
+  align-items: center;
+  justify-content: center;
 
 }
   
@@ -19,6 +28,7 @@
     text-align: center;
   }
   #firstpage_container3{
+    width: 100%;
     flex-grow:1;
     text-align: center;
     font-size: 400%;
@@ -26,14 +36,20 @@
     font-weight: bold;
   }
   #firstpage_container4{
+    width: 100%;
+    height: 10%;
     flex-grow:1;
     display:flex;
   }
   #firstpage_login{
+    width: 100%;
+    height: 50%;
     flex-grow:1;
     text-align: center;
   }
   #firstpage_signup{
+    width: 100%;
+    height: 50%;
     flex-grow:1;
     text-align: center;
   }
@@ -44,10 +60,10 @@
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
-	font-size:35px;
+	font-size:30px;
 	font-weight:bold;
     width:80%;
-    height:40%;
+    height:60%;
 	text-decoration:none;
 
   }
@@ -58,15 +74,16 @@
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
-	font-size:35px;
-    width:70%;
-    height:40%;
+	font-size:30px;
+    width:80%;
+    height:60%;
 	font-weight:bold;
 	text-decoration:none;
   }
   #firstpage_logo{
-    width:70%;
-    height:80%;
+    width:80%;
+    height:100%;
     justify-content: center;
     align-items: center;
   }
+}

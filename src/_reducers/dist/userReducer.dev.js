@@ -60,6 +60,24 @@ function _default() {
       });
       break;
 
+    case _types.DATA_REQUIRE:
+      return _objectSpread({}, state, {
+        require: action.payload
+      });
+      break;
+
+    case _types.USERDATA_REQUIRE:
+      return _objectSpread({}, state, {
+        userdata: action.payload
+      });
+      break;
+
+    case _types.SUCCESS_DATA:
+      return _objectSpread({}, state, {
+        success: action.payload
+      });
+      break;
+
     default:
       return state;
   }

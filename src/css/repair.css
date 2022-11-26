@@ -1,22 +1,22 @@
 #repair_back{
   margin: 0 auto;
   width:100%;
+  height:100%;
   background: url(/src/img/backback.PNG);
   background-repeat: no-repeat;
-  background-size:100% 100%;
-  flex: 10;
-  display: flex;
+  background-size:cover;
+  min-width: 393px;
+  max-width: 554px;
+  max-height: 1050px;
+  overflow-x:hidden;
+  overflow-y:hidden;
+  flex: 8;
+  height: 100vh;
+  display:flex;
   flex-wrap: wrap;
   flex-direction: column; /*수직 정렬*/
   align-items: center;
   justify-content: center;
-  min-width: 554px;
-  max-width: 554px;
-  min-height: 1050px;
-  max-height: 1050px;
-  height: 100vh;
-  overflow-x:hidden;
-  overflow-y:hidden;
   }
  
   #repair_div1{
@@ -41,11 +41,13 @@
     background-color: transparent;
     border: 0;
     position: relative;
-    right: 110%;
+    left: -140%;
     top: 30px;
     filter: invert(0)
   }
   #repair_text{
+    position: relative;
+    left: -50%;
     color: black;
     font-size :xx-large;
     font-weight: bolder;
@@ -66,21 +68,34 @@
   }
   
   #repair_button{
-    margin-left:-80px;
-    width: 80px;
-    height: 80px;
-    background-color: transparent;
-    border: 0px;
+    margin-bottom: 5%;
+    width: 20%;
+    height: 5%;
+    border: 1px solid black;
     position: relative;
-    top: -20px;
-    
+    top: 0%;
+    left: 20%;
+  }
+  #repair_button:hover{
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 30px;
+    transition-duration: 0.4s;
   }
   #repair_story{
+      position: relative;
+      left: -15%;
+      top: 3%;
       opacity: 0.5;
       padding: 10px;
-      width: 485px;
+      width: 100%;
+      height: 200px;
       border-radius: 5px;
       border: 1px solid #ccc;
       box-shadow: 1px 1px 1px #999;
       font-size: large;
+  }
+  img{
+    width: 35%;
+    height: 35%;
   }

@@ -1,20 +1,22 @@
 
+@media (min-width: 300px) {  
+body{
+  margin: 0;  
+}
 #Home_back{
   margin: 0 auto;
   width:100%;
   height:100%;
   background: url(/src/img/shortback.png);
   background-repeat: no-repeat;
-  background-size:cover;
-  min-width: 554px;
+  background-size:contain;
   max-width: 554px;
   min-height: 1050px;
-  max-height: 1050px;
   overflow-x:hidden;
   overflow-y:hidden;
   flex: 8;
   height: 100vh;
-  display: flex;
+  display:flex;
   flex-wrap: wrap;
   flex-direction: column; /*수직 정렬*/
   align-items: center;
@@ -22,21 +24,30 @@
 }
 
 #Home_div1{
+  width: 100%;
   height: 10%;
-  flex : 1;
+  flex : 0.5;
   flex-direction : "row";
+  position: relative;
+
   /*background-color : 'yellow';*/
 }
 
 #Home_div2{
-  flex : 1;
+  width: 100%;
+  flex : 2;
+  position: relative;
+  top: -1%;
   flex-direction : "row";
-  margin-top: -30px;
+  
   /*backgroundColor : 'blue'*/
 }
 #Home_div3{
-flex : 1.2;
+width: 100%;
+height: 100%;
+flex : 1.5;
 flex-direction : "row";
+
 /*backgroundColor : 'blue'*/
 }
 #Home_div4{
@@ -53,34 +64,34 @@ flex-direction : "row";
 #Home_button1{
   color: #4e13a5;
   position : 'relative';
-  left : -500px;
   background-color: 'white';
-  width: 180px;
-  height: 30%;
+  width: 40%;
+  height: 45%;
   border-radius: 35px;
   border: none;
   font-size: 20px;
   font-weight: bolder;
+  margin-left: 4%;
 
 }
 
 #Home_button2{
 color: #4e13a5;
 position : 'relative';
-left : -100px;
 background-color: 'white';
-width: 180px;
-height: 30%;
+width: 40%;
+height: 45%;
 border-radius: 35px;
 border: none;
 font-size: 20px;
-margin-left: 50px;
+margin-left: 10%;
 font-weight: bolder;
 }
 #Home_div_realtime{
+  width: 100%;
   height: 0%;
   flex-direction : "row";
-  margin-top: -50px;
+  margin-top: -10%;
 }
 
 #Home_underline{
@@ -89,25 +100,25 @@ font-weight: bolder;
 }
 
 #Home_user{
-width:100%;
+width:30%;
 height: 80%;
 }
 #Home_button_user{
-width: 25%;
-height: 30%;
+width: 40%;
+height: 50%;
 background-color: transparent;
 border: 0;
 outline: 0;
 position: relative;
-top : -60px;
-left: 280px;
+top : -60%;
+left: 70%;
 }
 #Home_text1{
 color: white;
 font-size :xx-large;
 font-weight: bolder;
 position: relative;
-left: 20px;
+left: 30%;
 
 }
 #Home_text2{
@@ -116,11 +127,12 @@ font-size :medium;
 font-weight: 'bold';
 opacity: 0.5;
 position: relative;
-left: 5px;
+left: 27%;
 }
 #Home_button_realtime{
+width: 100%;
 position: relative;
-left : 150px;
+left : 42%;
 border: 0;
 background-color:transparent;
 text-decoration: underline;
@@ -131,7 +143,7 @@ color: #413c72;
 }
 #Home_button_month{
 position: relative;
-left : 150px;
+left : 45%;
 border: 0;
 background-color:transparent;
 text-decoration: underline;
@@ -141,33 +153,39 @@ font-size: large;
 color: #413c72;
 }
 #Home_grid{
+width: 110%;
+height: 140%;
 position: relative;
-top: 50px;
-margin-bottom: 10px;
+top: 20%;
+left: 2%;
+margin-bottom: 10%;
 display: grid;
-grid-template-columns: 200px 200px;
-grid-template-rows: 70px 70px;
+grid-template-columns: 45% 45%;
+grid-template-rows: 35% 35%;
 
 }
 #Home_divcol{
-padding: 1.4rem;
+position: relative;
+top: -10%;
+width: 95%;
+height: 95%;
 border: 2px solid #ccc;
 background: #f4f4f4;
 font-size:small;
 font-weight: bold;
 }
 #Home_grid1{
-margin-bottom: -30px;
+margin-bottom: -10%;
 display: grid;
-grid-template-columns: 200px 200px;
+grid-template-columns: 50% 50%;
 }
 #Home_real_photo{
-  width: 35px;
-  height: 35px;;
-  position: relative;
-  top: -5px;
-  left: -15px
-  }
+width: 23%;
+height: 60%;
+position: relative;
+top: 20%;
+left: 5%
+}
 #Home_real_date{
 position: relative;
 top: -60px;
@@ -177,56 +195,69 @@ color: rgb(113, 31, 143);
 }
 #Home_real_button{
 position: relative;
-top: -42px;
-left: 110px;
+top: -40%;
+left: 65%;
 border: 0;
-background: #f4f4f4;
+background-color: transparent;
 }
 #Home_real_text{
   position: relative;
-  top : -45px;
-  left : 25px;
+  top : -40%;
+  left : 30%;
   font-stretch:narrower;
-  width: 120px;
+  width: 50%;
   height: auto;
   font-size:xx-small;
   word-break: break-word;
-  padding-left: 27px; 
-  text-indent: -27px;
+  padding-left: 20px; 
+  text-indent: -20px;
+}
+#Home_real_position{
+  padding-left: 20px; 
+  text-indent: -20px;
+  line-height: 10px;
+  position: relative;
+  top : -40%;
+  left : 30%;
+  font-stretch:narrower;
+  width: 50%;
+  height: auto;
+  font-size:xx-small;
+}
+#Home_real_people{
+  position: relative;
+  top : -35%;
+  left: 30%;
+  font-size:xx-small;
+
+}
+#Home_month_name, #Home_month_time, #Home_month_agency{
+  position: relative;
+  left : 7%;
 }
 #Home_month_profile{
 position: relative;
-top: -90px;
-left: 100px;
-width: 100px;
+top : -80%;
+left : 30%;
+width: 50%;
+height: 100%;
 }
 #Home_button_notice{
 position: relative;
-left : 140px;
+left : 42%;
 border: 0;
 background-color:transparent;
 text-decoration: underline;
 text-decoration-color :blueviolet;
 font-weight: bolder;
 font-size: large;
-margin-bottom: 20px;
+margin-bottom: 5%;
 color: #413c72;
 }
-#Home_real_position{
-  padding-left: 27px; 
-  text-indent: -27px;
-  line-height: 10px;
-  position: relative;
-  top : -58px;
-  left : 25px;
-  font-stretch:narrower;
-  width: 120px;
-  height: auto;
-  font-size:xx-small;
-}
+
 #Home_grid2{
 display: grid;
-grid-template-columns: 200px 200px;
+grid-template-columns: 50% 50%;
 position: relative;
 
 }
@@ -246,4 +277,5 @@ font-weight: bold;
 }
 #Home_div6{
 flex: 1;
+}
 }

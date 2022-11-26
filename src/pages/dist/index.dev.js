@@ -37,6 +37,8 @@ var _profilechange = _interopRequireDefault(require("./profilechange"));
 
 var _require2 = _interopRequireDefault(require("./require"));
 
+var _helping = _interopRequireDefault(require("./helping"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var path = {
@@ -55,7 +57,8 @@ var path = {
   namechange: _namechange["default"],
   agencychange: _agencychange["default"],
   profilechange: _profilechange["default"],
-  require: _require2["default"]
+  require: _require2["default"],
+  helping: _helping["default"]
 };
 var _default = path;
 exports["default"] = _default;

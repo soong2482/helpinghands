@@ -1,0 +1,62 @@
+#map{
+    position: absolute;
+    z-index: 1;
+ }
+ #smallcomponent_left {
+     width: 100%;
+     float: left;
+     position: relative;
+     margin-top: 10px;
+     box-sizing: border-box;
+   }
+   
+  
+   
+   #smallcomponent_title {
+     display: inline-block;
+   }
+   
+   #smallcomponent_text {
+     width: 96.49%;
+     font-size: medium;
+     border-top: none;
+     border-left: none;
+     border-right: none;
+   }
+   
+   #smallcomponent_picture {
+     position: relative;
+     width: 100%;
+     margin-left: 10%;
+   }
+   
+   #smallcomponent_back_button {
+     border: 1px;
+     border-radius: 12px;
+     background-color: blueviolet;
+     color: white;
+     font-size: 20px;
+     position: relative;
+     top: -5px;
+   }
+   
+   .help_nav {
+     margin-top: 100%;
+     transition: 0.5s;
+     position: relative;
+     top: 52%;
+     z-index: 2;
+     width: 100%;
+     background-color: white
+     
+   }
+   #action {
+     margin-top: 0;
+     position: absolute;
+     z-index: 2;
+   }
+   #help_img{
+    position: relative;
+    left: -10%;
+    height: 250px;
+   }

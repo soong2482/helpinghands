@@ -10,6 +10,9 @@ exports.repairApplication = repairApplication;
 exports.auth = auth;
 exports.required = required;
 exports.requiredList = requiredList;
+exports.datarequire = datarequire;
+exports.userdatarequire = userdatarequire;
+exports.successdata = successdata;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -90,6 +93,39 @@ function requiredList(dataToSubmit) {
 
   return {
     type: _types.REQUIRE_LIST,
+    payload: request
+  };
+}
+
+function datarequire(dataToSubmit) {
+  var request = _axios["default"].post('/api/repair/dataList', dataToSubmit).then(function (response) {
+    return response.data;
+  });
+
+  return {
+    type: _types.DATA_REQUIRE,
+    payload: request
+  };
+}
+
+function userdatarequire(dataToSubmit) {
+  var request = _axios["default"].post('/api/help/userdatarequire', dataToSubmit).then(function (response) {
+    return response.data;
+  });
+
+  return {
+    type: _types.USERDATA_REQUIRE,
+    payload: request
+  };
+}
+
+function successdata(dataToSubmit) {
+  var request = _axios["default"].post('/api/help/success', dataToSubmit).then(function (response) {
+    return response.data;
+  });
+
+  return {
+    type: _types.SUCCESS_DATA,
     payload: request
   };
 }
