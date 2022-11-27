@@ -9,7 +9,7 @@ import logo7 from '../img/pang.jpg';
 import { useNavigate, useResolvedPath } from "react-router-dom";
 
 function Help(){ 
-  const navigate = useNavigate();
+  const M = window.M;
     const [List,setList] =useState();
     const [kakaoMap, setKakaoMap] = useState(null);
     const [Faddress,setFaddress]= useState();
@@ -96,7 +96,7 @@ function Help(){
     dispatch(required(body))
     .then(response =>{
       if(response.payload.success){
-      alert("신청이 정상적으로 완료되었습니다.");
+      M.pop.alert("신청이 정상적으로 완료되었습니다.");
       Navigate("/Home");
   }
   else{
@@ -108,7 +108,7 @@ function Help(){
 
   return( 
   <div id="help_container"> 
-    <button onClick={initMap}>전체화면으로</button>
+    <button id="help_btn" onClick={initMap}>전체화면으로</button>
   <div id="map" style={{ width: "100vw", height: "90vh" }}>
   {DataList && DataList.map((item)=>  
   <div id = {menuOpen ? 'action' : ''} className="help_nav"key={item._id}>
@@ -136,7 +136,7 @@ function Help(){
                 </div>
                 <br></br>
                 <div id = "smallcomponent_picture">
-                    <img id = "help_img" src={"http://localhost:9000/"+item.path} style={{ width:"100%" }}/>
+                    <img id = "help_img" src={"http://192.168.56.1:9000/files/"+item.path} style={{ width:"100%" }}/>
                 </div>
               
                 

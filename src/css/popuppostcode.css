@@ -1,0 +1,11 @@
+#postCode_btn{
+    background-color: white;
+    position: relative;
+    top: -50px;
+    width: 100px;
+    height: 40px;
+    left: 400px;
+    border-radius: 50px;
+    font-size: 18px;
+    z-index: 1;
+}

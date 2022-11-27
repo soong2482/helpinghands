@@ -9,11 +9,13 @@ const { Help } = require("./models/Help");
 const { Notice } = require("./models/Notice");
 const { Repair } = require("./models/Repair");
 const { Count } =require("./models/count");
-const multer = require('multer');
-//application/x-www-form-urlencoded 
+const FILE_UPLOAD_DIR = "uploads";
+app.use(express.static("public"));
+const _ = require("lodash");
+app.use(require("express-fileupload")());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('uploads'));
-//application/json 
+app.use("/files", express.static(FILE_UPLOAD_DIR));
+app.use(express.json());
 app.use(bodyParser.json());
 app.use(cookieParser());
 const dbAddress= "mongodb+srv://pesik:1234@cluster0.dxkx6kp.mongodb.net/?retryWrites=true&w=majority";
@@ -22,7 +24,8 @@ mongoose.connect(dbAddress, {
   useNewUrlParser: true, useUnifiedTopology: true
 }).then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err))
-
+  app.post("api/file/upload", (req, res) => {
+  });
 
 app.get('/api/help/delete', (req,res)=>{
   Help.findOneAndUpdate({email: req.email,Date:req.Date},{success:"end"},(err,help)=>{
@@ -231,52 +234,42 @@ app.get('/api/users/logout', auth, (req, res) => {
       })
     })
 })
+app.post("/file/upload", (req, res) => {
+  const file = req.files.file;
+  const ext = _.last(file.name.split("."));
+  const newFileNm = `${new Date().getTime()}.${ext}`;
+  const uploadPath = `${FILE_UPLOAD_DIR}/${newFileNm}`;
+  file.mv(uploadPath, (err)=>{
+     if(err){
+      res.send({code:400,message:"false"});
+      throw err;
+     }
+     res.send({
+       success:true
+     })
+  })
+})
 
-let newFilename ="";
-let File="";
-let path="";
-const Storage = multer.diskStorage({
-  destination:'uploads',
-  filename:(req,file,cb)=>{
-    file.originalname = Buffer.from(file.originalname, 'latin1').toString('utf8')
-    File=newFilename;
-    newFilename += file.originalname
-    cb(null, newFilename);
-    newFilename=File;
-  },
-});
-const upload =multer({
-  storage:Storage
-});
-app.post('/api/repair/upload',upload.array('file',2),(req,res)=>{
-  const image = req.files;
-  var now = new Date();
-  const path = image.map(img => img.path);
-  if(image=== undefined){
-    return res.json({success:false,err})
-    }
-    else{
+app.post('/api/repair/upload',(req,res)=>{    
     Count.findOneAndUpdate({name:'개수'},{$inc:{totalPosts:1}},function(err,result){
       var totalPosts = result.totalPosts;
- 
+      var now = new Date();	
       const repair = new Repair({
         Img1:req.body.Img1,
         title:req.body.title,
         text:req.body.text,
         address:req.body.address,
         Date:now,
-        path:path[0].substr(8),
-        path1:path[1].substr(8),
+        path:req.body.path,
+        path1:req.body.path1,
         people:4,
         id_count:totalPosts+1,
       })
-      
       repair.save((err,repairInfo)=>{
         if(err) { return console.log(err),res.json({success:false,err})}
         return res.status(200).send({success:true})
       })
     })
-} 
 });
 
 const port = 9000

@@ -2,6 +2,26 @@
     position: absolute;
     z-index: 1;
  }
+ #help_btn{
+  border: 1px solid bisque;
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  display: inline-block;
+  font-size: 22px;
+  color: white;
+  padding: 15px;
+  background-color: salmon;
+  opacity: 0.9;
+  transition: top .01s linear; 
+  text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+}
+#help_btn:hover{background-color: brown;}
+
+#help_btn:active {
+  top: 2px;
+}
  #smallcomponent_left {
      width: 100%;
      float: left;

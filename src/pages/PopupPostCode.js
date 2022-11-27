@@ -1,8 +1,8 @@
 import React from 'react';
 import DaumPostcode from "react-daum-postcode";
- 
+import "../css/popuppostcode.css"
 const PopupPostCode = (props) => {
-	// 우편번호 검색 후 주소 클릭 시 실행될 함수, data callback 용
+   // 우편번호 검색 후 주소 클릭 시 실행될 함수, data callback 용
     const handlePostCode = (data) => {
         let fullAddress = data.address;
         let extraAddress = ''; 
@@ -28,18 +28,18 @@ const PopupPostCode = (props) => {
     const postCodeStyle = {
         display: "block",
         position: "absolute",
-        top: "20%",
-        width: "500px",
+        top: "6%",
+        right: "28%",
+        width: "530px",
         height: "370px",
         padding: "7px",
+        
       };
  
     return(
         <div>
             <DaumPostcode style={postCodeStyle} onComplete={handlePostCode} />
-             
-
-            <button type='button' onClick={() => {props.onClose()}} className='postCode_btn'>닫기</button>
+            <button type='button' id ="postCode_btn" onClick={() => {props.onClose()}} className='postCode_btn'>닫기</button>
         </div>
     )
 }
