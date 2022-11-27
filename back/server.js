@@ -24,8 +24,6 @@ mongoose.connect(dbAddress, {
   useNewUrlParser: true, useUnifiedTopology: true
 }).then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err))
-  app.post("api/file/upload", (req, res) => {
-  });
 
 app.get('/api/help/delete', (req,res)=>{
   Help.findOneAndUpdate({email: req.email,Date:req.Date},{success:"end"},(err,help)=>{
@@ -65,7 +63,7 @@ app.get('/api/help/delete', (req,res)=>{
           return res.status(200).json({data:list});
         });
           app.get('/api/repair/Home', async(req,res)=>{
-            let list= await Repair.find().limit(4).sort({Date:-1});
+            let list= await Repair.find().limit(4).sort({id_count:-1});
               return res.status(200).json({data:list});
              });
           app.get('/api/repair/list', async(req,res)=>{
@@ -245,8 +243,8 @@ app.post("/file/upload", (req, res) => {
       throw err;
      }
      res.send({
-       success:true
-     })
+      path: `/files/${newFileNm}`,
+    });
   })
 })
 
