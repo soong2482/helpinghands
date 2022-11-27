@@ -5,6 +5,7 @@ import axios from "axios";
 import { required } from "../_actions/userAction";
 import { datarequire } from '../_actions/userAction';
 import { useDispatch } from "react-redux";
+import leftarrow from '../img/leftarrow.png';
 import logo7 from '../img/pang.jpg';
 import { useNavigate, useResolvedPath } from "react-router-dom";
 
@@ -108,7 +109,12 @@ function Help(){
 
   return( 
   <div id="help_container"> 
-    <button id="help_btn" onClick={initMap}>전체화면으로</button>
+    <button id="help_back_button" onClick={() => {Navigate("/Home")}} >
+          <img src={leftarrow} style={{ width: 40, height: 30 }} alt='화살표'  />
+          </button>
+          <div id = "help_text">봉사신청</div>
+    <div><button id="help_btn" onClick={initMap}>전체화면으로</button></div>
+    
   <div id="map" style={{ width: "100vw", height: "90vh" }}>
   {DataList && DataList.map((item)=>  
   <div id = {menuOpen ? 'action' : ''} className="help_nav"key={item._id}>

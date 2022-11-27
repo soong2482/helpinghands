@@ -1,82 +1,104 @@
 #map{
-    position: absolute;
-    z-index: 1;
- }
- #help_btn{
-  border: 1px solid bisque;
-  position: relative;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 20px;
-  display: inline-block;
-  font-size: 22px;
-  color: white;
-  padding: 15px;
-  background-color: salmon;
-  opacity: 0.9;
-  transition: top .01s linear; 
-  text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+  position: absolute;
+  z-index: 2;
 }
-#help_btn:hover{background-color: brown;}
+#help_container{
+background: url(/src/img/shortback.png);
+background-repeat: no-repeat;
+background-size:100% 25%;
+max-width: 554px;
 
-#help_btn:active {
-  top: 2px;
+min-height: 1050px;
+overflow-x:hidden;
+overflow-y:hidden;
+height: 100vh;
+flex-wrap: wrap;
+flex-direction: column; /*수직 정렬*/
+align-items: center;
+justify-content: center;
 }
- #smallcomponent_left {
-     width: 100%;
-     float: left;
-     position: relative;
-     margin-top: 10px;
-     box-sizing: border-box;
-   }
+#help_text{
+display: inline;
+position: relative;
+left: 16.5%;
+color: white;
+font-size: 40px;
+}
+#help_back_button{
+border: 0px;
+background-color: transparent;
+filter: invert(100%);
+}
+#help_btn{
+border: 1px solid bisque;
+position: relative;
+margin-top: 10px;
+margin-bottom: 10px;
+border-radius: 20px;
+font-size: 15px;
+left: 35%;
+color: white;
+padding: 10px;
+background-color:darkslateblue;
+opacity: 0.7;
+transition: top .01s linear; 
+text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+}
+#smallcomponent_left {
+   width: 100%;
+   float: left;
+   position: relative;
+   margin-top: 10px;
+   box-sizing: border-box;
+ }
+ 
+
+ 
+ #smallcomponent_title {
+   display: inline-block;
+ }
+ 
+ #smallcomponent_text {
+   width: 96.49%;
+   font-size: medium;
+   border-top: none;
+   border-left: none;
+   border-right: none;
+ }
+ 
+ #smallcomponent_picture {
+   position: relative;
+   width: 100%;
+   margin-left: 10%;
+ }
+ 
+ #smallcomponent_back_button {
+   border: 1px;
+   border-radius: 12px;
+   background-color: blueviolet;
+   color: white;
+   font-size: 20px;
+   position: relative;
+   top: -5px;
+ }
+ 
+ .help_nav {
+   margin-top: 100%;
+   transition: 0.5s;
+   position: relative;
+   top: 52%;
+   z-index: 2;
+   width: 100%;
+   background-color: white
    
-  
-   
-   #smallcomponent_title {
-     display: inline-block;
-   }
-   
-   #smallcomponent_text {
-     width: 96.49%;
-     font-size: medium;
-     border-top: none;
-     border-left: none;
-     border-right: none;
-   }
-   
-   #smallcomponent_picture {
-     position: relative;
-     width: 100%;
-     margin-left: 10%;
-   }
-   
-   #smallcomponent_back_button {
-     border: 1px;
-     border-radius: 12px;
-     background-color: blueviolet;
-     color: white;
-     font-size: 20px;
-     position: relative;
-     top: -5px;
-   }
-   
-   .help_nav {
-     margin-top: 100%;
-     transition: 0.5s;
-     position: relative;
-     top: 52%;
-     z-index: 2;
-     width: 100%;
-     background-color: white
-     
-   }
-   #action {
-     margin-top: 0;
-     position: absolute;
-     z-index: 2;
-   }
-   #help_img{
-    position: relative;
-    left: -10%;
-    height: 250px;
-   }
+ }
+ #action {
+   margin-top: 0;
+   position: absolute;
+   z-index: 2;
+ }
+ #help_img{
+  position: relative;
+  left: -10%;
+  height: 250px;
+ }

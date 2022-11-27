@@ -12,9 +12,11 @@ import PopupPostCode from './PopupPostCode';
 import "../js/mcore.min.js"
 import M from "../native";
 function Repair(){
-  const [IName,setIName] = useState();
-const [IName1,setIName1] = useState();
   const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const [I,setI]=useState();
+  const[I1,setI1]=useState();
+  const [path,setPath]=useState();
+  const [path1,setPath1]=useState();
   const navigate = useNavigate();
   // 팝업창 열기
    const openPostCode = () => {
@@ -58,41 +60,15 @@ const [IName1,setIName1] = useState();
     const dispatch = useDispatch();
     const [image, setImage] = useState();
     const [image1, setImage1] = useState(); 
-    useEffect(()=> {
-      // 컴포넌트가 언마운트되면 createObjectURL()을 통해 생성한 기존 URL을 폐기
-      return () => {
-        URL.revokeObjectURL(image.preview_URL)
-        URL.revokeObjectURL(image1.preview_URL)
-      }
-    }, [])
-  function F(e){
-   console.log(IName)
-   console.log(IName1)
-  }
   const sendImageToServer=(e)=>{
     e.preventDefault();
-    var API= "http://192.168.56.1:9000";
-    M.net.http.upload({
-      url:API+"/file/upload",
-      header:{},
-      params:{},
-      body:[{ name:"file",content:image,type:"FILE"}],
-      encoding:"UTF-8",
-    })
-    M.net.http.upload({
-      url:API+"/file/upload",
-      header:{},
-      params:{},
-      body:[{ name:"file",content:image1,type:"FILE"}],
-      encoding:"UTF-8",
-    })
     let body={
       Img1:id,
-      address:"충북 청주시 서원구 충대로 1, 충북대학교",
-      text:"안녕",
-      title:"안녕",
-      path:IName,
-      path1:IName1,
+      address:enroll_company.address,
+      text:text,
+      title:title,
+      path:path,
+      path1:path1,
     }
     dispatch(repairUpload(body))
     .then(response =>{
@@ -105,7 +81,7 @@ const [IName1,setIName1] = useState();
     }
 
   function setIm(e){
-    const M = window.M
+    var API= "http://192.168.56.1:9000";
     e.preventDefault();
     M.media.picker({
       mode:"SINGLE",
@@ -114,13 +90,28 @@ const [IName1,setIName1] = useState();
       callback:function(status,result){
         if(status==="SUCCESS"){
           setImage(result.path);
-          setIName(result.name);
+          var filePath = result.path;
+            M.net.http.upload({
+              url:API+"/file/upload",
+              header:{},
+              params:{},
+              body:[{ name:"file",content:filePath,type:"FILE"}],
+              encoding:"UTF-8",
+              finish: function(status,header,body,setting){
+                if(status==200){
+                  var resBody = JSON.parse(body);
+                  var imgSrc = API + resBody.path;
+                  setI(imgSrc);
+                  setPath(resBody.path.substr(7))
+                }
+              }
+            })
         }
       }
       })
     }
     function setIm1(e){
-      const M = window.M
+         var API= "http://192.168.56.1:9000";
       e.preventDefault();
       M.media.picker({
         mode:"SINGLE",
@@ -129,79 +120,92 @@ const [IName1,setIName1] = useState();
         callback:function(status,result){
           if(status==="SUCCESS"){
             setImage1(result.path);
-            setIName1(result.name);
+            var filePath = result.path;
+            M.net.http.upload({
+              url:API+"/file/upload",
+              header:{},
+              params:{},
+              body:[{ name:"file",content:filePath,type:"FILE"}],
+              encoding:"UTF-8",
+              finish: function(status,header,body,setting){
+                if(status==200){
+                  var resBody = JSON.parse(body);
+                  var imgSrc = API + resBody.path;
+                  setI1(imgSrc);
+                  setPath1(resBody.path.substr(7))
+                }
+              }
+            })
           }
         }
         })
       }
-    return(
-      <div id="repair_back">
-           <button onClick={F}>확인</button>
-          <button onClick={sendImageToServer}></button>
-      <div id = "package">
-      <div id="repair_div1">
-          <button id="repair_back_button" onClick={() => {navigate("/Home")}} >
-          <img src={leftarrow} style={{ width: 40, height: 30 }} alt='화살표'  />
-          </button>
-          <div id="repair_text">복구 신청</div>
-      </div>
-      </div>
-
-
-      <div id="repair_div2">
-          <main className="container">
-              <h2> 이미지 </h2>
-              
-      <div className="preview">
-      </div>
-         <button id = "repair_select"type="primary" onClick={setIm}>
-    사진선택</button>
-    <button id = "repair_select" type="primary" onClick={setIm1}>
-    사진선택</button>
-      </main>
-      
-         
-
-      </div>
-
-      <div id = "repair_div3">
-      <label>
-        <input type="text" id="repair_title" placeholder="제목을 작성하십시오." 
-        value={title} 
-        onChange={onChangeTitle}>
-        </input>
-       </label>
-      
-      <div id = "repair_div4">
-      <input type="text" id="repair_address" placeholder="주소를 입력하시오." 
-      value={enroll_company.address} 
-      onChange={handleInput}>
-        </input>
-        <button type='button' id = "post_name"onClick={openPostCode}>우편번호 검색</button>
-        <br></br>
-        <br></br>
-      </div>
-     
-      <div id='popupDom'>
-          {isPopupOpen && (
-              <PopupDom>
-                  <PopupPostCode  company={enroll_company} setcompany={setEnroll_company} onClose={closePostCode} />
-              </PopupDom>
-          )}
-      </div>
-      </div>
-      <div id = "repair_div5">
-            
-            <textarea id="repair_story" placeholder="내용을 입력하세요." rows="20"  cols="58"
-             value={text} onChange={onChangeText}>
-              
-            </textarea>
-            <button id="repair_button"  onClick={sendImageToServer}>
-                    <img src={leftarrow} style={{ width: 30, height: 20 }} alt='화살표'  />
+      return(
+        <div id="repair_back">
+          
+        <div id="repair_div1">
+            <button id="repair_back_button" onClick={() => {navigate("/Home")}} >
+            <img src={leftarrow} style={{ width: 40, height: 30 }} alt='화살표'  />
             </button>
-            
-            </div>
-  </div>
-)
-}
+            <div id="repair_text">복구 신청</div>
+        </div>
+       
+  
+  
+        <div id="repair_div2">
+            <main className="container">
+                <h2> 이미지 </h2>
+                
+        <div className="preview">
+        </div>
+           <button id = "repair_select"type="primary" onClick={setIm}>
+      사진선택</button>
+      <button id = "repair_select" type="primary" onClick={setIm1}>
+      사진선택</button>
+        </main>
+        <img src={I} id = "repair_img"  style={{ width: 100, height: 140 }} alt="사진"></img>
+        <img src={I1} id = "repair_img" style={{ width: 100, height: 100 }}alt="사진"></img>
+           
+  
+        </div>
+  
+        <div id = "repair_div3">
+          <input type="text" id="repair_title" placeholder="제목을 작성하십시오." 
+          value={title} 
+          onChange={onChangeTitle}>
+          </input>
+        
+        <div id = "repair_div4">
+        <input type="text" id="repair_address" placeholder="주소를 입력하시오." 
+        value={enroll_company.address} 
+        onChange={handleInput}>
+          </input>
+          <button type='button' id = "post_name"onClick={openPostCode}>우편번호 검색</button>
+          <br></br>
+          <br></br>
+        </div>
+       
+        <div id='popupDom'>
+            {isPopupOpen && (
+                <PopupDom>
+                    <PopupPostCode id="repair_post"  company={enroll_company} setcompany={setEnroll_company} onClose={closePostCode} />
+                </PopupDom>
+            )}
+        </div>
+        </div>
+        <div id = "repair_div5">
+              
+              <textarea id="repair_story" placeholder="내용을 입력하세요." rows="30"  cols="58"
+               value={text} onChange={onChangeText}>
+                
+              </textarea>
+              <button id="repair_button"  onClick={sendImageToServer}>
+                신청 완료
+              </button>
+              
+              </div>
+    </div>
+  )
+  }
+  
 export default Repair;

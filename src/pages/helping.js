@@ -33,10 +33,10 @@ const [ID,setID]= useState(null);
        })
    })
  },[]);
-   const success=(e)=>{
-    e.preventDefault();
+   function success(item){
+
     let body={
-        id:ID
+        id:item
     }
     dispatch(successdata(body))
     .then(response=>{
@@ -67,7 +67,9 @@ const [ID,setID]= useState(null);
                             <div id="helping_people">봉사자:{item.name} </div>
                             <div id="helping_phone">전화번호:{item.phone} </div>
                             <div id="helping_address">봉사횟수:{item.countV}</div>
-                            <div id="helping_success"></div>
+                            <div id="helping_success">
+                             <button onClick={()=>{success(item._id)}}>완료</button>
+                            </div>
                     </div>
                     <img id="helping_photo" src={userlogo}  alt='프로필'/>
                     </div>

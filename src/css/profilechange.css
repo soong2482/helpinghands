@@ -1,77 +1,75 @@
-#profilechange_back{
-  margin: 0 auto;
-  width:100%;
-  height:100%;
-  background: url(/src/img/shortback.png);
-  background-repeat: no-repeat;
-  background-size:contain;
-  min-width: 393px;
-  max-width: 554px;
-  max-height: 1050px;
-  overflow-x:hidden;
-  overflow-y:hidden;
-  flex: 8;
-  height: 100vh;
-  display:flex;
-  flex-wrap: wrap;
-  flex-direction: column; /*수직 정렬*/
-  align-items: center;
-  justify-content: center;
+@media (min-width: 300px) { 
+  #profilechange_back{
+      margin: 0 auto;
+      width:100%;
+      height:100%;
+      background: url(/src/img/shortback.png);
+      background-repeat: no-repeat;
+      background-size:100% 85%;
+      max-width: 554px;
+      max-width: 554px;
+      min-height: 574px;
+      overflow-x:hidden;
+      overflow-y:hidden;
+      display:flex;
+      flex-wrap: wrap;
+      flex-direction: column; /*수직 정렬*/
+      align-items: center;
+      justify-content: center;
+    }
+  #profilechange_back_button{
+    background-color: transparent;
+    border: 0;
+    position: relative;
+    right: 35%;
+    top: 40px;
+    filter: invert(100);
   }
-#profilechange_back_button{
-  background-color: transparent;
-  border: 0;
-  position: relative;
-  right: 35%;
-  top: 40px;
-  filter: invert(100);
-}
-
-#profilechange_profile_text{
-  position: relative;
-  left: 22%;
-  flex: 1;
-  width: 100%;
-  font-weight: bold;
-  font-size:xx-large;
-  color: white;
-    /*background-color: aqua;*/
+  
+  #profilechange_profile_text{
+    position: relative;
+    left: 23%;
+    flex: 1;
+    width: 100%;
+    font-weight: bold;
+    font-size:xx-large;
+    color: white;
+      /*background-color: aqua;*/
+    }
+  
+  #profilechange_name{
+    position: relative;
+    left: 170px;
+    font-weight: bold;
+    font-size:xxx-large;
+    color: white;
   }
-
-#profilechange_name{
-  position: relative;
-  left: 150px;
-  font-weight: bold;
-  font-size:xxx-large;
-  color: white;
-}
-#profilechange_div1{
-  position: relative;
-  top: -100px;
-  flex: 3;
-  background-color: white;
-  width: 90%;
-  text-align: center;
-}
-#profilechange_input{
-  width: 200px;
-  height: 30px;
-}
-#profilechange_button{
-  width: 200px;
-  height: 50px;
-  border: 0;
-  color: white;
-
-  border-radius:unset;
-  background-color: rgb(152, 78, 222);
-  transition-duration: 0.4s;
-}
-#profilechange_button:hover{
-  background-color: #4CAF50;
-  color: white;
-  border-radius: 30px;
-}
-#profilechange_div_adv{
-  flex: 1;
-}
+  #profilechange_div1{
+    flex: 4;
+    background-color: white;
+    width: 90%;
+    text-align: center;
+    margin-bottom: 10%;
+  }
+  #profilechange_input{
+    width: 200px;
+    height: 30px;
+  }
+  #profilechange_button{
+    width: 200px;
+    height: 50px;
+    border: 0;
+    color: white;
+    border-radius:unset;
+    background-color: rgb(152, 78, 222);
+    transition-duration: 0.4s;
+  }
+  #profilechange_button:hover{
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 30px;
+  }
+  #profilechange_div_adv{
+    flex: 0.3;
+  }
+  }
