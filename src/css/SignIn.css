@@ -1,115 +1,115 @@
 @media (min-width: 300px) {  
-#SignIn_Background{
-  margin: 0 auto;
-  width:100%;
-  height:100%;
-  background-repeat: no-repeat;
-  background-size:100% 80%;
-  max-width: 554px;
-  min-height: 572px;
-  overflow-x:hidden;
-  overflow-y:hidden;
-  display:flex;
-  flex-wrap: wrap;
-  flex-direction: column; /*수직 정렬*/
-  align-items: center;
-  justify-content: center;
-}
-#signin_back_button{
-  background-color: transparent;
-  border: 0;
-  position: relative;
-  right: 35%;
-  height: 100%;
-  filter: invert(100);
-}
-#SignIn_container0{
-    flex-grow:0.04;
-    min-width:30vh;
-    max-width:70vh;
-    justify-content: flex-end;
+  #SignIn_Background{
+    margin: 0 auto;
+    width:100%;
+    height:100%;
+    background-repeat: no-repeat;
+    background-size:100% 80%;
+    max-width: 554px;
+    min-height: 572px;
+    overflow-x:hidden;
+    overflow-y:hidden;
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column; /*수직 정렬*/
     align-items: center;
-    text-align: center;
-    margin-left: -30%;
-    margin-top: -5%;
+    justify-content: center;
   }
-#SignIn_container1{
-    flex-grow:0.3;
-    min-width:30vh;
-    max-width:70vh;
-    justify-content: flex-end;
-    align-items: center;
-    text-align: center;
-    font-size: 40px;
-    font-weight: 1000;
-
-    color: white;
+  #signin_back_button{
+    background-color: transparent;
+    border: 0;
+    position: relative;
+    right: 35%;
+    height: 100%;
+    filter: invert(100);
   }
-#SignIn_container2{
-    flex-grow:0.1;
-    min-width:30vh;
-    max-width:70vh;
-    justify-content: flex-end;
-    align-items: center;
-    text-align: center;
-    margin-top: -20%;
+  #SignIn_container0{
+      flex-grow:0.04;
+      min-width:30vh;
+      max-width:70vh;
+      justify-content: flex-end;
+      align-items: center;
+      text-align: center;
+      margin-left: -30%;
+      margin-top: -5%;
+    }
+  #SignIn_container1{
+      flex-grow:0.3;
+      min-width:30vh;
+      max-width:70vh;
+      justify-content: flex-end;
+      align-items: center;
+      text-align: center;
+      font-size: 40px;
+      font-weight: 1000;
+  
+      color: white;
+    }
+  #SignIn_container2{
+      flex-grow:0.1;
+      min-width:30vh;
+      max-width:70vh;
+      justify-content: flex-end;
+      align-items: center;
+      text-align: center;
+      margin-top: -20%;
+    }
+    #SignIn_container3{
+      flex-grow:0.04;
+      justify-content: flex-end;
+      align-items: center;
+      text-align: left;
+      font-size:20px;
+      font-weight: bold;
+    }
+    #SignIn_container4{
+      flex-grow:0.04;
+      justify-content: flex-end;
+      align-items: center;
+      text-align: left;
+      font-size:20px;
+      font-weight: bold;
+    }
+    #SignIn_container5{
+      flex-grow:0.1;
+      min-width:30vh;
+      max-width:70vh;
+    
+    }
+    #SignIn_idinput{
+      width:240px;
+      height:35px;
+      font-size:15px;
+      border-color: rgb(22, 33, 54); 
+      background: transparent;
+      border-radius: 13px;
+      display:flex;
+    }
+    #SignIn_pwinput{
+      width:240px;
+      height:35px;
+      font-size:15px;
+      border-color: rgb(22, 33, 54); 
+      background: transparent;
+      border-radius: 13px;
+      display:flex;
+    }
+  #userLogo{
+      width:100px;
   }
-  #SignIn_container3{
-    flex-grow:0.04;
-    justify-content: flex-end;
-    align-items: center;
-    text-align: left;
-    font-size:20px;
-    font-weight: bold;
+  #SignIn_login1{
+      background-color:#7B6EB0;
+      border-radius:15%;
+      border: 1.5px solid black;
+      display:inline-block;
+      cursor:pointer;
+      color:#ffffff;
+      font-family:Arial;
+      font-size:30px;
+        width:130px;
+        height:50px;
+      font-weight:bold;
+      text-decoration:none;
   }
-  #SignIn_container4{
-    flex-grow:0.04;
-    justify-content: flex-end;
-    align-items: center;
-    text-align: left;
-    font-size:20px;
-    font-weight: bold;
-  }
-  #SignIn_container5{
-    flex-grow:0.1;
-    min-width:30vh;
-    max-width:70vh;
   
   }
-  #SignIn_idinput{
-    width:240px;
-    height:35px;
-    font-size:15px;
-    border-color: rgb(22, 33, 54); 
-    background: transparent;
-    border-radius: 13px;
-    display:flex;
-  }
-  #SignIn_pwinput{
-    width:240px;
-    height:35px;
-    font-size:15px;
-    border-color: rgb(22, 33, 54); 
-    background: transparent;
-    border-radius: 13px;
-    display:flex;
-  }
-#userLogo{
-    width:100px;
-}
-#SignIn_login1{
-    background-color:#7B6EB0;
-    border-radius:15%;
-    border: 1.5px solid black;
-    display:inline-block;
-    cursor:pointer;
-    color:#ffffff;
-    font-family:Arial;
-    font-size:30px;
-      width:130px;
-      height:50px;
-    font-weight:bold;
-    text-decoration:none;
-}
-
-}

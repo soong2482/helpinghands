@@ -68,7 +68,11 @@ app.get('/api/help/delete', (req,res)=>{
              });
           app.get('/api/repair/list', async(req,res)=>{
             let list= await Repair.find().sort({Date:-1});
-              return res.status(200).json({data:list});
+            var list2 = await Repair.count();
+              return res.status(200).json({
+                data:list,
+                count:list2,
+              });
             });     
             app.get('/api/repair/count',async(req,res)=>{
             let list = await Count.findOne();
@@ -79,7 +83,8 @@ app.get('/api/help/delete', (req,res)=>{
             let list =await Help.find({helpid:id});
             return res.status(200).json({
               data:list,
-              success:true});
+              success:true
+            });
              })
              app.post('/api/repair/dataList',async(req,res)=>{
               const address = req.body.address;
@@ -145,7 +150,8 @@ app.get('/api/users/Session',auth,(req,res)=>{
       if (err) return res.json({success:false,err});
       return res.status(200).json({
         user:req.user.name,
-        id:req.user._id
+        id:req.user._id,
+        address:req.user.address
        })
     })
     
@@ -160,6 +166,7 @@ app.post('/api/users/register', (req, res) => {
     })
   })
 })
+
 app.post('/api/users/login', (req, res) => {
 
   // console.log('ping')
@@ -231,6 +238,11 @@ app.get('/api/users/logout', auth, (req, res) => {
         success: true
       })
     })
+})
+app.post('/api/users/changeName',(req,res)=>{
+  const session = req.body.id;
+  const Name =req.body.Name;
+  
 })
 app.post("/file/upload", (req, res) => {
   const file = req.files.file;

@@ -7,8 +7,6 @@ background: url(/src/img/shortback.png);
 background-repeat: no-repeat;
 background-size:100% 25%;
 max-width: 554px;
-
-min-height: 1050px;
 overflow-x:hidden;
 overflow-y:hidden;
 height: 100vh;
@@ -43,6 +41,14 @@ background-color:darkslateblue;
 opacity: 0.7;
 transition: top .01s linear; 
 text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+}
+#help_btn:hover{
+background-color: tan;
+border: 0px;
+}
+
+#help_btn:active {
+top: 2px;
 }
 #smallcomponent_left {
    width: 100%;
@@ -100,5 +106,5 @@ text-shadow: 0 1px 0 rgba(0,0,0,0.15);
  #help_img{
   position: relative;
   left: -10%;
-  height: 250px;
+  height: 150px;
  }

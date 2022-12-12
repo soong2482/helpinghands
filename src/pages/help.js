@@ -7,8 +7,8 @@ import { datarequire } from '../_actions/userAction';
 import { useDispatch } from "react-redux";
 import leftarrow from '../img/leftarrow.png';
 import logo7 from '../img/pang.jpg';
-import { useNavigate, useResolvedPath } from "react-router-dom";
-
+import { useNavigate} from "react-router-dom";
+import {requireLikeList} from "../_actions/userAction";
 function Help(){ 
   const M = window.M;
     const [List,setList] =useState();
@@ -18,16 +18,24 @@ function Help(){
     const [menuOpen, setMenuOpen] = useState(false)
     const [DataList,setDataList]= useState(null);
     const [sign,setsign] =useState(null);
+    const [sessionAddress,setsessionAddress]= useState(null);
+    const [dataAddress] = useState([]);
+    const [DataAddress,setDataAddress]=useState([]);
+    const [Count,setCount] = useState();
  useEffect(()=>{
    axios.get(`/api/users/Session`)
    .then(response => {
        setSession(response.data.id);
+       setsessionAddress(response.data.address);
+       console.log(response.data.address);
    })
  },[]);
+
     useEffect(()=>{
         axios.get(`/api/repair/list`)
         .then(response => {
          setList(response.data);
+         setCount(response.data.count);
           initMap();
         })
     }, []);
@@ -41,10 +49,49 @@ function Help(){
     const map = new kakao.maps.Map(container, options);
     setKakaoMap(map);
     setMenuOpen(false);
+    var userAdd;
+    geocoder.addressSearch(`${sessionAddress}`,function(result){
+      userAdd=parseFloat(result[0].x)+parseFloat(result[0].y)
+    })
+    List&&List.data.map((item)=>
+    geocoder.addressSearch(`${item.address}`,function(result){
+         const data ={
+          id:item.id_count,
+          latlng:parseFloat(result[0].x)+parseFloat(result[0].y)+parseFloat(userAdd),
+          address:item.address,
+          title:item.address,
+          text:item.text,
+          img:item.Img1,
+          people:item.people,
+         }
+         if(isNaN(data.latlng)){
+          initMap();
+        }
+         dataAddress.push(data);
+       
+    })
+  )
+  console.log("렌더링");
   };
   const dispatch = useDispatch();
   const Navigate = useNavigate();
   const geocoder = new kakao.maps.services.Geocoder();
+  const fi=(e)=>{
+    e.preventDefault();
+    const dataaddress =dataAddress.filter((element)=>!isNaN(element.latlng));        
+  const DataAddresss= dataaddress.filter((item, i) => {
+    return (
+      dataaddress.findIndex((item2, j) => {
+        return item.id === item2.id;
+      }) === i
+    );
+  });
+  DataAddresss.sort(function(a,b){
+    return b.latlng-a.latlng
+  })
+setDataAddress(DataAddresss);
+console.log(DataAddress);
+}
   {List && List.data.map((item)=>
       geocoder.addressSearch(`${item.address}`,function(result){
                var x = result[0].x;
@@ -76,7 +123,6 @@ function Help(){
           .then(response=>{
            if(response.payload.success){
              setDataList(response.payload.data);
-             console.log(response.payload.data);
          }
         })
                setKakaoMap(map);
@@ -113,7 +159,9 @@ function Help(){
           <img src={leftarrow} style={{ width: 40, height: 30 }} alt='화살표'  />
           </button>
           <div id = "help_text">봉사신청</div>
-    <div><button id="help_btn" onClick={initMap}>전체화면으로</button></div>
+    <div><button id="help_btn" onClick={initMap}>전체화면으로</button>
+    <button onClick={fi}>추천목록 보기</button>
+    </div>
     
   <div id="map" style={{ width: "100vw", height: "90vh" }}>
   {DataList && DataList.map((item)=>  
@@ -142,7 +190,7 @@ function Help(){
                 </div>
                 <br></br>
                 <div id = "smallcomponent_picture">
-                    <img id = "help_img" src={"http://192.168.56.1:9000/files/"+item.path} style={{ width:"100%" }}/>
+                    <img id = "help_img" src={"http://172.20.10.3:9000/files/"+item.path} style={{ width:"100%" }}/>
                 </div>
               
                 
@@ -160,4 +208,4 @@ function Help(){
 </div>
   )
 }
-export default Help
+export default  React.memo(Help);

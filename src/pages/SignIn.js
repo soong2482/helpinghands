@@ -3,6 +3,7 @@ import React,{useState,useCallback} from "react";
 import image from '../img/background.png'
 import '../css/SignIn.css'
 import logo3 from '../img/userlogo1.png';
+import leftarrow from '../img/leftarrow.png';
 import { loginUser } from "../_actions/userAction";
 import { useDispatch } from "react-redux";
 function SignIn(){
@@ -36,6 +37,9 @@ function SignIn(){
     return(
     <div id="SignIn_Background" style={{backgroundImage:`url(${image})`}}>
         <div id="SignIn_container0">
+        <button id="mypage_back_button" onClick={() => {Navigate("/")}} >
+               <img src={leftarrow} style={{ width: 30, height: 20 }} alt='화살표' />
+            </button>
         </div>
         <div id="SignIn_container1">
           로그인
@@ -47,7 +51,6 @@ function SignIn(){
         <div>아이디</div>
         <input id="SignIn_idinput" 
         type="text" 
-        placeholder="       @email.com"
         value={email}
         onChange={onChangeName}
         ></input>

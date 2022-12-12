@@ -81,7 +81,7 @@ function Repair(){
     }
 
   function setIm(e){
-    var API= "http://192.168.56.1:9000";
+    var API= "http://172.20.10.3:9000";
     e.preventDefault();
     M.media.picker({
       mode:"SINGLE",
@@ -111,7 +111,7 @@ function Repair(){
       })
     }
     function setIm1(e){
-         var API= "http://192.168.56.1:9000";
+         var API= "http://172.20.10.3:9000";
       e.preventDefault();
       M.media.picker({
         mode:"SINGLE",
@@ -163,9 +163,10 @@ function Repair(){
       <button id = "repair_select" type="primary" onClick={setIm1}>
       사진선택</button>
         </main>
-        <img src={I} id = "repair_img"  style={{ width: 100, height: 140 }} alt="사진"></img>
-        <img src={I1} id = "repair_img" style={{ width: 100, height: 100 }}alt="사진"></img>
-           
+        <div id="repair_img2">
+        <img src={I} id = "repair_img"  style={{ width: 150, height: 180 }} alt="사진"></img>
+        <img src={I1} id = "repair_img" style={{ width: 150, height: 180 }}alt="사진"></img>
+        </div>
   
         </div>
   

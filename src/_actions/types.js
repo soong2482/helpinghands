@@ -10,3 +10,6 @@ export const REQUIRE_LIST="require_list";
 export const DATA_REQUIRE="data_require";
 export const USERDATA_REQUIRE="userdata_require";
 export const SUCCESS_DATA="success_data";
+export const REPAIR_ADDRESS ="repair_address";
+export const REQUIRE_LIKELIST="require_likelist";
+export const CHANGE_NAME ="change_name";

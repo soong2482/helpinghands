@@ -6,18 +6,17 @@ import alram from '../img/alram.png';
 import protect from '../img/protect.png';
 import participation from '../img/participation.png';
 import recruitment from '../img/recruitment.png';
-import logoutbtn2 from '../img/logout.png';
+import logoutbtn from '../img/logout.png';
 import axios from 'axios';
-import { useEffect } from "react";
-import { useState } from "react";
 import rightarrow from '../img/rightarrow.png';
 import leftarrow from '../img/leftarrow.png';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-
+import { useEffect } from "react";
+import { useState } from "react";
 function Mypage() {
   const navigate = useNavigate();
-  const logoutbtn =() => {
+  const logout =() => {
         axios.get(`/api/users/logout`)
         .then(response => {
                 console.log(response.data)
@@ -51,45 +50,45 @@ function Mypage() {
               <div id="mypage_agency">안동 행복 봉사 단체</div>
             </div>
             <button id="mypage_button1" onClick={() => {navigate("/privacy")}} >
-            &emsp;&emsp;<img src={human} style={{ width: 20, height: 20 }} alt='사람' />
+            &emsp;<img src={human} style={{ width: 20, height: 20 }} alt='사람' />
                     &emsp;&emsp;
                     개인 정보
-                    &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                    &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                     <img src={rightarrow} style={{ width: 20, height: 20 }} alt='화살표' />
             </button>
-            <button id="mypage_button2" onClick={() => {navigate("/")}}>
-            &emsp;&emsp;<img src={alram} style={{ width: 20, height: 20 }} alt='알림' />
+            <button id="mypage_button2" onClick={() => {navigate("/home")}}>
+            &emsp;<img src={alram} style={{ width: 20, height: 20 }} alt='알림' />
                     &emsp;&emsp;
                     알림 및 소리
-                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                    &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                     <img src={rightarrow} style={{ width: 20, height: 20 }} alt='화살표' />
             </button>
-            <button id="mypage_button3" onClick={() => {navigate("/")}}>
-            &emsp;&emsp;<img src={protect} style={{ width: 20, height: 20 }} alt='개인정보' />
+            <button id="mypage_button3" onClick={() => {navigate("/home")}}>
+            &emsp;<img src={protect} style={{ width: 20, height: 20 }} alt='개인정보' />
                     &emsp;&emsp;
                     개인정보 보호 및 공유
-                    &nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;
                     <img src={rightarrow} style={{ width: 20, height: 20 }} alt='화살표' />
             </button>
             <button id="mypage_button4" onClick={() => {navigate("/require")}}>
-            &emsp;&emsp;<img src={participation} style={{ width: 20, height: 20 }} alt='봉사 참여' />
+            &emsp;<img src={participation} style={{ width: 20, height: 20 }} alt='봉사 참여' />
                     &emsp;&emsp;
                     봉사 참여 확인
-                    &nbsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                    &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                     <img src={rightarrow} style={{ width: 20, height: 20 }} alt='화살표' />
             </button>
             <button id="mypage_button5" onClick={() => {navigate("/helping")}}>
-            &emsp;&emsp;<img src={recruitment} style={{ width: 20, height: 20 }} alt='봉사 모집' />
+            &emsp;<img src={recruitment} style={{ width: 20, height: 20 }} alt='봉사 모집' />
                     &emsp;&emsp;
                     봉사자 확인
-                    &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                    &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                     <img src={rightarrow} style={{ width: 20, height: 20 }} alt='화살표' />
             </button>
-            <button id="mypage_button6" onClick={() => {logoutbtn()}}>
-            &emsp;&emsp;<img src={logoutbtn2} style={{ width: 20, height: 20 }} alt='로그 아웃' />
+            <button id="mypage_button6" onClick={logout}>
+            &emsp;<img src={logoutbtn} style={{ width: 20, height: 20 }} alt='로그 아웃' />
                     &emsp;&emsp;
                     로그아웃
-                    &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                    &nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                     
             </button>
             <div id="mypage_div_adv">

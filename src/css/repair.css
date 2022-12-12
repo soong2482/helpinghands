@@ -115,7 +115,10 @@
       margin-left: 5%;
       z-index: -1;
     }
-  
+  #repair_img2{
+    max-height: 50px;
+    margin-top: 5%;
+  }
     #repair_story{
       width: 88%;
       height: 50%;

@@ -3,8 +3,11 @@ import React,{useState,useCallback} from "react";
 import { useNavigate } from "react-router-dom";
 import logo from '../img/logo.png';
 import logo2 from '../img/33.png';
-import logo3 from '../img/11.png';
-import logo4 from '../img/55.png';
+import emailicon from '../img/emailicon.png';
+import logo3 from './img/11.png';
+import phonenumber from '../img/phonenumber.png';
+import repasswordicon from '../img/repassword.png'
+import leftarrow from '../img/leftarrow.png';
 import '../css/signup.css'
 import { registerUser } from "../_actions/userAction";
 import { useDispatch } from "react-redux";
@@ -15,6 +18,7 @@ function SignUp(props){
     const[password, setPassword]=useState('');
     const[repassword,setrePassword]=useState('');
     const[phone,setPhone]=useState('');
+    const[Address,setAddress]=useState('');
     const dispatch = useDispatch();
     const OnChangeEmail = useCallback(e=> {
       setEmail(e.target.value);
@@ -31,8 +35,12 @@ function SignUp(props){
       const onChangerePassword= useCallback(e=>{
         setrePassword(e.target.value);
       },[]);
+      const onChangeAddress= useCallback(e=>{
+        setAddress(e.target.value);
+      },[]);
     const OnSubmit =(e) => {
       e.preventDefault();
+      console.log(name, password);//dev
       let body={
         name: name,
         email:email,
@@ -40,8 +48,8 @@ function SignUp(props){
         phone:phone,
         countV:0,
         role:0,
+        address:Address,
         nickname:name,
-        path:"",
       }
       const emailRegex =
       /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
@@ -58,8 +66,10 @@ function SignUp(props){
         if(response.payload.success){
         alert("가입이 정상적으로 완료되었습니다.");
         Navigate("/SignIn");
+        
       }
       else{
+        
         alert("아이디나 닉네임이 중복되었습니다.");
       } 
     })
@@ -71,13 +81,16 @@ function SignUp(props){
   }
     return(   
     <div id="signup_background1">
+            <button id="signup_back_button" onClick={() => {Navigate("/")}} >
+               <img src={leftarrow} style={{ width: 30, height: 20 }} alt='화살표' />
+            </button>
          <img id="singnup_logo2" alt="로고" src={logo}/>
           <div id ="singnup_container6">
           <div>이름<div id="singnup_pwd">
             <input id="singnup_idinput" 
               value={name}
               type="text" 
-              placeholder="                닉네임을 입력해주세요."
+              placeholder="닉네임을 입력해주세요."
               onChange={OnChangeName}
               >
               </input>
@@ -91,11 +104,11 @@ function SignUp(props){
             <input id="singnup_idinput" 
               value={email}
               type="text" 
-              placeholder="                     @email.com"
+              placeholder="@email.com"
               onChange={OnChangeEmail}
               >
               </input>
-            <img src={logo3} style={{
+            <img src={emailicon} style={{
                 width:"9%",
             }}/>
             </div>
@@ -104,7 +117,7 @@ function SignUp(props){
             <div>비밀번호<div id="singnup_pwd">
             <input id="singnup_idinput" 
             type="password" 
-            placeholder="   특수문자 포함 8자 이상"
+            placeholder="특수문자 포함 8자 이상"
             onChange={OnChangePassword}
             value={password}
             ></input>
@@ -117,12 +130,12 @@ function SignUp(props){
             <div>비밀번호 재확인<div id="singnup_pwd">
             <input id="singnup_idinput" 
             type="password" 
-            placeholder="   다시 한번 입력해주세요."
+            placeholder="다시 한번 입력해주세요."
             onChange={onChangerePassword}
             value={repassword}
             ></input>
-            <img src={logo2} style={{
-                width:"10%",
+            <img id="signup_repasswordicon" src={repasswordicon} style={{
+                width:"9%",
             }}/>
             </div>
             </div>
@@ -130,16 +143,23 @@ function SignUp(props){
             <div>휴대폰번호<div id="singnup_pwd">
             <input id="singnup_idinput" 
             type="text" 
-            placeholder="          010-0000-0000"
+            placeholder="010-0000-0000"
             onChange={OnChangePhome}
             value={phone}
             >
             </input>
-            <img src={logo4} style={{
+            <img src={phonenumber} style={{
                 width:"10%",
             }}/>
             </div>
             </div>
+            <div>주소</div>
+            <input 
+            type="text"
+            value={Address}
+            onChange={onChangeAddress}
+            > 
+            </input>
             <div id ="singnup_container7">
             <button id="singnup_sign" onClick={OnSubmit}>회원가입</button>
             </div>

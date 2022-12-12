@@ -28,18 +28,17 @@ const PopupPostCode = (props) => {
     const postCodeStyle = {
         display: "block",
         position: "absolute",
-        top: "6%",
-        right: "28%",
-        width: "530px",
-        height: "370px",
+        top: "-100%",
+        right: "25%",
+        width: "240px",
+        height: "400px",
         padding: "7px",
         
       };
  
     return(
-        <div>
+        <div id="popuppostcode_post">
             <DaumPostcode style={postCodeStyle} onComplete={handlePostCode} />
-            <button type='button' id ="postCode_btn" onClick={() => {props.onClose()}} className='postCode_btn'>닫기</button>
         </div>
     )
 }

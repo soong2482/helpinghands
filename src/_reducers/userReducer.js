@@ -1,4 +1,6 @@
-import { SUCCESS_DATA,DATA_REQUIRE,LOGIN_USER, REGISTER_USER, AUTH_USER, UPLOAD_REPAIR,APPLICATION_REPAIR,REQUIRE_HELP,REQUIRE_LIST, USERDATA_REQUIRE} from '../_actions/types';
+import { SUCCESS_DATA,DATA_REQUIRE,LOGIN_USER, REGISTER_USER, AUTH_USER, 
+    UPLOAD_REPAIR,APPLICATION_REPAIR,REQUIRE_HELP,REQUIRE_LIST, 
+    USERDATA_REQUIRE,REPAIR_ADDRESS,REQUIRE_LIKELIST,CHANGE_NAME} from '../_actions/types';
 
 export default function (state = {}, action) {
     switch (action.type) {
@@ -30,6 +32,15 @@ export default function (state = {}, action) {
             return{...state, userdata:action.payload}
             break;
         case SUCCESS_DATA:
+            return{...state, success:action.payload}
+            break;
+        case REPAIR_ADDRESS:
+            return{...state, success:action.payload}
+            break;
+        case REQUIRE_LIKELIST:
+            return{...state, success:action.payload}
+            break;
+        case CHANGE_NAME:
             return{...state, success:action.payload}
             break;
         default:

@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { LOGIN_USER, REGISTER_USER, AUTH_USER,UPLOAD_REPAIR,APPLICATION_REPAIR,REQUIRE_HELP,REQUIRE_LIST,DATA_REQUIRE,SUCCESS_DATA,USERDATA_REQUIRE} from './types';
+import { LOGIN_USER, REGISTER_USER, AUTH_USER,UPLOAD_REPAIR,APPLICATION_REPAIR,REQUIRE_HELP,REQUIRE_LIST,DATA_REQUIRE,
+    SUCCESS_DATA,USERDATA_REQUIRE,REPAIR_ADDRESS,REQUIRE_LIKELIST,CHANGE_NAME} from './types';
 export function loginUser(dataToSubmit) {
 
     const request = axios.post('/api/users/login', dataToSubmit)
@@ -87,6 +88,30 @@ export function userdatarequire(dataToSubmit){
 }
 export function successdata(dataToSubmit){
     const request = axios.post('/api/help/success',dataToSubmit)
+          .then(response => response.data)
+    return {
+        type: SUCCESS_DATA,
+        payload: request
+    }
+}
+export function repairaddress(dataToSubmit){
+    const request = axios.post('/api/help/address',dataToSubmit)
+          .then(response => response.data)
+    return {
+        type: SUCCESS_DATA,
+        payload: request
+    }
+}
+export function requireLikeList(dataToSubmit){
+    const request = axios.post('/api/help/likelist',dataToSubmit)
+          .then(response => response.data)
+    return {
+        type: SUCCESS_DATA,
+        payload: request
+    }
+}
+export function ChangeName(dataToSubmit){
+    const request = axios.post('/api/users/changeName',dataToSubmit)
           .then(response => response.data)
     return {
         type: SUCCESS_DATA,
